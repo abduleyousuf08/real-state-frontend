@@ -94,11 +94,28 @@
 .scroll-buttons {
   padding: 10px 10px;
   background-color: #fff;
-  display: inline-block;
+  display: flex;
+  width: 90px;
+  border-bottom: 0.5px solid #e5e5e5;
+}
+.button-one {
+  padding: 10px;
+}
+.button-two {
+  padding: 10px;
 }
 
-.scroll-buttons:hover {
-  /* background-color: #d82460; */
+.button-one:hover {
+  background-color: #d82460;
+}
+.button-two:hover {
+  background-color: #d82460;
+}
+.button-one a:hover {
+  font-size: 30px;
+}
+.button-two a:hover {
+  font-size: 30px;
 }
 
 .property-info {
@@ -117,8 +134,56 @@
 .sale-btn {
   margin-top: 35px;
   margin-bottom: 20px;
-  padding: 7px 45px;
+  padding: 10px 45px;
   border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.sale-btn:hover {
+  background-color: #84a98c;
+  font-size: 20px;
+}
+
+.prop-one {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.icon-one {
+  font-size: 45px;
+  padding-right: 8px;
+}
+
+.prop-two {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.icon-two {
+  font-size: 45px;
+  padding-right: 8px;
+}
+
+.prop-three {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.icon-three {
+  font-size: 45px;
+  padding-right: 8px;
+}
+
+.icon-location {
+  padding-right: 5px;
+}
+
+.main-location {
+  text-decoration: none;
+  color: #343a40;
 }
