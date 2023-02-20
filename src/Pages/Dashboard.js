@@ -14,7 +14,7 @@ function Dashboard() {
 
 const renderComponent = () => {
     switch(activeComponent) {
-    case "profile":
+    case "Profile":
         return <Profile/>;
     case "MyProperties":
         return <MyProperties/>;
