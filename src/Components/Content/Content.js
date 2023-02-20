@@ -1,8 +1,4 @@
-<<<<<<< HEAD:src/Components/Content.js
-import "../CSS/Content.css";
-=======
 import "./content.css";
->>>>>>> 102055c7fc1f695a8852d088de9c87255e6f8b2e:src/Components/Content/Content.js
 import { GrFormNext } from "react-icons/gr";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdTabUnselected } from "react-icons/md";

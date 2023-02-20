@@ -1,10 +1,5 @@
-<<<<<<< HEAD:src/Components/Header.js
-import logo from "../images/updated.png";
-import "../CSS/Header.css";
-=======
 import logo from "../../images/updated.png";
-import "./Header.css";
->>>>>>> 102055c7fc1f695a8852d088de9c87255e6f8b2e:src/Components/Header/Header.js
+import "../Header/Header.css";
 import { FaLock } from "react-icons/fa";
 import { MdOutlineCreate } from "react-icons/md";
 
