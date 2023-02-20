@@ -1,18 +1,22 @@
 /*content CSS*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Roboto+Condensed:wght@700&display=swap");
+body {
+  background-color: #cad2c5;
+}
 
 .background {
   background-image: url("../../images/latest\ image.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
-  height: 80vh;
-  padding-top: 13%;
-  padding-left: 250px;
+  height: 100vh;
+  padding-top: 5%;
+  padding-left: 7%;
   font-size: 20px;
   color: #fff;
 }
 
 .scroll-buttons {
-  padding: 10px 10px;
+  padding: 10px 4px;
   background-color: #fff;
   display: flex;
   width: 90px;
@@ -40,7 +44,8 @@
 
 .property-info {
   padding: 10px 20px;
-  width: 30%;
+  margin-bottom: 40px;
+  width: 40%;
   color: black;
   background-color: #fff;
 }
@@ -106,4 +111,187 @@
 .main-location {
   text-decoration: none;
   color: #343a40;
+}
+
+/*the search bar  css*/
+.sale-rent-choice {
+  display: flex;
+}
+.main-parent {
+  text-align: center;
+  width: 90%;
+  height: 40vh;
+  color: black;
+  background-color: white;
+  /* box-shadow: -2px -2px 5px #edede9; */
+  padding-top: 40px;
+}
+
+.sub-main-parent {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 40px;
+}
+
+.second-sub-main-parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 65px;
+}
+
+.rent {
+  padding: 10px 8px;
+  background-color: #fff;
+  color: black;
+  border: 1px solid black;
+  margin-right: 3px;
+}
+
+.rent a,
+.sale a {
+  text-decoration: none;
+  color: black;
+}
+
+.sale {
+  padding: 10px 8px;
+  background-color: #fff;
+  color: black;
+  border: 1px solid black;
+}
+
+.selection-location {
+  padding: 20px 80px;
+  border: 0px;
+  background-color: #edede9;
+}
+
+.selection-location option {
+  font-size: 15px;
+}
+
+.selection-location:active {
+  border: 0px #edede9;
+}
+
+.selection-property {
+  padding: 20px 80px;
+  border: 0px;
+  background-color: #edede9;
+}
+
+.selection-property option {
+  font-size: 15px;
+}
+
+.selection-status {
+  padding: 20px 80px;
+  border: 0px;
+  background-color: #edede9;
+}
+
+.selection-status option {
+  font-size: 15px;
+}
+
+.selection-Material {
+  padding: 20px 80px;
+  border: 0px;
+  background-color: #edede9;
+}
+
+.selection-Material option {
+  font-size: 15px;
+}
+
+.search-btn {
+  padding: 15px 80px;
+  margin-top: 19px;
+  cursor: pointer;
+  background-color: #84a98c;
+  font-family: "Inter", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 20px;
+  border: none;
+}
+
+.search-btn:active {
+  border: 1px solid black;
+}
+
+.price-from-label {
+  margin-right: 50px;
+  text-align: start;
+}
+.price-from-input {
+  padding: 20px 50px;
+  border: 0px;
+  background-color: #edede9;
+}
+
+.price-to-input {
+  padding: 20px 50px;
+  border: 0px;
+  background-color: #edede9;
+}
+
+.selection-rooms {
+  padding: 20px 80px;
+  border: 0px;
+  background-color: #edede9;
+}
+
+.price-from-container {
+  display: flex;
+  flex-direction: column;
+}
+.price-to-label {
+  text-align: start;
+}
+.price-to-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-room {
+  text-align: start;
+}
+
+.room-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-location {
+  text-align: start;
+}
+
+.property-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-property {
+  text-align: start;
+}
+
+.status-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.material-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-material {
+  text-align: start;
 }
