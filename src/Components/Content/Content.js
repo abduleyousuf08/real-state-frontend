@@ -1,4 +1,4 @@
-import "../App.css";
+import "./content.css";
 import { GrFormNext } from "react-icons/gr";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdTabUnselected } from "react-icons/md";
