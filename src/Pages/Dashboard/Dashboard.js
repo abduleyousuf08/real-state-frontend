@@ -1,12 +1,12 @@
 import React from 'react'
-import "../CSS/Dashboard.css";
+import './Dashboard.css'
 import { CgProfile } from 'react-icons/cg'
 import { BsHouseDoor, BsChatRightDots } from 'react-icons/bs'
 import { AiOutlinePlusCircle, AiOutlineLogout } from 'react-icons/ai'
-import Profile from '../Components/Profile'
-import MyProperties from '../Components/MyProperties'
-import CreateProperty from '../Components/CreateProperty'
-import Messages from '../Components/Messages'
+import Profile from '../../Components/Profile/Profile'
+import MyActivities from '../../Components/MyActivities/MyActivities'
+import CreateProperty from '../../Components/CreateProperty/CreateProperty'
+import Messages from '../../Components/Messages/Messages'
 import { useState } from 'react';
 
 function Dashboard() {
@@ -16,8 +16,8 @@ const renderComponent = () => {
     switch(activeComponent) {
     case "Profile":
         return <Profile/>;
-    case "MyProperties":
-        return <MyProperties/>;
+    case "MyActivities":
+        return <MyActivities/>;
     case "CreateProperty":
         return <CreateProperty/>;
     case "Messages":
@@ -34,9 +34,9 @@ return (
             <CgProfile/>
             Profile
         </span>
-        <span className={`dashboard-icons ${activeComponent === "MyProperties" ? "active" : ""}`} onClick={() => setActiveComponent("MyProperties")}>
+        <span className={`dashboard-icons ${activeComponent === "MyActivities" ? "active" : ""}`} onClick={() => setActiveComponent("MyActivities")}>
             <BsHouseDoor/>
-            My Properties
+            My Activities
         </span>
         <span className={`dashboard-icons ${activeComponent === "CreateProperty" ? "active" : ""}`} onClick={() => setActiveComponent("CreateProperty")}>
             <AiOutlinePlusCircle/>

@@ -52,6 +52,14 @@
     padding: 3px;
 }
 
+.status-field {
+    font-weight: 800;
+    margin-top: 2rem;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+}
+
 .user-img{
     height: 50px;
     width: 50px;
@@ -70,4 +78,30 @@
     gap: 2px;
     margin-top: 1rem;
     margin-left: rem;
+}
+
+.save-user-btn{
+    background: #52796f;
+    color: #fff;
+    border: 1px solid;
+    border-radius: 8px;
+    padding: 8px;
+    font-weight: 600;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 2rem;
+    margin-left: 12rem;
+}
+
+.save-pass-btn{
+    background: #52796f;
+    color: #fff;
+    border: 1px solid;
+    border-radius: 8px;
+    padding: 8px;
+    font-weight: 600;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-left: 12rem;
 }

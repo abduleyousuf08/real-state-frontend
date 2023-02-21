@@ -1,7 +1,13 @@
 import React from 'react'
-import '../CSS/Profile.css'
+import './Profile.css'
+import { useState } from 'react'
 
 function Profile() {
+    const [status, setStatus] = useState('')
+
+    const handleStatusChange = (event) => {
+        setStatus(event.target.value)
+    }
 return (
     <div className='profile'>
         <div className='profile-wrapper'>
@@ -22,10 +28,29 @@ return (
                 <div className='user-info'>
                     <span className='profile-field'>Profile Image</span>
                     <div className='user-file'>
-                        <img src='https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg' className='user-img'/>
+                        <img src='https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg' className='user-img' alt=''/>
                         <input type="file" className='user-img-btn'/>
                     </div>
                 </div>
+                <div className='user-info'>
+                    <label className='status-field'>Status:
+                        <input
+                            type="radio"
+                            value="buying"
+                            checked={status === "buying"}
+                            onChange={handleStatusChange}
+                        />
+                        Buying
+                        <input
+                            type="radio"
+                            value="selling"
+                            checked={status === "selling"}
+                            onChange={handleStatusChange}
+                        />
+                        Selling
+                    </label>
+                </div>
+                <button className='save-user-btn'>Save User Profile</button>
             </div>
         </div>
 
@@ -44,6 +69,7 @@ return (
                     <label className="profile-field">Confirm New Password</label>
                     <input className="text-field" type="password"/>
                 </div>
+                <button className='save-pass-btn'>Change Password</button>
             </div>
         </div>
     </div>
