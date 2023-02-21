@@ -7,7 +7,7 @@ import { MdOutlineBathroom } from "react-icons/md";
 import { ImLocation } from "react-icons/im";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { AiFillHome } from "react-icons/ai";
-import { FiLock } from "react-icons/fi";
+import { FaLock } from "react-icons/fa";
 import { VscTools } from "react-icons/vsc";
 import { GiArcheryTarget } from "react-icons/gi";
 function Content() {
@@ -179,7 +179,7 @@ function Content() {
             </div>
             <div>
               <div className="about-website-icon">
-                <FiLock className="icon-website-about" />
+                <FaLock className="icon-website-about" />
               </div>
               <h3>Securing the property</h3>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat,

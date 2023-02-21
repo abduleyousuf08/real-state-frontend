@@ -1,5 +1,5 @@
 import logo from "../../images/updated.png";
-import "./Header.css";
+import "../Header/Header.css";
 import { FaLock } from "react-icons/fa";
 import { MdOutlineCreate } from "react-icons/md";
 
