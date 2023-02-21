@@ -10,71 +10,53 @@ import Messages from "../../Components/Messages/Messages";
 import { useState } from "react";
 
 function Dashboard() {
-  const [activeComponent, setActiveComponent] = useState("Profile");
+    const [activeComponent, setActiveComponent] = useState("Profile");
 
-  const renderComponent = () => {
-    switch (activeComponent) {
-      case "Profile":
-        return <Profile />;
-      case "MyActivities":
-        return <MyActivities />;
-      case "CreateProperty":
-        return <CreateProperty />;
-      case "Messages":
-        return <Messages />;
-      default:
-        return null;
+    const renderComponent = () => {
+        switch(activeComponent) {
+        case "Profile":
+            return <Profile/>;
+        case "MyActivities":
+            return <MyActivities/>;
+        case "CreateProperty":
+            return <CreateProperty/>;
+        case "Messages":
+            return <Messages/>;
+        default:
+            return null;
+        }
     }
-  };
-  return (
-    <div className="dashboard-container">
-      <div className="sidebar">
-        <div className="components">
-          <span
-            className={`dashboard-icons ${
-              activeComponent === "Profile" ? "active" : ""
-            }`}
-            onClick={() => setActiveComponent("Profile")}
-          >
-            <CgProfile />
-            Profile
-          </span>
-          <span
-            className={`dashboard-icons ${
-              activeComponent === "MyActivities" ? "active" : ""
-            }`}
-            onClick={() => setActiveComponent("MyActivities")}
-          >
-            <BsHouseDoor />
-            My Activities
-          </span>
-          <span
-            className={`dashboard-icons ${
-              activeComponent === "CreateProperty" ? "active" : ""
-            }`}
-            onClick={() => setActiveComponent("CreateProperty")}
-          >
-            <AiOutlinePlusCircle />
-            Create Property
-          </span>
-          <span
-            className={`dashboard-icons ${
-              activeComponent === "Messages" ? "active" : ""
-            }`}
-            onClick={() => setActiveComponent("Messages")}
-          >
-            <BsChatRightDots />
-            Messages
-          </span>
-          <span className="logout" onClick={() => setActiveComponent(null)}>
-            <AiOutlineLogout />
-            Logout
-          </span>
+    return (
+        <div className='dashboard-container'>
+        <div className='sidebar'>
+            <div className='components'>
+            <span className={`dashboard-icons ${activeComponent === "Profile" ? "active" : ""}`} onClick={() => setActiveComponent("Profile")}>
+                <CgProfile/>
+                Profile
+            </span>
+            <span className={`dashboard-icons ${activeComponent === "MyActivities" ? "active" : ""}`} onClick={() => setActiveComponent("MyActivities")}>
+                <BsHouseDoor/>
+                My Activities
+            </span>
+            <span className={`dashboard-icons ${activeComponent === "CreateProperty" ? "active" : ""}`} onClick={() => setActiveComponent("CreateProperty")}>
+                <AiOutlinePlusCircle/>
+                Create Property
+            </span>
+            <span className={`dashboard-icons ${activeComponent === "Messages" ? "active" : ""}`} onClick={() => setActiveComponent("Messages")}>
+                <BsChatRightDots/>
+                Messages
+            </span>
+            <span className='logout' onClick={() => setActiveComponent(null)}>
+                <AiOutlineLogout/>
+                Logout
+            </span>
+            </div>
         </div>
-      </div>
-      <div className="content">{renderComponent()}</div>
-    </div>
-  );
+        <div className='content'>
+            {renderComponent()}
+        </div>
+        </div>
+    )
 }
 
 export default Dashboard;
