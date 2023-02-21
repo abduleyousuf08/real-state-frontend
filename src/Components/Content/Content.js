@@ -6,6 +6,10 @@ import { MdOutlineBedroomParent } from "react-icons/md";
 import { MdOutlineBathroom } from "react-icons/md";
 import { ImLocation } from "react-icons/im";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { AiFillHome } from "react-icons/ai";
+import { FiLock } from "react-icons/fi";
+import { VscTools } from "react-icons/vsc";
+import { GiArcheryTarget } from "react-icons/gi";
 function Content() {
   return (
     <div>
@@ -155,6 +159,54 @@ function Content() {
               </select>
             </div>
             <button className="search-btn">Search</button>
+          </div>
+        </div>
+
+        <div className="About-website-content">
+          <div className="about-website-header">
+            <h1>Best Real Estates</h1>
+            <p>You need to do is very simple just join us</p>
+          </div>
+          <div className="about-website-child">
+            <div>
+              <div className="about-website-icon">
+                <AiFillHome className="icon-website-about" />
+              </div>
+              <h3>Finds Your Home</h3>2 Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Expedita eaque quos soluta ad incidunt
+              recusandae cumque, mollitia doloribus eligendi exercitationem et
+              ducimus placeat, aliquid labore est voluptate vel dolores beatae.
+            </div>
+            <div>
+              <div className="about-website-icon">
+                <FiLock className="icon-website-about" />
+              </div>
+              <h3>Securing the property</h3>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat,
+              eaque nesciunt reiciendis asperiores a ipsa consectetur dicta rem
+              dolorum ea quis est deserunt corporis laboriosam tempora, ducimus
+              quo aliquid quae? Recusandae similique quas tempore rem mollitia
+            </div>
+            <div>
+              <div className="about-website-icon">
+                <VscTools className="icon-website-about" />
+              </div>
+              <h3>Furnishing the property</h3>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat,
+              eaque nesciunt reiciendis asperiores a ipsa consectetur dicta rem
+              dolorum ea quis est deserunt corporis laboriosam tempora, ducimus
+              quo aliquid quae? Recusandae similique quas tempore rem mollitia
+            </div>
+            <div>
+              <div className="about-website-icon">
+                <GiArcheryTarget className="icon-website-about" />
+              </div>
+              <h3>Providing legal support</h3>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Doloribus quae dolorem consectetur aliquid tenetur repellat rem
+              impedit eum facilis veritatis dicta, labore temporibus sit natus
+              optio excepturi culpa explicabo commodi.
+            </div>
           </div>
         </div>
       </div>
