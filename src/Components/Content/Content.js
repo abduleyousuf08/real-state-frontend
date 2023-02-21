@@ -6,6 +6,8 @@ import { MdOutlineBedroomParent } from "react-icons/md";
 import { MdOutlineBathroom } from "react-icons/md";
 import { ImLocation } from "react-icons/im";
 import { IoMdArrowDropdown } from "react-icons/io";
+
+
 function Content() {
   return (
     <div>
