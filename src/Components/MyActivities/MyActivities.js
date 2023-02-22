@@ -3,6 +3,7 @@
     import ViewedProperties from './ViewedProperties';
     import SavedProperties from './SavedProperties';
     import UserReviews from './UserReviews';
+    import {MdOutlineArrowDropDown, MdOutlineDelete} from 'react-icons/md'
 
     const menuItems = [
     { id: 'recent', label: 'Recent Viewed Properties', component: <ViewedProperties /> },
@@ -30,7 +31,25 @@
             ))}
         </div>
         <div className="my-activities-content">
-            {menuItems.find((item) => item.id === selectedItem).component}
+            <div className='my-activities-sorting'>
+                <span className='my-activities-category'>Category:
+                    <select className='my-activities-options'>
+                            <option value="#"> All <MdOutlineArrowDropDown/></option>
+                            <option value="#">Rent</option>
+                            <option value="#">Buy</option>
+                    </select>
+                    <span className='my-activities-delete-btn'><MdOutlineDelete/>Delete all</span>
+                </span>
+                
+                <span className='my-activities-category'>Sort by:
+                    <select className='my-activities-options'>
+                            <option value="#"> Recently Posted<MdOutlineArrowDropDown/></option>
+                            <option value="#"> Price: Low to High</option>
+                            <option value="#">Price: High to Low </option>
+                    </select>
+                </span>
+            </div>
+                {menuItems.find((item) => item.id === selectedItem).component}
         </div>
         </div>
     );
