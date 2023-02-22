@@ -1,7 +1,35 @@
 .my-activities-container {
-    max-width: 900px;
+    max-width: 700px;
     margin: 0 auto;
+    margin-top: -1rem;
+    margin-left: 4rem;
 }
+
+.my-activities-title{
+    display: flex;
+    background: #fff;
+    font-weight:bold;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 6px;
+}
+.user-menu {
+    padding: 1rem 0;
+    border-bottom-color: 0.3rem solid transparent;
+    flex: 1;
+    justify-content: center;
+    text-decoration: none;
+    color: #504e4e;
+}
+
+.user-menu-selected {
+    border-bottom: 0.3rem solid #52796f;
+    color: #000;
+}
+
 
 .my-activities-section {
     margin-bottom: 40px;

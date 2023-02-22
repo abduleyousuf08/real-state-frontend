@@ -14,16 +14,16 @@ function Dashboard() {
 
     const renderComponent = () => {
         switch(activeComponent) {
-        case "Profile":
-            return <Profile/>;
-        case "MyActivities":
-            return <MyActivities/>;
-        case "CreateProperty":
-            return <CreateProperty/>;
-        case "Messages":
-            return <Messages/>;
-        default:
-            return null;
+            case "Profile":
+                return <Profile/>;
+            case "MyActivities":
+                return <MyActivities/>;
+            case "CreateProperty":
+                return <CreateProperty/>;
+            case "Messages":
+                return <Messages/>;
+            default:
+                return null;
         }
     }
     return (
