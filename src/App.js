@@ -1,8 +1,11 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Route, Routes, Switch } from "react-router-dom";
 import Header from "./Components/Header/Header";
-import Content from "./Components/Content/Content";
+import { useState } from "react";
+
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import Home from "./Pages/Home";
 
 function App() {
   return (
@@ -10,7 +13,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Content />} />
+          <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
