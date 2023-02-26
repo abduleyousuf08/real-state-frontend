@@ -10,6 +10,7 @@ import { AiFillHome } from "react-icons/ai";
 import { FaLock } from "react-icons/fa";
 import { VscTools } from "react-icons/vsc";
 import { GiArcheryTarget } from "react-icons/gi";
+import HouseShow from "../House/HouseShow";
 function Content() {
   return (
     <div>
@@ -167,6 +168,7 @@ function Content() {
             <h1>Best Real Estates</h1>
             <p>You need to do is very simple just join us</p>
           </div>
+
           <div className="about-website-child">
             <div>
               <div className="about-website-icon">
@@ -208,6 +210,7 @@ function Content() {
               optio excepturi culpa explicabo commodi.
             </div>
           </div>
+          <HouseShow />
         </div>
       </div>
     </div>

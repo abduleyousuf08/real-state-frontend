@@ -10,13 +10,14 @@ body {
   background-repeat: no-repeat;
   height: 100vh;
   padding-top: 5%;
-  padding-left: 7%;
+
   font-size: 20px;
   color: #fff;
 }
 
 .scroll-buttons {
   padding: 10px 4px;
+  margin-left: 7%;
   background-color: #fff;
   display: flex;
   width: 90px;
@@ -44,6 +45,7 @@ body {
 
 .property-info {
   padding: 10px 20px;
+  margin-left: 7%;
   margin-bottom: 40px;
   width: 40%;
   color: black;
@@ -116,6 +118,7 @@ body {
 /*the search bar  css*/
 .sale-rent-choice {
   display: flex;
+  margin-left: 3%;
 }
 .main-parent {
   text-align: center;
@@ -125,6 +128,7 @@ body {
   background-color: white;
   /* box-shadow: -2px -2px 5px #edede9; */
   padding-top: 40px;
+  margin-left: 3%;
 }
 
 .sub-main-parent {
@@ -308,7 +312,7 @@ body {
 
 .About-website-content {
   width: auto;
-  height: 40vh;
+  height: 35vh;
 }
 
 .about-website-child {
@@ -317,6 +321,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 40px;
+  margin-left: 4%;
 }
 
 .about-website-header {
