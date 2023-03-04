@@ -35,7 +35,7 @@ function HouseShow() {
           />
           <MDBCardBody>
             <MDBCardTitle className="card-header">
-              Via di Boccea St.
+              <a href="#"> Via di Boccea St.</a>
             </MDBCardTitle>
             <p className="card-paragraph">
               <CiLocationOn />
@@ -205,7 +205,7 @@ function HouseShow() {
             </div>
           </MDBCardBody>
         </MDBCard>
-        {/**fiveth */}
+        {/**5th */}
       </div>
     </div>
   );
