@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 .sign-up-sign {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -60,5 +60,5 @@
 }
 
 .image-size {
-  width: 800px;
+  width: 700px;
 }

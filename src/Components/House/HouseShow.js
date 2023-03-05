@@ -7,6 +7,7 @@ import { MdMeetingRoom } from "react-icons/md";
 import { MdBedroomParent } from "react-icons/md";
 import { MdOutlineBathroom } from "react-icons/md";
 import { CiLocationOn } from "react-icons/ci";
+import { Link } from "react-router-dom";
 import {
   MDBCard,
   MDBCardBody,
@@ -66,7 +67,9 @@ function HouseShow() {
               </div>
             </div>
             <div className="card-button">
-              <button>Browse</button>
+              <Link to={"/propertyInfo"}>
+                <button>Browse</button>
+              </Link>
             </div>
           </MDBCardBody>
         </MDBCard>
