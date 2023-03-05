@@ -213,7 +213,7 @@ function Content() {
           <HouseShow />
         </div>
       </div>
-    </div>
+    </div> 
   );
 }
 
