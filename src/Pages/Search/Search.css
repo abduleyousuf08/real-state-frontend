@@ -1,0 +1,105 @@
+.search-container{
+    cursor: pointer;
+    background: rgb(226, 224, 224);
+    color: black;
+    display: flex;
+    border-bottom: 1px;
+    border-color: rgb(226, 224, 224);
+    padding: 0.7rem;
+    font-size: large;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-filter-icon{
+    padding-left: 8px;
+    
+}
+
+.search-filters{
+    font-size:xx-large;
+    font-weight: bold;
+    padding: 4px;
+}
+
+.search-property{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.search-no-result{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.search-no-result > span{
+    font-size: 26px;
+    margin-top: 3px;
+    
+}
+
+.search-bar__section{
+    display: grid;
+    grid-template-columns: minmax(35rem,auto) calc(var(--spacing)*2) minmax(0,-webkit-max-content) calc(var(--spacing)*2) minmax(9rem,-webkit-max-content);
+    grid-template-columns: minmax(35rem,auto) calc(var(--spacing)*2) minmax(0,max-content) calc(var(--spacing)*2) minmax(9rem,max-content);
+    margin: 0 auto;
+    max-width: 114.5rem;
+    padding: 1.2rem 0;
+    width: 90%;
+    
+}
+
+.search-bar__location {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 80%;
+    flex: 1 0 80%;
+}
+
+.search-bar__section .search-bar__location {
+    grid-column-end: 2;
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+
+.multi-selection-autocomplete__root {
+    text-align: left;
+    width: 100%;
+}
+
+.multi-selection-autocomplete {
+    -webkit-box-align: center;
+    align-items: center;
+    background: #fff;
+    border: 0.1rem solid #bbb8db;
+    border-radius: 0.3rem;
+    cursor: text;
+    display: flex;
+    font-size: 1.4rem;
+    height: 4.8rem;
+    position: relative;
+    width: 100%;
+}
+
+.multi-selection-autocomplete__search-icon {
+    margin: 0 0.6rem 0 calc(0.6rem*2);
+    width: 1.5rem;
+}
+
+.multi-selection-autocomplete__input {
+    border: none;
+    color: #403b46;
+    flex: 1;
+    font-weight: 400;
+    outline: none;
+}
+
+.multi-selection-autocomplete__hidden-input {
+    height: 0;
+    position: absolute;
+    width: 0;
+}
