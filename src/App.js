@@ -9,6 +9,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Content from "./Components/Content/Content";
 import Login from "./Pages/authontication/Loggin";
 import SignUp from "./Pages/authontication/SignUp";
+import HouseInfo from "./Pages/PropertyOverview/HouseInfo";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
+          <Route path="/propertyInfo" element={<HouseInfo />} />
         </Routes>
       </BrowserRouter>
     </div>
