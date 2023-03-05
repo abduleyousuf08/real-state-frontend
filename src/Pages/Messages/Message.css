@@ -65,6 +65,7 @@ hr {
 }
 
 
+
 .Chat-container {
     display: flex;
     flex-direction: column;
@@ -206,7 +207,7 @@ hr {
 }
 .chat-sender>div{
     height: 70%;
-    padding: 0px 15px 0px 15px;
+    padding: 18px;
 }
 
 @media screen and (max-width: 768px) {

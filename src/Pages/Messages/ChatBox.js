@@ -32,6 +32,7 @@ function ChatBox() {
                     </div>
                     {/* chat-body */}
                     <div className="chat-body" >
+                        Hello, How're you?
                     </div>
                     {/* chat-sender */}
                     <div className="chat-sender">

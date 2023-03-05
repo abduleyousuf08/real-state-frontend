@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { BsFilter } from 'react-icons/bs'
 import './Search.css'
 import SearchFilters from './SearchFilters'
-import Property from './Property'
+
 function Search() {
     const [searchFilters, setSearchFilters] = useState(false)
     return (
@@ -14,10 +14,12 @@ function Search() {
                 <span>Search Property By Filters</span>
                 <BsFilter className='search-filter-icon'/>
             </div>
-            {searchFilters && <SearchFilters/>}
+            <div className='search-container'>
+                {searchFilters && <SearchFilters/>}
+            </div>
+            
             <span className='search-filters'>Properties</span>
             <div className='search-property'>
-                {[].map((property)=> <Property property={property} key={property.id}/>)}
             </div>
             {[].length === 0 && (
                 <div className='search-no-result'>
