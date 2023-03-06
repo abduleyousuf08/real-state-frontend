@@ -1,7 +1,6 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter, Route, Routes, Switch } from "react-router-dom";
-import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 //components
 import Header from "./Components/Header/Header";
@@ -10,6 +9,8 @@ import Content from "./Components/Content/Content";
 import Login from "./Pages/authontication/Loggin";
 import SignUp from "./Pages/authontication/SignUp";
 import HouseInfo from "./Pages/PropertyOverview/HouseInfo";
+import Messages from './Pages/Messages/Messages'
+import Search from './Pages/Search/Search'
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/propertyInfo" element={<HouseInfo />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/chat" element={<Messages />} />
         </Routes>
       </BrowserRouter>
     </div>
