@@ -7,9 +7,18 @@ import Profile from "../Profile/Profile";
 import MyActivities from "../MyActivities/MyActivities";
 import CreateProperty from "../../Components/CreateProperty/CreateProperty";
 import { useState } from "react";
+import UserContext from "../../Utils/UserContext";
+import { useContext } from "react";
+
 
 function Dashboard() {
     const [activeComponent, setActiveComponent] = useState("Profile");
+    const { setUser } = useContext(UserContext)
+
+    function handleOnClick(){
+        setUser(false)
+        localStorage.removeItem("token")
+    }
 
     const renderComponent = () => {
         switch(activeComponent) {
@@ -39,7 +48,10 @@ function Dashboard() {
                 <AiOutlinePlusCircle/>
                 Create Property
             </span>
-            <span className='logout' onClick={() => setActiveComponent(null)}>
+            <span className='logout' onClick={() => {
+                    setActiveComponent(null); 
+                    handleOnClick()
+                }}>
                 <AiOutlineLogout/>
                 Logout
             </span>
