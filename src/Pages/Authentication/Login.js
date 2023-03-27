@@ -2,14 +2,34 @@ import "./Login.css";
 import loginImage from "../../images/login image.png";
 import { FcGoogle } from "react-icons/fc";
 import { ImFacebook } from "react-icons/im";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import UserContext from "../../Utils/UserContext";
+import { useContext } from "react";
 
-function Loggin() {
+function Login() {
+  const [inputs, setInputs] = useState({})
+  const navigate = useNavigate()
+  const { setUser } = useContext(UserContext)
+
+  function handleOnLogIn(){
+    axios.post("http://localhost:3000/users/login", inputs)
+    .then((res)=>{
+        localStorage.setItem("token", res.data.token)
+        toast.success(res.data.message)
+        setUser(true)
+        navigate("/")
+    }).catch((e)=>{
+        toast.error(e.response.data.message)
+    })
+  }
   return (
     <div className="login-container">
       <div className="login-sub-container">
         <div className="form-container-parent">
-          <div className="fomr-header-container">
+          <div className="form-header-container">
             <h1 className="form-header-title">Login</h1>
             <p className="form-paragraph">
               Doesn't have an account yet?{" "}
@@ -29,6 +49,7 @@ function Loggin() {
                 id=""
                 placeholder="you@example.com"
                 className="input-email"
+                onChange={(e)=> setInputs({...inputs, email:e.target.value})}
               />
             </div>
             <div>
@@ -41,6 +62,7 @@ function Loggin() {
                 type="text"
                 placeholder="Enter 6 characters or more"
                 className="input-password"
+                onChange={(e)=> setInputs({...inputs, password:e.target.value})}
               />
             </div>
           </form>
@@ -55,7 +77,7 @@ function Loggin() {
             <label className="remember-style-class">Remember me</label>
           </div>
 
-          <button className="login-button">Login</button>
+          <button className="login-button"  onClick={handleOnLogIn}>Login</button>
           <br />
           <div className="companies-address">
             <button className="google">
@@ -81,4 +103,4 @@ function Loggin() {
     </div>
   );
 }
-export default Loggin;
+export default Login;
