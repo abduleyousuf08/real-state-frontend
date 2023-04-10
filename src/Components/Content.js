@@ -1,5 +1,5 @@
 import "../index.css";
-import "../mediaQR.css";
+
 import { AiOutlineHome } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { GrNext, GrPrevious } from "react-icons/gr";

@@ -1,39 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
-import UserContext  from "./Utils/UserContext";import houses from "./images/edited-images/houses.png";
+
 //components
-
-import Dashboard from "./Pages/Dashboard/Dashboard";
-
-import Login from "./Pages/Authentication/Login";
-import SignUp from "./Pages/Authentication/SignUp";
-
-import Messages from "./Pages/Messages/Messages";
-import Search from "./Pages/Search/Search";
 
 import Header from "./Components/Header.js";
 import Content from "./Components/Content.js";
-import HouseInfo from "./Pages/PropertyOverview/HouseInfo";
-import ProtectRoute from "./ProtectRoute";
-
-
 
 function App() {
-  const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState(false)
-
-  useEffect(()=>{
-    if(localStorage.getItem("token") != null){
-      setUser(true)
-    }
-    setLoading(false)
-  },[])
-
-  if(loading) return null
-  
   //
 
   const rentPropertyTypes = [
@@ -121,11 +95,10 @@ function App() {
 
   return (
     <div>
-      <UserContext.Provider value={{user, setUser}}>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route
             path="/"
             element={
               <Content
@@ -136,27 +109,8 @@ function App() {
               />
             }
           />
-            <Route path="/dashboard" element={<ProtectRoute><Dashboard/></ProtectRoute>}/>
-            <Route path="/house" element={<HouseInfo />} />
-          <Route path="/login" element={<Login/>} />
-            <Route path="/register" element={<SignUp />} />
-              <Route path="/search" element={<Search />} />
-            <Route path="/chat/:id" element={<ProtectRoute><Messages/></ProtectRoute>} />
-          </Routes>
-        </BrowserRouter>
-      </UserContext.Provider>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
