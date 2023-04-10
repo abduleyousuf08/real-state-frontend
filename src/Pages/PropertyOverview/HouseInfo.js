@@ -23,7 +23,6 @@ import {
 } from "mdb-react-ui-kit";
 
 //components
-import HouseShow from "../../Components/House/HouseShow";
 
 //images
 import insideImage_one from "../../images/insideImage-1.jpg";
