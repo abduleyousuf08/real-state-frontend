@@ -9,7 +9,8 @@ import { useContext } from "react";
 import { AuthContext } from "./Context/AuthContext";
 import { ChatContextProvider } from "./Context/ChatContext";
 
-
+import Header from "./Components/Header.js";
+import Content from "./Components/Content.js";
 
 function App() {
   const { user } = useContext(AuthContext)
