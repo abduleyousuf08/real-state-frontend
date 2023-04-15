@@ -16,7 +16,7 @@
   box-sizing: border-box;
 }
 
-body {
+.content-component {
   height: 100vh;
   background-image: url(./images//edited-images/image-two.jpg);
   background-color: #143d59;
@@ -922,7 +922,7 @@ input::placeholder {
     height: 30vh;
   }
 
-  body {
+  /* body {
     height: 100vh;
     background-image: url(./images//edited-images/image-two.jpg);
     background-color: #143d59;
@@ -930,7 +930,7 @@ input::placeholder {
     background-size: contain;
     background-position: end;
     background-repeat: no-repeat;
-  }
+  } */
 
   .sub-content-container {
     height: 19vh;

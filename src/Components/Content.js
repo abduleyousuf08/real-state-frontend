@@ -22,8 +22,9 @@ import snapchat from "../images/edited-images/snapchat.png";
 //components
 import RentCard from "../Components/RentCard";
 import SaleCard from "../Components/SaleCard";
+import Header from "../Components/Header.js";
 
-const Content = ({ types, rentPropertyTypes, salePropertyTypes, dropDown }) => {
+const Content = () => {
   const [showIndex, setShowIndex] = useState(0);
   const [activeOne, setActiveOne] = useState("sale");
   const [expendedIndex, setExpendedIndex] = useState(-1);
@@ -51,6 +52,30 @@ const Content = ({ types, rentPropertyTypes, salePropertyTypes, dropDown }) => {
     };
   }, []);
 
+  ///DROPDOWN
+  const dropDown = [
+    {
+      id: "a",
+      label: "Best Interest rates On The Market",
+      desc: "the value we provide to you is more than anything else ",
+    },
+    {
+      id: "b",
+      label: "Prevent Unstable Prices",
+      desc: "the value we provide to you is more than anything nothing",
+    },
+    {
+      id: "c",
+      label: "Best Price On The Market ",
+      desc: "the value we provide to you is more than anything oky",
+    },
+    {
+      id: "d",
+      label: "Security Of Your Data",
+      desc: "the value we provide to you is more than anything alright",
+    },
+  ];
+  ////
   const renderedDropdown = dropDown.map((item, index) => {
     const isExpended = index === expendedIndex;
     const discription = isExpended && item.desc;
@@ -88,6 +113,20 @@ const Content = ({ types, rentPropertyTypes, salePropertyTypes, dropDown }) => {
       </div>
     );
   });
+  ////TYPES
+  const types = [
+    {
+      id: "a",
+      label: " 🏠 LATEST PROPERTY FOR RENT",
+      desc: " :  choose your property based on your needs",
+    },
+    {
+      id: "b",
+      label: " 🏠 LATEST PROPERTY FOR SALE",
+      desc: " : choose your property based on your needs",
+    },
+  ];
+
   ////
   const handleNext = () => {
     const current = showIndex + 1;
@@ -113,19 +152,67 @@ const Content = ({ types, rentPropertyTypes, salePropertyTypes, dropDown }) => {
   const renderTypes = types.map((type, index) => {
     const show = index === showIndex;
     return (
-      <div key={types.id} className="flex items-center">
+      <div key={type.id} className="flex items-center">
         <div className="mr-2 mt-2 label-desing">{show && type.label}</div>
         <div>{show && type.desc}</div>
       </div>
     );
   });
 
+  ////RENT-CARD
+  const rentPropertyTypes = [
+    {
+      houseType: "villa",
+      image:
+        "https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      desc: "waa guri villa ah oo ku yaal meel adagan",
+    },
+
+    {
+      houseType: "apartment",
+      image:
+        "https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+      desc: "waa guri villa ah oo ku yaal meel adagan",
+    },
+    {
+      houseType: "small",
+      image:
+        "https://images.pexels.com/photos/783682/pexels-photo-783682.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      desc: "waa guri villa ah oo ku yaal meel adagan",
+    },
+  ];
+  ////
+
+  ////SALE-CARD
+  //saleCard
+  const salePropertyTypes = [
+    {
+      houseType: "apartment",
+      image:
+        "https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg?auto=compress&cs=tinysrgb&w=600",
+      desc: "waa guri villa ah oo ku yaal meel adagan",
+    },
+
+    {
+      houseType: "building",
+      image:
+        "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600",
+      desc: "waa guri villa ah oo ku yaal meel adagan",
+    },
+    {
+      houseType: "medium",
+      image:
+        "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600",
+      desc: "waa guri villa ah oo ku yaal meel adagan",
+    },
+  ];
+  ////
   const rentComponent = salePropertyTypes.map((sale) => (
-    <SaleCard sale={sale} />
+    <SaleCard sale={sale} key={sale.houseType} />
   ));
 
   const saleComponent = rentPropertyTypes.map((rent) => (
-    <RentCard rent={rent} />
+    <RentCard rent={rent} key={rent.houseType} />
   ));
 
   const renderActiveOne = () => {
@@ -140,6 +227,7 @@ const Content = ({ types, rentPropertyTypes, salePropertyTypes, dropDown }) => {
   ////
   return (
     <div className="content-component">
+      <Header />
       <div className="ml-24 mt-20 content-header-container-one">
         <h1 className="content-header">
           Sell or Rent <br /> Your Home at <br />
