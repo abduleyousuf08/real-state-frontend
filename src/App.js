@@ -1,4 +1,3 @@
-import "./App.css";
 import {  Route, Routes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
@@ -9,8 +8,8 @@ import { useContext } from "react";
 import { AuthContext } from "./Context/AuthContext";
 import { ChatContextProvider } from "./Context/ChatContext";
 
-import Header from "./Components/Header.js";
-import Content from "./Components/Content.js";
+import Header from "./Components/Header";
+import Content from "./Components/Content";
 
 function App() {
   const { user } = useContext(AuthContext)
@@ -18,9 +17,10 @@ function App() {
   return (
     <ChatContextProvider user={user}>
       <Routes>
+        <Route path="/" element={<Content/>}/>
         <Route path="/dashboard" element={<Dashboard/>} />
-        <Route path="/auth" element={<Auth/>} />
         <Route path="/chat" element={<ChatRoom/>} />
+        <Route path="/auth" element={<Auth/>} />
       </Routes>
       <ToastContainer
         position="top-center"

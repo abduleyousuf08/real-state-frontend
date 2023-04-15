@@ -58,3 +58,31 @@ export const getRequest = async(url)=>{
         return { error: true, message, status: err.response?.status };
     };
 };
+
+export const deleteRequest = async(url)=>{
+    try{ 
+        const res = await axios(url, {
+            method: 'DELETE',
+            headers:{
+                "Content-Type": "application/json"
+            },
+        })
+    
+        if(!res.data){
+            return { error: true, message: "Error..." };
+        }
+
+        return res.data;
+    }catch(err) {
+        
+        let message;
+        
+        if (err.response.data?.message) {
+            message = err.response.data.message;
+        } else {
+            message = err.message
+        }
+        
+        return { error: true, message, status: err.response?.status };
+    };
+};

@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { baseURL, postRequest } from "../Utils/APIRequests";
+import { baseURL, deleteRequest, postRequest } from "../Utils/APIRequests";
 
 
 export const AuthContext = createContext()
@@ -42,6 +42,7 @@ export const AuthContextProvider = ({children})=>{
         setLoginInfo(info)
     }, [])
 
+    //registering user function
     const registerUser = useCallback(async(e)=>{
         e.preventDefault()
         setIsRegisterLoading(true)
@@ -69,6 +70,7 @@ export const AuthContextProvider = ({children})=>{
 
     }, [registerInfo])
 
+    //Login function
     const loginUser = useCallback(async(e)=>{
         e.preventDefault()
         setIsLoginLoading(true)
@@ -98,12 +100,40 @@ export const AuthContextProvider = ({children})=>{
         setIsLoginLoading(false)
     }, [loginInfo, Navigate])
 
-    
+    //Logout function
     const logoutUser = useCallback(()=>{
         localStorage.removeItem('token')
         setUser(null)
-        Navigate("/")
+        Navigate("/auth")
     }, [])
+
+    const addViewedProperty = useCallback(async ()=>{
+        try{
+            const res = await postRequest(
+            `${baseURL}/auth/viewedProperties`, 
+            // JSON.stringify({ userId: user.id, propertyId: property.id })
+            )
+            console.log(res.message);
+        }catch(e){
+            console.log(e);
+        }
+    }, [])
+
+    const deleteViewedProperty = useCallback(async (userId, propertyId)=>{
+        const res = await deleteRequest(
+            `${baseURL}/auth/viewedProperties`, 
+            JSON.stringify({ userId, propertyId })
+        )
+        if (res.error) {
+            //toast.error(res.message)
+            console.log(res.message);
+        } else {
+            //toast.success(res.message)
+            console.log(res.message); // "Successfully deleted"
+        }
+    }, [])
+
+
 
     return (
         <>
@@ -118,7 +148,9 @@ export const AuthContextProvider = ({children})=>{
                     loginInfo, 
                     updateLoginInfo,
                     loginUser,
-                    setUser
+                    setUser,
+                    addViewedProperty,
+                    deleteViewedProperty
 
                 }}
             >
