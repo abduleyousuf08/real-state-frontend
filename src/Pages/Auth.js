@@ -16,7 +16,6 @@ function Auth() {
         updateLoginInfo,
         loginUser
     } = useContext(AuthContext)
-    const [isAgent, setIsAgent] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const [isSignUpMode, setIsSignUpMode] = useState(false);
     const textSliderRef = useRef(null)

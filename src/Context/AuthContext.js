@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { baseURL, deleteRequest, postRequest } from "../Utils/APIRequests";
+import { baseURL, deleteRequest, postRequest, putRequest } from "../Utils/APIRequests";
 
 
 export const AuthContext = createContext()
@@ -23,15 +23,36 @@ export const AuthContextProvider = ({children})=>{
         email: '',
         password: '',
     })
+    const [changePassword, setChangePassword] = useState({
+        oldPassword: '',
+        newPassword: ''
+    })
+    const [updateProfile, setUpdateProfile] = useState({
+        name: '',
+        phone: '',
+        address: '',
+        image: null,
+    })
 
-    useEffect(()=>{
-        if(user === null){
-            setLoading(true)
-            const storedUser = localStorage.getItem('token')
-            setUser(JSON.parse(storedUser))
-            setLoading(false)
+    useEffect(() => {
+        if (user === null) {
+            setLoading(true);
+            const storedUser = localStorage.getItem('token');
+            if (storedUser) {
+                setUser(JSON.parse(storedUser));
+            }
+            setLoading(false);
+        } else {
+            const storedUser = localStorage.getItem('token');
+            if (storedUser) {
+                const parsedStoredUser = JSON.parse(storedUser);
+                if (JSON.stringify(user) !== JSON.stringify(parsedStoredUser)) {
+                    setUser(parsedStoredUser);
+                }
+            }
         }
-    }, [user])
+    }, [user]);
+    
 
 
     const updateRegisterInfo = useCallback((info)=>{
@@ -40,6 +61,10 @@ export const AuthContextProvider = ({children})=>{
 
     const updateLoginInfo = useCallback((info)=>{
         setLoginInfo(info)
+    }, [])
+
+    const updateUserProfile = useCallback((info)=>{
+        setUpdateProfile(info)
     }, [])
 
     //registering user function
@@ -70,6 +95,56 @@ export const AuthContextProvider = ({children})=>{
 
     }, [registerInfo])
 
+    //Update user profile 
+    const editProfile = useCallback(async(requestBody) => {
+        setLoading(true);
+        
+        try {
+            const res = await postRequest(
+            `${baseURL}/auth/edit/${user?._id}`,
+                requestBody,
+                {
+                    headers: {
+                    'Content-Type': 'application/json', 
+                    }
+                }
+            );
+            
+            if (res.error) {
+                toast.error(res.message);
+            } else {
+                const updatedUser = { ...user, ...res.userData };
+                
+                // Update the user state with the updated user data from the API response
+                setUser(updatedUser);
+
+                // Store the updated user data in local storage
+                localStorage.setItem('token', JSON.stringify(updatedUser));
+                toast.success(res.message);
+            }
+        }catch (err) {
+                console.log(err);
+        }
+        
+        setLoading(false);
+    }, [user, setUser]);
+
+    //Change password function
+    const changePass = useCallback(async (e)=>{
+        e.preventDefault()
+
+        try{
+            const res = await postRequest(
+                `${baseURL}/auth/change/${user?.id}`,
+                JSON.stringify(setChangePassword)
+            )
+
+            console.log(res)
+        }catch(e){
+
+        }
+    },[])
+
     //Login function
     const loginUser = useCallback(async(e)=>{
         e.preventDefault()
@@ -80,8 +155,12 @@ export const AuthContextProvider = ({children})=>{
                 `${baseURL}/auth/login`, 
                 JSON.stringify(loginInfo)
             )
-            
+            // Code to authenticate the user
             localStorage.setItem("token", JSON.stringify(res))
+
+            // // Code to update the user information
+            // const updatedUser = { ...res, lastLoginTime: new Date() };
+            // localStorage.setItem('token', JSON.stringify(updatedUser));
             setUser(res)
             
             if(res.error){
@@ -93,8 +172,8 @@ export const AuthContextProvider = ({children})=>{
                 
 
             }
-        }catch(e){
-
+        }catch(err){
+            console.log(err)
         }
         
         setIsLoginLoading(false)
@@ -105,8 +184,11 @@ export const AuthContextProvider = ({children})=>{
         localStorage.removeItem('token')
         setUser(null)
         Navigate("/auth")
-    }, [])
+    
+        
+    }, [setUser, Navigate])
 
+    //Saved search property function
     const addViewedProperty = useCallback(async ()=>{
         try{
             const res = await postRequest(
@@ -150,7 +232,11 @@ export const AuthContextProvider = ({children})=>{
                     loginUser,
                     setUser,
                     addViewedProperty,
-                    deleteViewedProperty
+                    deleteViewedProperty,
+                    editProfile,
+                    updateProfile,
+                    updateUserProfile,
+                    setUpdateProfile
 
                 }}
             >

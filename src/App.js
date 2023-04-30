@@ -7,8 +7,7 @@ import ChatRoom from "./Pages/ChatRoom";
 import { useContext } from "react";
 import { AuthContext } from "./Context/AuthContext";
 import { ChatContextProvider } from "./Context/ChatContext";
-
-import Header from "./Components/Header";
+import PropertyInfo from "./Pages/PropertyInfo.js";
 import Content from "./Components/Content";
 
 function App() {
@@ -18,6 +17,7 @@ function App() {
     <ChatContextProvider user={user}>
       <Routes>
         <Route path="/" element={<Content/>}/>
+        <Route path="/info" element={<PropertyInfo/>}/>
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/chat" element={<ChatRoom/>} />
         <Route path="/auth" element={<Auth/>} />

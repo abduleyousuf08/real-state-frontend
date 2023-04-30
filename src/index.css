@@ -17,13 +17,13 @@ box-sizing: border-box;
 }
 
 .content-component {
-  height: 100vh;
-  background-image: url(./images//edited-images/image-two.jpg);
-  background-color: #143d59;
-  width: 100%;
-  background-size: contain;
-  background-position: 240%;
-  background-repeat: no-repeat;
+    height: 100vh;
+    background-image: url(./images//edited-images/image-two.jpg);
+    background-color: #143d59;
+    width: 100%;
+    background-size: contain;
+    background-position: 240%;
+    background-repeat: no-repeat;
 }
 
 .image-logo {

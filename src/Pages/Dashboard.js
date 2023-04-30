@@ -6,6 +6,7 @@ import { RiLogoutCircleRLine, RiHomeHeartFill } from "react-icons/ri";
 import { TfiKey } from 'react-icons/tfi'
 import { MdMapsHomeWork } from 'react-icons/md'
 import { AiFillSchedule } from 'react-icons/ai'
+import defaultProfile from '../Assets/Profile.jpg'
 
 
 import Profile from "../Components/User/Profile";
@@ -15,17 +16,17 @@ import { useState } from 'react';
 import Password from '../Components/User/Password';
 import Preferences from '../Components/User/Preferences';
 import CreateProperty from '../Components/CreateProperty';
+import Favorites from '../Components/User/Favourites';
+import SavedSearches from '../Components/User/savedSearches';
+import Schedule from '../Components/User/Schedule';
 
 
 function Dashboard() {
     const [activeComponent, setActiveComponent] = useState("Profile");
-    const { user, setUser } = useContext (AuthContext)
+    const { user, setUser, logoutUser } = useContext (AuthContext)
 
-    console.log(user) 
-    function handleOnClick(){
-        setUser(false)
-        localStorage.removeItem("token")
-    }
+
+    
 
     const renderComponent = () => {
         switch(activeComponent) {
@@ -36,9 +37,9 @@ function Dashboard() {
             case "Notifications":
                 return <Preferences/>;
             case "Favorites":
-                return;
+                return <Favorites/>;
             case "savedSearches":
-                return;
+                return <SavedSearches/>;
             default:
                 return null;
         }
@@ -55,7 +56,7 @@ function Dashboard() {
             case "CreateProperty":
                 return <CreateProperty/>;
             case "Schedule":
-                return ;
+                return <Schedule/>;
             case "Analytics":
                 return; 
             default:
@@ -65,10 +66,10 @@ function Dashboard() {
 
     return (
         <main className='h-screen box-border'>
-            <div className='h-full flex flex-row'>
-                <aside className='bg-slate-100 border-2 flex flex-col w-64 h-full'>
+            <div className='flex flex-row'>
+                <aside className='bg-slate-100 border-2 flex flex-col w-64 min-h-full'>
                     <div className='flex flex-col  items-center pl-10 mt-5'>
-                        <img src={profile} alt='profile' className='w-20 h-20 rounded-full object-cover'/>
+                        <img src={user?.image.url || defaultProfile} alt='profile' className='w-20 h-20 rounded-full object-cover'/>
                         <span className='font-bold'>{user?.name}</span>
                         <span className='text-sm text-gray-400'>{user?.agent === true ? 'Agent' : 'Client'}</span>
                     </div>
@@ -105,7 +106,7 @@ function Dashboard() {
                                 </span>
                             </>
                         )}
-                        <span className='flex items-center mt-10 p-2 cursor-pointer gap-2 text-red-600 font-semibold'  onClick={handleOnClick}> 
+                        <span className='flex items-center mt-20 p-2 cursor-pointer gap-2 text-red-600 font-semibold'  onClick={logoutUser}> 
                                 <RiLogoutCircleRLine className='fill-current'/>Logout
                         </span>
                     </div>

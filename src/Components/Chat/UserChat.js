@@ -4,6 +4,7 @@ import { ChatContext } from '../../Context/ChatContext'
 import avatarm from '../../Assets/Avatar m.png'
 import { format } from 'timeago.js'
 import unreadNotifications from '../../Utils/unreadNotifications'
+import defaultProfile from '../../Assets/Profile.jpg'
 
 function UserChat({ chat, user }) {
     const { recipientUser } = UseFetchRecipientUser(chat, user)
@@ -12,10 +13,10 @@ function UserChat({ chat, user }) {
     const isOnline = onlineUsers?.some((user)=> user?.userId === recipientUser?._id)
     const unreadNotification = unreadNotifications(notifications)
     const thisUserNotification = unreadNotification?.filter(n => n.senderId === recipientUser?._id)
-
+    
 
     return (
-        <div className='w-72'>
+        <div className='w-80'>
             <button className='py-1 mx-3 focus:bg-slate-100 focus:rounded-lg'
             onClick={() => {
                 if(thisUserNotification?.length !== 0){
@@ -27,7 +28,7 @@ function UserChat({ chat, user }) {
                 <div className='flex items-center gap-2 py-1 relative'>
                     {isOnline && <div className='bg-lime-500 border rounded-full absolute w-4 h-4' style={{ marginLeft: '2rem', marginBottom: '2rem' }}></div>}
                     <img
-                        src={avatarm}
+                        src={recipientUser?.image.url || defaultProfile}
                         alt="Profile"
                         className="w-11 h-11 object-cover rounded-full"/>
                     <div className="flex flex-col w-64 ">
