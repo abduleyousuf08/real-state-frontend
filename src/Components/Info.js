@@ -7,7 +7,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 
 //IMAGES
-import cardHouse from "../images/card-image.jpg";
 
 function Info() {
   return (
@@ -90,7 +89,7 @@ function Info() {
       </div>
       {/**SECTION TWO */}
       <div>
-        <img src={cardHouse} alt="" />
+        
       </div>
     </div>
   );
