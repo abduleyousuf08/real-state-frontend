@@ -1,7 +1,7 @@
 import "../index.css";
 
 import { BiUserCheck } from "react-icons/bi";
-
+import { Link } from "react-router-dom";
 //images
 import guryoSame from "../images/edited-images/guryo-same.png";
 const Header = () => {
@@ -9,7 +9,9 @@ const Header = () => {
     <div className="header-component">
       <div className="flex ">
         {/**part 1 */}
+
         <img src={guryoSame} alt="" className="image-logo" />
+
         <div className="flex ml-40 mt-8 catogries">
           {/**main part options */}
 

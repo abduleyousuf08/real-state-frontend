@@ -1,12 +1,16 @@
 //icon
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 //images
 import guryoSame from "../images/edited-images/guryo-same.png";
 
 function PagesHeader() {
   return (
     <div className="flex bg-cyan-900 items-center  justify-evenly ">
-      <img src={guryoSame} alt="LOGO" className="w-40" />
+      <Link to={`/`}>
+        <img src={guryoSame} alt="LOGO" className="w-40" />
+      </Link>
+
       <div className="mr-10 text-white  flex  items-center ">
         <a
           href="#"

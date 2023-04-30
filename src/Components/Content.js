@@ -1,15 +1,21 @@
 import "../index.css";
 
+//REACT HOOKS
 import { AiOutlineHome } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { useState, useRef, useEffect } from "react";
+
+import { useContext } from "react";
+import GeneralContext from "../ContextApi";
+
+//ICONS
 import { IoIosCall } from "react-icons/io";
 import { BsFillChatDotsFill } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 import { AiTwotoneMail } from "react-icons/ai";
 
-//images
+//IMAGES
 import houses from "../images/edited-images/houses.png";
 import wrong from "../images/edited-images/wrong.png";
 import plus from "../images/edited-images/plus.png";
@@ -19,38 +25,25 @@ import facebook from "../images/edited-images/facebook.png";
 import instagram from "../images/edited-images/instagram.png";
 import snapchat from "../images/edited-images/snapchat.png";
 
-//components
+//COMPONENTS
 import RentCard from "../Components/RentCard";
 import SaleCard from "../Components/SaleCard";
 import Header from "../Components/Header.js";
 
 const Content = () => {
-  const [showIndex, setShowIndex] = useState(0);
-  const [activeOne, setActiveOne] = useState("sale");
   const [expendedIndex, setExpendedIndex] = useState(-1);
+  const {
+    loading,
+    isLoading,
+    handleNext,
+    handlePrev,
+    showIndex,
+    renderActiveOne,
+  } = useContext(GeneralContext);
+
   //
 
   const divEl = useRef();
-
-  useEffect(() => {
-    //checking if  nothing event happened to return nothing
-
-    if (!divEl.current) {
-      return;
-    }
-    //if the other content's or the body clicked setting back to -1 the expendedIndex no
-    const elementClicked = (event) => {
-      if (!divEl.current.contains(event.target)) {
-        setExpendedIndex(-1);
-      }
-    };
-
-    document.addEventListener("click", elementClicked, true);
-
-    return () => {
-      document.removeEventListener("click", elementClicked);
-    };
-  }, []);
 
   ///DROPDOWN
   const dropDown = [
@@ -113,7 +106,7 @@ const Content = () => {
       </div>
     );
   });
-  ////TYPES
+  //TYPES of properties RENT / SALE
   const types = [
     {
       id: "a",
@@ -127,28 +120,7 @@ const Content = () => {
     },
   ];
 
-  ////
-  const handleNext = () => {
-    const current = showIndex + 1;
-    if (current > types.length - 1) {
-      setActiveOne("sale");
-      return setShowIndex(0);
-    }
-    setShowIndex(current);
-    setActiveOne("rent");
-  };
-  ////
-  const handlePrev = () => {
-    const current = showIndex - 1;
-    if (current < 0) {
-      setActiveOne("rent");
-      return setShowIndex(1);
-    }
-    setShowIndex(current);
-    setActiveOne("sale");
-  };
-
-  ////
+  // Enabling if user clicks the plus icon to show the description of that topic
   const renderTypes = types.map((type, index) => {
     const show = index === showIndex;
     return (
@@ -158,6 +130,10 @@ const Content = () => {
       </div>
     );
   });
+
+  if (loading && isLoading) {
+    return <div>LOADING....</div>;
+  }
 
   ////RENT-CARD
   const rentPropertyTypes = [
@@ -183,7 +159,6 @@ const Content = () => {
   ];
   ////
 
-  ////SALE-CARD
   //saleCard
   const salePropertyTypes = [
     {
@@ -206,23 +181,8 @@ const Content = () => {
       desc: "waa guri villa ah oo ku yaal meel adagan",
     },
   ];
-  ////
-  const rentComponent = salePropertyTypes.map((sale) => (
-    <SaleCard sale={sale} key={sale.houseType} />
-  ));
 
-  const saleComponent = rentPropertyTypes.map((rent) => (
-    <RentCard rent={rent} key={rent.houseType} />
-  ));
-
-  const renderActiveOne = () => {
-    switch (activeOne) {
-      case "sale":
-        return saleComponent;
-      case "rent":
-        return rentComponent;
-    }
-  };
+  //making new array from the original array  and selecting only 3 item of it
 
   ////
   return (
@@ -277,6 +237,7 @@ const Content = () => {
         </div>
       </div>
       {/**content 4*/}
+
       <div className="card-content">{renderActiveOne()}</div>
 
       {/**content 5 */}
