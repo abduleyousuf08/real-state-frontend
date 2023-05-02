@@ -760,55 +760,55 @@ input::placeholder {
 }
 
 /* .content-nine {
-  background-color: #fff;
-  width: 100%;
-  height: 15vh; */
+background-color: #fff;
+width: 100%;
+height: 15vh; */
 
 .image-content-nine-size {
   width: 40px;
 }
 
 /* .sub-content-nine {
-  width: 100%;
-  height: 20vh;
-  background-image: url("https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=1600");
-  background-position: 0px;
-  background-size: 10%;
-  background-repeat: no-repeat;
-  background-color: #143d59;
+width: 100%;
+height: 20vh;
+background-image: url("https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=1600");
+background-position: 0px;
+background-size: 10%;
+background-repeat: no-repeat;
+background-color: #143d59;
 } */
 
 /* .sub-content-nine > a {
-  padding-left: 1%;
-  text-align: end;
+padding-left: 1%;
+text-align: end;
 }
 
 .sub-content-nine-two {
-  display: flex;
+display: flex;
 }
 
 .link-paraghraph a {
-  padding-left: 54px;
-  color: #fff;
-  padding-top: 18px;
+padding-left: 54px;
+color: #fff;
+padding-top: 18px;
 }
 
 .link-paraghraph a:hover {
-  color: #f4b41a;
+color: #f4b41a;
 }
 
 .h1-1 {
-  text-align: center;
-  padding-left: 8%;
-  padding-top: 5%;
-  letter-spacing: 3px;
-  color: #f4b41a;
-  font-size: 35px;
+text-align: center;
+padding-left: 8%;
+padding-top: 5%;
+letter-spacing: 3px;
+color: #f4b41a;
+font-size: 35px;
 }
 
 .link-imgs a {
-  padding-left: 54px;
-  padding-top: 30px;
+padding-left: 54px;
+padding-top: 30px;
 } */
 
 .content-nine-update {
@@ -973,49 +973,5 @@ input::placeholder {
   }
   .content-eight {
     height: 80vh;
-  }
-}
-
-.CarouselImage {
-  height: 76vh;
-}
-
-/*LOADING CSS STYLE*/
-
-.lds-facebook {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.lds-facebook div {
-  display: inline-block;
-  position: absolute;
-  left: 8px;
-  width: 16px;
-  background: #fff;
-  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-}
-.lds-facebook div:nth-child(1) {
-  left: 8px;
-  animation-delay: -0.24s;
-}
-.lds-facebook div:nth-child(2) {
-  left: 32px;
-  animation-delay: -0.12s;
-}
-.lds-facebook div:nth-child(3) {
-  left: 56px;
-  animation-delay: 0;
-}
-@keyframes lds-facebook {
-  0% {
-    top: 8px;
-    height: 64px;
-  }
-  50%,
-  100% {
-    top: 24px;
-    height: 32px;
   }
 }

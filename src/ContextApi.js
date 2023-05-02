@@ -42,7 +42,7 @@ function Provider({ children }) {
 
   useEffect(() => {
     const response = axios
-      .get("http://localhost:3002/propertyInfo/rentHouses")
+      .get("http://localhost:3000/propertyInfo/rentHouses")
       .then((res) => {
         setRentHouses(res.data.rentHouses);
         setLoading(false);
@@ -54,7 +54,7 @@ function Provider({ children }) {
 
   useEffect(() => {
     const response = axios
-      .get("http://localhost:3002/propertyInfo/saleHouses")
+      .get("http://localhost:3000/propertyInfo/saleHouses")
       .then((res) => {
         setSaleHouses(res.data.saleHouses);
         setIsLoading(false);
@@ -120,9 +120,11 @@ function Provider({ children }) {
   const handleSendData = async (event) => {
     setUploading(true);
     event.preventDefault();
-
-    const result = await axios.post(
-      "http://localhost:3002/propertyInfo/postHouse",
+    const token = localStorage.getItem("token");
+    const tokenParsed = JSON.parse(token);
+    console.log(tokenParsed.token);
+    const tokenID = tokenParsed.token;
+    const result = await axios.post("http://localhost:3000/propertyInfo/postHouse",
       {
         propertyType,
         bedrooms,
@@ -143,11 +145,13 @@ function Provider({ children }) {
         ACRooms,
         HightSpeedWifi,
         images,
-      }
+      },
+
+      { headers: { authorization: tokenID } }
     );
 
     // console.log(result);
-    const newRentHouses = await result.data.posted;
+    // const newRentHouses = await result.data.posted;
 
     setUploading(false);
   };

@@ -34,13 +34,19 @@ function Info() {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [infoLoading, setInfoLoading] = useState(true);
+  const [date, setDate] = useState();
+  const [scheduling, setScheduleing] = useState(true);
+  const token = localStorage.getItem("token");
+  const tokenParsed = JSON.parse(token);
+  // console.log(tokenParsed);
+  // console.log(date);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3002/propertyInfo/oneHouse/${id}`)
+      .get(`http://localhost:3000/propertyInfo/oneHouse/${id}`)
       .then((res) => {
         setData(res.data.oneProp);
-
+        console.log(res.data);
         setInfoLoading(false);
       })
       .catch((e) => {
@@ -51,6 +57,25 @@ function Info() {
   if (infoLoading) {
     return <div>PLEASE WAIT.....</div>;
   }
+
+  const makeSchedule = async (event) => {
+    event.preventDefault();
+    await axios
+      .post(
+        "http://localhost:3000/schedule/makeSchedule",
+        { date, propertyId: id },
+        {
+          headers: { Authorization: tokenParsed.token },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    setScheduleing(false);
+  };
 
   /////
   const oneCard = [
@@ -478,11 +503,16 @@ function Info() {
               type="date"
               name=""
               id=""
+              value={date}
               className=" px-2 py-2 border-2 border-solid border-black w-40 mt-2 ml-2 bg-amber-400 text-cyan-900 font-bold "
+              onChange={(e) => setDate(e.target.value)}
             />
 
-            <button className="absolute flex items-center top-80 mt-2 right-1 border-2 border-solid border-black px-2 py-2 bg-white text-black hover:bg-amber-400 hover:border-black active:bg-cyan-900 active:text-white hover:text-black rounded-lg font-bold opacity-90">
-              <img src={agent} alt="" width={30} /> <span>Meet the agent</span>
+            <button
+              onClick={makeSchedule}
+              className="absolute flex items-center top-80 mt-2 right-1 border-2 border-solid border-black px-2 py-2 bg-white text-black hover:bg-amber-400 hover:border-black active:bg-cyan-900 active:text-white hover:text-black rounded-lg font-bold opacity-90"
+            >
+              <img src={agent} alt="" width={30} /> <span>Meeth the agent</span>
             </button>
           </div>
         </div>

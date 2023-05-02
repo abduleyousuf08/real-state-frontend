@@ -18,8 +18,6 @@ function Test() {
     setRefrenceNo,
     setGarage,
     setContract,
-    setOwnerID,
-    setHomeSecurity,
     setACRooms,
     setHightSpeedWifi,
     handleImage,
@@ -142,22 +140,7 @@ function Test() {
             onChange={(e) => setContract(e.target.value)}
           />
         </div>
-        <div>
-          <label htmlFor="">ownerID</label>
-          <input
-            className="border-2 border-black "
-            type="text"
-            onChange={(e) => setOwnerID(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="">HomeSecurity</label>
-          <input
-            className="border-2 border-black "
-            type="text"
-            onChange={(e) => setHomeSecurity(e.target.value)}
-          />
-        </div>
+
         <div>
           <label htmlFor="">ACrooms</label>
           <input
