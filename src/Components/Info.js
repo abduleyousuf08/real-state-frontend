@@ -32,26 +32,27 @@ import agent from "../images/edited-images/agent.png";
 function Info() {
   //INFO PAGE FETCHING ONE ID
   const { id } = useParams();
-  const [data, setData] = useState([]);
-  const [infoLoading, setInfoLoading] = useState(true);
+  // const [data, setData] = useState([]);
+  // const [infoLoading, setInfoLoading] = useState(true);
   const [date, setDate] = useState();
   const [scheduling, setScheduleing] = useState(true);
   const token = localStorage.getItem("token");
   const tokenParsed = JSON.parse(token);
-  // console.log(tokenParsed);
-  // console.log(date);
+
+  const { fetchingOneProperty, data, infoLoading } = useContext(GeneralContext);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/propertyInfo/oneHouse/${id}`)
-      .then((res) => {
-        setData(res.data.oneProp);
-        console.log(res.data);
-        setInfoLoading(false);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    // axios
+    //   .get(`http://localhost:3000/propertyInfo/oneHouse/${id}`)
+    //   .then((res) => {
+    //     setData(res.data.oneProp);
+    //     console.log(res.data);
+    //     setInfoLoading(false);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
+    fetchingOneProperty(id);
   }, []);
 
   if (infoLoading) {

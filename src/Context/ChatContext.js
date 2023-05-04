@@ -18,13 +18,13 @@ export const ChatContextProvider = ({ children, user }) => {
 
   //initial socket
   useEffect(() => {
-    const newSocket = io("http://localhost:3000");
-    setSocket(newSocket);
+      const newSocket = io("http://localhost:3000");
+      setSocket(newSocket);
 
-    return () => {
-      newSocket.disconnect();
-    };
-  }, [user]);
+      return () => {
+        newSocket.disconnect();
+      };
+    }, [user]);
 
   // add online users
   useEffect(() => {

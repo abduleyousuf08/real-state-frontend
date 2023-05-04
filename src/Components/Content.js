@@ -136,51 +136,51 @@ const Content = () => {
   }
 
   ////RENT-CARD
-  const rentPropertyTypes = [
-    {
-      houseType: "villa",
-      image:
-        "https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&w=1600",
-      desc: "waa guri villa ah oo ku yaal meel adagan",
-    },
+  // const rentPropertyTypes = [
+  //   {
+  //     houseType: "villa",
+  //     image:
+  //       "https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //     desc: "waa guri villa ah oo ku yaal meel adagan",
+  //   },
 
-    {
-      houseType: "apartment",
-      image:
-        "https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-      desc: "waa guri villa ah oo ku yaal meel adagan",
-    },
-    {
-      houseType: "small",
-      image:
-        "https://images.pexels.com/photos/783682/pexels-photo-783682.jpeg?auto=compress&cs=tinysrgb&w=1600",
-      desc: "waa guri villa ah oo ku yaal meel adagan",
-    },
-  ];
+  //   {
+  //     houseType: "apartment",
+  //     image:
+  //       "https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+  //     desc: "waa guri villa ah oo ku yaal meel adagan",
+  //   },
+  //   {
+  //     houseType: "small",
+  //     image:
+  //       "https://images.pexels.com/photos/783682/pexels-photo-783682.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //     desc: "waa guri villa ah oo ku yaal meel adagan",
+  //   },
+  // ];
   ////
 
-  //saleCard
-  const salePropertyTypes = [
-    {
-      houseType: "apartment",
-      image:
-        "https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg?auto=compress&cs=tinysrgb&w=600",
-      desc: "waa guri villa ah oo ku yaal meel adagan",
-    },
+  // //saleCard
+  // const salePropertyTypes = [
+  //   {
+  //     houseType: "apartment",
+  //     image:
+  //       "https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg?auto=compress&cs=tinysrgb&w=600",
+  //     desc: "waa guri villa ah oo ku yaal meel adagan",
+  //   },
 
-    {
-      houseType: "building",
-      image:
-        "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600",
-      desc: "waa guri villa ah oo ku yaal meel adagan",
-    },
-    {
-      houseType: "medium",
-      image:
-        "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600",
-      desc: "waa guri villa ah oo ku yaal meel adagan",
-    },
-  ];
+  //   {
+  //     houseType: "building",
+  //     image:
+  //       "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600",
+  //     desc: "waa guri villa ah oo ku yaal meel adagan",
+  //   },
+  //   {
+  //     houseType: "medium",
+  //     image:
+  //       "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600",
+  //     desc: "waa guri villa ah oo ku yaal meel adagan",
+  //   },
+  // ];
 
   //making new array from the original array  and selecting only 3 item of it
 

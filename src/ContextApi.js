@@ -39,6 +39,8 @@ function Provider({ children }) {
   const [HightSpeedWifi, setHightSpeedWifi] = useState("");
   const [images, setImages] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const [data, setData] = useState([]);
+  const [infoLoading, setInfoLoading] = useState(true);
 
   useEffect(() => {
     const response = axios
@@ -63,6 +65,21 @@ function Provider({ children }) {
         console.log(e);
       });
   }, []);
+
+  //FETCHING ONE PROPERTY
+  const fetchingOneProperty = (id) => {
+    axios
+      .get(`http://localhost:3000/propertyInfo/oneHouse/${id}`)
+      .then((res) => {
+        setData(res.data.oneProp);
+        setInfoLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  console.log(data._id);
 
   //Hanle next button scroll
   const handleNext = () => {
@@ -124,7 +141,8 @@ function Provider({ children }) {
     const tokenParsed = JSON.parse(token);
     console.log(tokenParsed.token);
     const tokenID = tokenParsed.token;
-    const result = await axios.post("http://localhost:3000/propertyInfo/postHouse",
+    const result = await axios.post(
+      "http://localhost:3000/propertyInfo/postHouse",
       {
         propertyType,
         bedrooms,
@@ -189,6 +207,9 @@ function Provider({ children }) {
     setHomeSecurity,
     setACRooms,
     setHightSpeedWifi,
+    fetchingOneProperty,
+    data,
+    infoLoading,
   };
 
   return (
