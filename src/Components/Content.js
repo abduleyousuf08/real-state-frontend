@@ -29,6 +29,7 @@ import snapchat from "../images/edited-images/snapchat.png";
 import RentCard from "../Components/RentCard";
 import SaleCard from "../Components/SaleCard";
 import Header from "../Components/Header.js";
+import axios from "axios";
 
 const Content = () => {
   const [expendedIndex, setExpendedIndex] = useState(-1);
@@ -41,7 +42,19 @@ const Content = () => {
     renderActiveOne,
   } = useContext(GeneralContext);
 
+  const [inputs, setInputs] = useState('')
+
   //
+
+  const handleInputChange = (e) => {
+    setInputs(e.target.value);
+  };
+
+  const fetchContent = async()=>{
+    const response = await axios.post('http://localhost:3000/propertyInfo/houseList', inputs
+    )
+    console.log(response)
+  }
 
   const divEl = useRef();
 
@@ -217,9 +230,12 @@ const Content = () => {
         </div>
         <div className=" flex items-center input-field">
           <BsSearch className="search-icon" />
-          <input type="text" placeholder=" Search by location  " />
+          <input type="text" placeholder=" Search by location  " 
+            value={inputs}
+            onChange={handleInputChange}
+          />
           <div className="button-field">
-            <button className="button-search">Search</button>
+            <button className="button-search" onClick={fetchContent}>Search</button>
           </div>
         </div>
       </div>

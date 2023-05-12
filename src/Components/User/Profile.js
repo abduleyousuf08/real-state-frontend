@@ -4,6 +4,7 @@ import {AiFillCamera} from 'react-icons/ai'
 import {MdModeEditOutline} from 'react-icons/md'
 import { AuthContext } from "../../Context/AuthContext";
 import defaultProfile from '../../Assets/Profile.jpg'
+import { useEffect } from "react";
 
 
 function Profile() {
@@ -11,12 +12,22 @@ function Profile() {
             user, 
             editProfile,
             updateProfile,
-            updateUserProfile 
+            updateUserProfile,
+            setUpdateProfile
         } = useContext(AuthContext)
     const [isEditing, setIsEditing] = useState(false);
 
+    
+
     const handleEditClick = () => {
         setIsEditing(true);
+
+        // Populate the updateProfile state with the existing user data
+        setUpdateProfile({
+            name: user?.name || '',
+            phone: user?.phone || '',
+            address: user?.address || '',
+        });
 
     };
 
@@ -61,7 +72,6 @@ function Profile() {
         const selectedImage = e.target.files[0];
         updateUserProfile({ ...updateProfile, image: selectedImage });
 
-        console.log(selectedImage)
         if (selectedImage) {
             const reader = new FileReader();
             reader.onload = (event) => {
@@ -96,6 +106,7 @@ function Profile() {
                             <label className="">Full Name: </label>
                             {isEditing ? 
                                 <input className="border rounded-lg outline-none border-cyan-900" type="text" 
+                                value={updateProfile.name}
                                 onChange={(e)=> updateUserProfile({...updateProfile, name:e.target.value})}/> 
                                 : 
                                 <span className="text-gray-500 ">{user?.name}</span>
@@ -109,6 +120,7 @@ function Profile() {
                             <label className="">Phone Number:</label>
                             {isEditing ? 
                                 <input className="border border-cyan-900 outline-none rounded-lg" type="tel" 
+                                value={updateProfile.phone}
                                 onChange={(e)=> updateUserProfile({...updateProfile, phone:e.target.value})}/> 
                                 : 
                                 <span className="text-gray-500 ">{user?.phone}</span>
@@ -117,7 +129,8 @@ function Profile() {
                         <div className="flex flex-col">
                             <label className="">Address:</label>
                             {isEditing ? 
-                                <input className="border rounded-lg border-cyan-900 outline-none" type="text" 
+                                <input className="border rounded-lg border-cyan-900 outline-none" type="text"
+                                value={updateProfile.address} 
                                 onChange={(e)=> updateUserProfile({...updateProfile, address:e.target.value})}/> 
                                 :  
                                 <span className="text-gray-500 ">{user?.address ? user?.address : "N/A"}</span>

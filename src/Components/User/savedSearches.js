@@ -1,9 +1,18 @@
-import React from 'react'
+import { React, useContext, useEffect } from 'react'
 import {BsDashLg} from 'react-icons/bs'
 import { AiOutlineClear } from 'react-icons/ai'
 import { MdOutlineArrowDropDown } from 'react-icons/md'
+import { AuthContext } from '../../Context/AuthContext'
+import SaleCard from '../SaleCard'
+import RentCard from '../RentCard'
+import { usePropertyDetails } from '../../Hooks/UsePropertyDetails'
 
-function savedSearches() {
+
+
+function SavedSearches() {
+    const { viewedProperties } = useContext(AuthContext)
+    
+    console.log(viewedProperties)
     return (
         <div className='h-full p-10'>
             <div>
@@ -29,9 +38,11 @@ function savedSearches() {
                         </select>
                     </div>
                 </div>
+                
+                
             </div>
         </div>
     )
 }
 
-export default savedSearches
+export default SavedSearches

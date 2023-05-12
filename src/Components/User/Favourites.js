@@ -1,9 +1,14 @@
-import React from 'react'
+import {React, useContext} from 'react'
 import {BsDashLg} from 'react-icons/bs'
 import { AiOutlineClear } from 'react-icons/ai'
 import { MdOutlineArrowDropDown } from 'react-icons/md'
+import { AuthContext } from '../../Context/AuthContext'
+import SaleCard from '../SaleCard'
+import RentCard from '../RentCard'
 
 function Favorites() {
+    const { viewedProperties } = useContext(AuthContext)
+    
     return (
         <div className='h-full p-10'>
             <div>

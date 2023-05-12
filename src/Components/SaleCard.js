@@ -1,4 +1,5 @@
 import "../index.css";
+import { useContext, React } from 'react'
 import { MdOutlineBedroomParent } from "react-icons/md";
 import { MdOutlineMeetingRoom } from "react-icons/md";
 import { FaBath } from "react-icons/fa";
@@ -6,8 +7,14 @@ import { Link } from "react-router-dom";
 
 //images
 import image from "../images/edited-images/image.jpg";
+import { AuthContext } from "../Context/AuthContext";
 
 function SaleCard({ sale }) {
+  const { addViewedProperty } = useContext(AuthContext)
+
+  const handleClick = () => {
+    addViewedProperty(sale);
+  };
   const imageSliced = sale.images.slice(0, 4);
   return (
     <div>
@@ -81,7 +88,7 @@ function SaleCard({ sale }) {
               <a
                 href="#"
                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg  focus:ring-4 focus:outline-none    card-btn"
-              >
+              onClick={handleClick}>
                 Read more
                 <svg
                   aria-hidden="true"

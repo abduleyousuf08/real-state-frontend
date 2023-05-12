@@ -1,15 +1,17 @@
-import { useReducer, useState, useEffect } from "react";
+import { useReducer, useState, useEffect, useContext } from "react";
 import { createContext, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 //COMPONENTS
 import RentCard from "./Components/RentCard";
 import SaleCard from "./Components/SaleCard";
+import { AuthContext } from "./Context/AuthContext";
 
 const GeneralContext = createContext();
 
 function Provider({ children }) {
   //GENERAL VARIABLES
+
   const [showIndex, setShowIndex] = useState(0);
   const [count, setCount] = useState(0);
   const [activeOne, setActiveOne] = useState("rent");
@@ -39,7 +41,7 @@ function Provider({ children }) {
   const [HightSpeedWifi, setHightSpeedWifi] = useState("");
   const [images, setImages] = useState([]);
   const [uploading, setUploading] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
   const [infoLoading, setInfoLoading] = useState(true);
 
   useEffect(() => {
@@ -67,19 +69,20 @@ function Provider({ children }) {
   }, []);
 
   //FETCHING ONE PROPERTY
-  const fetchingOneProperty = (id) => {
+  const fetchingOneProperty = useCallback((id) => {
     axios
       .get(`http://localhost:3000/propertyInfo/oneHouse/${id}`)
       .then((res) => {
+
         setData(res.data.oneProp);
         setInfoLoading(false);
       })
       .catch((e) => {
         console.log(e);
       });
-  };
+  }, []); 
 
-  console.log(data._id);
+  
 
   //Hanle next button scroll
   const handleNext = () => {

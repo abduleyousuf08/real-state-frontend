@@ -84,13 +84,14 @@ export const deleteRequest = async (url) => {
     }
 };
 
-export const putRequest = async (url) => {
+export const putRequest = async (url, body) => {
   try {
     const res = await axios(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
+      data: body,
     });
 
     if (!res.data) {

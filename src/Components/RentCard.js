@@ -1,13 +1,21 @@
 import "../index.css";
-
+import { useContext, React } from 'react'
 import { MdOutlineBedroomParent } from "react-icons/md";
 import { MdOutlineMeetingRoom } from "react-icons/md";
 import { FaBath } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
+
 //images
 
-function RentCard({ rent }) {
-  const imageSliced = rent.images.slice(0, 4);
+function RentCard({ rent}) {
+  // const imageSliced = rent.images;
+  const { addViewedProperty } = useContext(AuthContext)
+
+
+  const handleClick = () => {
+    addViewedProperty(rent);
+  };
   return (
     <div>
       <div className="card-component-section">
@@ -16,8 +24,8 @@ function RentCard({ rent }) {
             <img
               className="rounded-t-lg w-full h-72  "
               src={
-                imageSliced[0].url
-                  ? imageSliced[0].url
+                rent?.images
+                  ? rent.images[0].url
                   : "https://media.istockphoto.com/id/506545080/vector/transparent-pattern-background.jpg?s=1024x1024&w=is&k=20&c=oSehSBTS7lglexi8oNkDCVjvt0RE2QuSYWHWyfucp80="
               }
               alt=""
@@ -78,7 +86,7 @@ function RentCard({ rent }) {
               <a
                 href="#"
                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white  rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300 card-btn-two"
-              >
+              onClick={handleClick}>
                 Read more
                 <svg
                   aria-hidden="true"

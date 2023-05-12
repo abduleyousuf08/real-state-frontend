@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import profile from "../Assets/Profile.jpg";
 import { FaUserAlt, FaSearchLocation } from "react-icons/fa";
@@ -22,7 +22,9 @@ import Schedule from "../Components/User/Schedule";
 
 function Dashboard() {
   const [activeComponent, setActiveComponent] = useState("Profile");
-  const { user, setUser, logoutUser } = useContext(AuthContext);
+  const { user, viewedProperties, logoutUser } = useContext(AuthContext);
+
+  
 
   const renderComponent = () => {
     switch (activeComponent) {
@@ -34,7 +36,7 @@ function Dashboard() {
         return <Preferences />;
       case "Favorites":
         return <Favorites />;
-      case "savedSearches":
+      case "SavedSearches":
         return <SavedSearches />;
       default:
         return null;
@@ -123,11 +125,11 @@ function Dashboard() {
                 </span>
                 <span
                   className={`flex items-center p-2 cursor-pointer gap-2 ${
-                    activeComponent === "savedSearches"
+                    activeComponent === "SavedSearches"
                       ? "font-bold text-amber-500"
                       : "text-gray-500"
                   }`}
-                  onClick={() => setActiveComponent("savedSearches")}
+                  onClick={() => setActiveComponent("SavedSearches")}
                 >
                   <FaSearchLocation className="fill-current" />
                   Saved Searches

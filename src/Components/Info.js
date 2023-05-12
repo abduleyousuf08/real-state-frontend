@@ -42,18 +42,8 @@ function Info() {
   const { fetchingOneProperty, data, infoLoading } = useContext(GeneralContext);
 
   useEffect(() => {
-    // axios
-    //   .get(`http://localhost:3000/propertyInfo/oneHouse/${id}`)
-    //   .then((res) => {
-    //     setData(res.data.oneProp);
-    //     console.log(res.data);
-    //     setInfoLoading(false);
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
     fetchingOneProperty(id);
-  }, []);
+  }, [id]);
 
   if (infoLoading) {
     return <div>PLEASE WAIT.....</div>;
