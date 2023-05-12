@@ -37,9 +37,11 @@ function PagesHeader() {
           About Us
         </a>
 
-        <button className="ml-40 text-black bg-amber-400 border-solid border-2 border-black py-2 px-6 rounded-lg active:border-white hover:bg-cyan-900 hover:text-white hover:border-amber-400">
-          Sign In
-        </button>
+        <Link to={"/auth"}>
+          <button className="ml-40 text-black bg-amber-400 border-solid border-2 border-black py-2 px-6 rounded-lg active:border-white hover:bg-cyan-900 hover:text-white hover:border-amber-400">
+            Sign In
+          </button>
+        </Link>
         <button className="ml-6 border-solid border-2 border-white  py-4 px-6 rounded-lg hover:bg-black hover:text-white active:border-white hover:border-cyan-900">
           <p className="flex items-center">
             <FaLongArrowAltRight className="mr-2" size={25} />

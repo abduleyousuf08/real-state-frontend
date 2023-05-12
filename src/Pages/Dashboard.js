@@ -15,7 +15,7 @@ import { AuthContext } from "../Context/AuthContext";
 import { useState } from "react";
 import Password from "../Components/User/Password";
 import Preferences from "../Components/User/Preferences";
-import CreateProperty from "../Components/CreateProperty";
+import CreateProperty from "../screens/CreateProperty";
 import Favorites from "../Components/User/Favourites";
 import SavedSearches from "../Components/User/savedSearches";
 import Schedule from "../Components/User/Schedule";
@@ -52,7 +52,7 @@ function Dashboard() {
       case "CreateProperty":
         return <CreateProperty />;
       case "Schedule":
-        return <Schedule user={user} />;
+        return <Schedule user={user}  />;
       case "Analytics":
         return;
       default:

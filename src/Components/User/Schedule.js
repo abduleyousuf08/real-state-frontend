@@ -1,32 +1,45 @@
-import React, { useState, useRef } from "react";
+import React from "react";
+import { useState, useRef } from "react";
 import { BsDashLg } from "react-icons/bs";
 import "react-calendar/dist/Calendar.css";
 import { useEffect } from "react";
 import axios from "axios";
-
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import { Link } from "react-router-dom";
 
-//ICONS
-import { BsArrowUpRightSquare } from "react-icons/bs";
-import { MdBedroomParent } from "react-icons/md";
-import { MdOutlineBathroom } from "react-icons/md";
-import { GiHomeGarage } from "react-icons/gi";
-import tagPrice from "../../Assets/tag-price.png";
-import square from "../../Assets/square.png";
-import year from "../../Assets/year.png";
-import status from "../../Assets/status.png";
-import contract from "../../Assets/contract.png";
-import house from "../../Assets/house.png";
-import appointment from "../../Assets/appointment.png";
+//IMAGES
+import agentImage from "../../images/edited-images/agent.png";
 import userImage from "../../Assets/user.jpg";
-import phone from "../../Assets/phone.png";
-import location from "../../Assets/location.png";
+import userImage2 from "../../Assets/IMG_4627.jpg";
+//ICONS
+// import { BsArrowUpRightSquare } from "react-icons/bs";
+// import { MdBedroomParent } from "react-icons/md";
+// import { MdOutlineBathroom } from "react-icons/md";
+// import { GiHomeGarage } from "react-icons/gi";
+// import tagPrice from "../../Assets/tag-price.png";
+// import square from "../../Assets/square.png";
+// import year from "../../Assets/year.png";
+// import status from "../../Assets/status.png";
+// import contract from "../../Assets/contract.png";
+// import house from "../../Assets/house.png";
+// import appointment from "../../Assets/appointment.png";
 
+// import phone from "../../Assets/phone.png";
+import location from "../../Assets/location.png";
+import link from "../../Assets/link.png";
+import call from "../../Assets/call.png";
+import mail from "../../Assets/mail.png";
+import date from "../../Assets/date.png";
+
+///
+////
 function Schedule({ user }) {
   const [scheduleData, setScheduleData] = useState([]);
   const [dataLoading, setDataLoading] = useState(true);
   const [expendedIndex, setExpendedIndex] = useState(-1);
+  const [message, setMessage] = useState(false);
+  const [read, setRead] = useState(false);
 
   useEffect(() => {
     axios
@@ -41,11 +54,13 @@ function Schedule({ user }) {
   }, []);
 
   const devEl = useRef();
+  const picEl = useRef();
 
   useEffect(() => {
     const elementClicked = (event) => {
       if (!devEl.current.contains(event.target)) {
         setExpendedIndex(-1);
+        console.log(event.target);
       }
     };
 
@@ -67,186 +82,226 @@ function Schedule({ user }) {
     });
 
   if (!thisAgentSchedule) {
-    return <div>un-found data.....</div>;
+    return <div>un found data.....</div>;
   }
 
   console.log(thisAgentSchedule);
+  //
+
   const scheduleList = thisAgentSchedule?.map((data, index) => {
     const isExpended = index === expendedIndex;
     const content = isExpended && data;
     //MAPING TO GET ONLY ONE IMAGE AT A TIME
-    const images = data.propertyID.images.map((image) => {
-      return <img src={image.url} alt="" key={image.url} />;
+    const images = data?.propertyID?.images.map((image) => {
+      return (
+        <img
+          className="object-cover h-52 2xl:h-72 aspect-video"
+          alt="property"
+          src={image.url}
+          // src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600"
+        />
+      );
     });
     return (
-      <div className="mt-8" key={data._id}>
+      <div>
         <div
-          className="flex items-center justify-between cursor-pointer"
-          onClick={() => setExpendedIndex(index)}
+          className={
+            content
+              ? "hidden"
+              : `mt-10 border border-black w-80 px-4 py-2 bg-cyan-900 rounded-lg cursor-pointer`
+          }
+          onClick={() => {
+            setExpendedIndex(index);
+            setRead(true);
+          }}
         >
-          <h2 className="font-bold">3 CENTERAL AVE, MAYLANDS WA 6105</h2>
-          <button className="border-2 border-black px-4 py-1 bg-amber-400 text-cyan-900 rounded-lg">
-            Ready to {data?.propertyID?.contract}
-          </button>
+          {/* <div className="absolute top-24 right-auto ml-72 bg-red-600 border border-black rounded-full px-2 w-6 aspect-square ">
+            <span className="font-bold text-white">{null}</span>
+          </div> */}
+
+          {/* )} */}
+          <div className="flex items-center">
+            <img
+              src={userImage}
+              width={64}
+              alt=""
+              className="rounded-full border-2 border-amber-400 px-1 py-1  object-center  aspect-square "
+            />
+            <div>
+              <h3 className="font-bold text-white pl-4 ">
+                {data?.clientID?.name}
+              </h3>
+              <p className=" text-white pl-4 flex items-center mt-1">
+                <img src={location} width={20} alt="" className="mr-2" /> Borama
+              </p>
+              <p className=" text-white pl-4 flex items-center mt-2">
+                <img src={link} width={20} alt="" className="mr-2" /> Ref-No :
+                {data?.propertyID?.refrenceNo}
+              </p>
+            </div>
+          </div>
         </div>
+        {/**END */}
         {content && (
-          <div className="border-2 border-cyan-900  px-6 py-4 ">
-            <p className="text-amber-400 font-bold tracking-wide">
-              Incoming request
-            </p>
-            {/**PROPERTY SHOW-CASING */}
-            <div className="mt-4">
-              <div className="flex items-center">
-                <p className="flex items-center mr-4">
-                  <MdBedroomParent className="mr-2" size={23} />{" "}
-                  <span>Bedrooms</span>
-                </p>
-                <p className="flex items-center mr-4 ">
-                  <MdOutlineBathroom className="mr-2" size={23} />{" "}
-                  <span>Baths</span>
-                </p>
-                <p className="flex items-center  mr-4">
-                  <GiHomeGarage className="mr-2" size={23} /> <span>Parks</span>
-                </p>
-                <p className="flex items-center mr-4 ">
-                  <BsArrowUpRightSquare className="mr-2" size={23} />
-                  <span>{data?.propertyID?.squareFT}sqft</span>
-                </p>
-              </div>
-              <div className="flex items-center  ">
-                <div>
-                  <Carousel
-                    width={230}
-                    showThumbs={false}
-                    className="mt-10"
-                    infiniteLoop={true}
-                    autoPlay
-                  >
-                    {images}
-                  </Carousel>
-                </div>
-                <div className="ml-10">
-                  <h1 className="font-bold text-2xl">Hargeisa-Jigjigayar</h1>
-                  <p>
-                    Lorem ipsu, dolor sit amet consectetur adipisicing elit.
-                    Incidunt, harum vitae labore dignissimos possimus laboriosam
-                    tempora esse quam in, consectetur accusantium assumenda
-                    saepe cum, culpa necessitatibus recusandae similique ex vel.
-                  </p>
-                  <div className="mt-4">
-                    <section className="flex items-center">
-                      <div>
-                        <span className="flex justify-between items-center text-lg mr-24 ">
-                          <img
-                            src={tagPrice}
-                            width={20}
-                            alt=""
-                            className="mr-2"
-                          />{" "}
-                          Price
-                        </span>
-                        <p className="text-lg ml-1 mt-1 ">$4500</p>
-                      </div>
-                      <div>
-                        <span className="flex items-center text-lg mr-32  ">
-                          <img src={house} width={20} alt="" className="mr-2" />{" "}
-                          Villa
-                        </span>
-                        <p className="text-lg ml-1 mt-1 ">2300km</p>
-                      </div>
-                      <div>
-                        <span className="flex items-center text-lg  ">
-                          <img src={year} width={20} alt="" className="mr-2" />{" "}
-                          Year-Built
-                        </span>
-                        <p className="text-lg ml-1 mt-1 ">2022</p>
-                      </div>
-                    </section>
-                    {/**SECTION TWO */}
-                    <section className="flex items-center mt-6 border-b-2 border-black pb-2">
-                      <div>
-                        <span className="flex justify-between items-center text-lg mr-20  ">
-                          <img
-                            src={status}
-                            width={20}
-                            alt=""
-                            className="mr-2"
-                          />{" "}
-                          Status
-                        </span>
-                        <p className="text-lg ml-1 mt-1 ">Available</p>
-                      </div>
-                      <div>
-                        <span className="flex items-center text-lg mr-20  ">
-                          <img
-                            src={square}
-                            width={20}
-                            alt=""
-                            className="mr-2"
-                          />{" "}
-                          Square FT
-                        </span>
-                        <p className="text-lg ml-1 mt-1 ">2300km</p>
-                      </div>
-                      <div>
-                        <span className="flex items-center text-lg  ">
-                          <img
-                            src={contract}
-                            width={20}
-                            alt=""
-                            className="mr-2"
-                          />{" "}
-                          Contract
-                        </span>
-                        <p className="text-lg  ml-1 mt-1 ">Rent</p>
-                      </div>
-                    </section>
-                    <div className="mt-2">
-                      <p className="flex items-center font-bold text-xs italic">
-                        <span>
-                          <img
-                            src={appointment}
-                            width={25}
-                            className="mr-2"
-                            alt=""
-                          />
-                        </span>
-                        Appointment
+          <div className="mt-10 border border-black flex items-center py-6 px-2  relative ">
+            <Link to={`/info/${data.propertyID._id}`}>
+              <button className="absolute top-4 right-6 border border-black px-2 py-2 rounded-lg  bg-slate-300 hover:bg-slate-500 hover:text-white hover:tracking-wide font-semibold">
+                Go Check
+              </button>
+            </Link>
+            {/** PART ONE  */}
+            <div className=" border border-black px-8 py-4  ml-2  w-64 rounded-md    h-96 bg-cyan-900">
+              <img
+                src={userImage}
+                alt=""
+                width={64}
+                className="rounded-full border-2 border-amber-400 px-1 py-1 object-center  aspect-square"
+              />
+
+              <h1 className="font-bold text-white pl-2 mt-4 tracking-widest ">
+                {data?.clientID?.name}
+              </h1>
+              <p className=" text-white pl-2 flex items-center mt-6">
+                <img src={location} width={20} alt="" className="mr-2" />
+                <span> Borama</span>
+              </p>
+              <p className=" text-white pl-2 flex items-center mt-6">
+                <img src={link} width={20} alt="" className="mr-2" /> Ref-No :
+                <span className="pl-1"> {data?.propertyID?.refrenceNo}</span>
+              </p>
+              <p className=" text-white pl-2 flex items-center mt-6">
+                <img src={call} width={20} alt="" className="mr-2" />
+                <span className="pl-1 tracking-wide">
+                  <strong>+252 {data?.clientID?.phone}</strong>
+                </span>
+              </p>
+              <p className=" text-white pl-2 flex items-center mt-6">
+                <img src={mail} width={20} alt="" className="mr-2" />
+                <span className="pl-1 tracking-wide">
+                  <strong> {data?.clientID?.email}</strong>
+                </span>
+              </p>
+              <p className=" text-white pl-2 flex items-center mt-6">
+                <img src={date} width={20} alt="" className="mr-2" />
+                <span className="pl-1 tracking-widest decoration-solid underline ">
+                  <strong> {data?.date}</strong>
+                </span>
+              </p>
+            </div>
+            {/**PART TWO */}
+            <div className="ml-4 ">
+              {/**CAROUSEL SECTION */}
+              <div>
+                <Carousel
+                  showThumbs={false}
+                  infiniteLoop={true}
+                  autoPlay
+                  // width={}
+                  className=" w-full 2xl:w-full  "
+                >
+                  {/**RENDERED IMAGES */}
+                  {images}
+                </Carousel>
+                {/**description part */}
+                <div className="mt-4 px-2 py-1">
+                  {/**FIRST PART */}
+                  <div className="flex items-center justify-between">
+                    <div className="  mr-4 bg-gray-400  w-28 h-16 opacity-80 border-2 border-solid border-amber-400 py-2 px-4 rounded-lg">
+                      <h1 className="flex flex-col text-center text-base font-bold tracking-wide  decoration-solid underline  decoration-solid decoration-2   ">
+                        Type
+                      </h1>
+                      <p className="text-center font-bold ">
+                        {data?.propertyID?.propertyType}
                       </p>
-                      <button className=" border-2 border-black px-6 mt-2	cursor-text">
-                        <span className="text-sm">2022-3-14</span>
-                      </button>
+                    </div>
+                    {/**TWO */}
+                    <div className="  mr-4 bg-gray-400  w-28 h-16 opacity-80 border-2 border-solid border-amber-400 py-2 px-4 rounded-lg">
+                      <h1 className="flex flex-col text-center text-base  font-bold tracking-wide  decoration-solid underline  decoration-solid decoration-2   ">
+                        Ref-No
+                      </h1>
+                      <p className="text-center font-bold ">
+                        {data?.propertyID?.refrenceNo}
+                      </p>
+                    </div>
+                    {/**THREE */}
+                    <div className="  mr-4 bg-gray-400  w-28 h-16 opacity-80 border-2 border-solid border-amber-400 py-2 px-4 rounded-lg">
+                      <h1 className="flex flex-col text-center text-base  font-bold tracking-wide  decoration-solid underline  decoration-solid decoration-2   ">
+                        Price
+                      </h1>
+                      <p className="text-center font-bold text-base ">
+                        $ {data?.propertyID?.price}
+                      </p>
+                    </div>
+                  </div>
+                  {/**SEFCOND PART */}
+                  <div className="flex items-center justify-between mt-4">
+                    <div className="  mr-4 bg-gray-400  w-28 h-14 opacity-80 border-2 border-solid border-amber-400 py-2 px-4 rounded-lg">
+                      <h1 className="flex flex-col text-center text-sm font-bold tracking-wide  decoration-solid underline  decoration-solid decoration-2   ">
+                        Year Built
+                      </h1>
+                      <p className="text-center font-bold ">
+                        {" "}
+                        {data?.propertyID?.yearBuilt}{" "}
+                      </p>
+                    </div>
+                    {/**TWO */}
+                    <div className="  mr-4 bg-gray-400  w-28 h-14 opacity-80 border-2 border-solid border-amber-400 py-2 px-4 rounded-lg">
+                      <h1 className="flex flex-col text-center text-base  font-bold tracking-wide  decoration-solid underline  decoration-solid decoration-2   ">
+                        Rooms
+                      </h1>
+                      <p className="text-center font-bold ">
+                        {data?.propertyID?.bedrooms +
+                          data?.propertyID?.bathroom}
+                      </p>
+                    </div>
+                    {/**THREE */}
+                    <div className="  mr-4 bg-gray-400  w-28 h-16 opacity-80 border-2 border-solid border-amber-400 py-2 px-4 rounded-lg">
+                      <h1 className="flex flex-col text-center text-base  font-bold tracking-wide  decoration-solid underline  decoration-solid decoration-2   ">
+                        Contract
+                      </h1>
+                      <p className="text-center font-bold text-base ">
+                        {data?.propertyID?.contract}
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
-              {/**USER SECTION */}
-              <div className="border border-black px-4 py-6 w-96 mt-20">
-                <p className="flex items-center justify-between">
-                  <img
-                    src={userImage}
-                    alt=""
-                    className="rounded-full object-scale-down h-20 border-black"
-                  />
-                  <button className="flex items-center px-2 py-2 rounded-md  hover:shadow-lg hover:shadow-black hover:transition hover:duration-700 hover:ease-in-out bg-amber-400 border-2 border-black">
-                    <img src={phone} alt="" width={18} className=" mr-2" />
-                    <span className="font-bold ">CONTACT THE USER</span>
-                  </button>
-                </p>
+            </div>
+            {/**APPOINTMENT PART */}
 
-                <h1 className="font-bold text-lg mt-2">Abdule Yousuf</h1>
-                <p className="mt-2 tracking-widest font-bold text-lg">
-                  Location
+            <div className="2xl:w-1/2 w-3/4 ml-4 px-2 py-2 border border-black h-80  rounded-md mt-6 bg-cyan-900 relative ">
+              <div className="">
+                <h3 className="text-amber-400 font-semibold">
+                  Appointement-Date
+                </h3>
+                <p className=" text-white  flex items-center mt-2">
+                  <img src={date} width={20} alt="" className="mr-2" />
+                  <span className="pl-1 tracking-widest decoration-solid underline ">
+                    <strong> {data?.date}</strong>
+                  </span>
                 </p>
-                <p className="flex items-center">
-                  <img src={location} width={18} alt="" className="mr-2" />
-                  Borama
-                </p>
-                <p className="mt-2 tracking-widest font-bold text-lg">Phone</p>
-                <p className="flex items-center">
-                  <img src={phone} alt="" width={18} className="mr-2 " />
-                  +252633502241
-                </p>
+              </div>
+              <div className="mt-8">
+                <img
+                  src={userImage}
+                  alt=""
+                  onClick={() => setMessage(true)}
+                  width={55}
+                  className={
+                    message
+                      ? `rounded-full border-2 border-white px-1 py-1 object-center  aspect-square cursor-pointer`
+                      : `rounded-full border-2 border-amber-400 px-1 py-1 object-center  aspect-square cursor-pointer`
+                  }
+                />
+                {message && (
+                  <div className="border-2 border-amber-400 mt-2 px-2 py-1 text-white font-mono  ">
+                    <span className="font-bold tracking-widest text-amber-400">
+                      Message :
+                    </span>
+                    <br /> Hey Ahmed my name is abdule i've seen your property
+                    and i like it iam ready to rent hope you will text me back
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -254,8 +309,6 @@ function Schedule({ user }) {
       </div>
     );
   });
-
-  // console.log(thisAgentSchedule);
 
   return (
     <div className="h-full p-10">
