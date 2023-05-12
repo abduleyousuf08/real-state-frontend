@@ -7,12 +7,13 @@ import { AuthContext } from "./Context/AuthContext";
 import { ChatContextProvider } from "./Context/ChatContext";
 //COMPONENTS & PAGES
 import PropertyInfo from "./Pages/PropertyInfo.js";
-import Content from "./Components/Content";
+import Content from "./screens/Content";
 import OwnerTesting from "./Pages/ownerTesting.js";
 import Dashboard from "./Pages/Dashboard";
 import Auth from "./Pages/Auth";
 import ChatRoom from "./Pages/ChatRoom";
 import Test from "./Pages/Test";
+import Properties from "./screens/properties";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -27,6 +28,7 @@ function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="/testing" element={<Test />} />
         <Route path="/owner" element={<OwnerTesting />} />
+        <Route path="/properties" element={<Properties />} />
       </Routes>
       <ToastContainer
         position="top-center"

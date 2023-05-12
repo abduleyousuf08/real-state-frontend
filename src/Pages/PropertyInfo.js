@@ -1,4 +1,4 @@
-import Info from "../Components/Info";
+import Info from "../screens/Info";
 //Components
 import PagesHeader from "../Components/PagesHeader";
 

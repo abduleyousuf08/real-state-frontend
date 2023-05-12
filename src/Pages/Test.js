@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import GeneralContext from "../ContextApi";
+import { useContext, useState } from "react";
+import GeneralContext from "../Context/ContextApi";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect } from "react";
 
 function Test() {
   const [inputs, setInputs] = useState('')
