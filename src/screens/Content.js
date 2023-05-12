@@ -18,24 +18,20 @@ import { AiTwotoneMail } from "react-icons/ai";
 import axios from "axios";
 
 //IMAGES
-import houses from "../images/edited-images/houses.png";
+
 import wrong from "../images/edited-images/wrong.png";
 import plus from "../images/edited-images/plus.png";
-import call from "../images/edited-images/call.png";
 import twitter from "../images/edited-images/twitter.png";
 import facebook from "../images/edited-images/facebook.png";
 import instagram from "../images/edited-images/instagram.png";
 import snapchat from "../images/edited-images/snapchat.png";
 
 //COMPONENTS
-import RentCard from "./RentCard";
-import SaleCard from "./SaleCard";
 import Header from "../Components/Header.js";
 
 const Content = () => {
   const [inputs, setInputs] = useState({});
   const [expendedIndex, setExpendedIndex] = useState(-1);
-  // const [selects, setSelects] = useState("");
 
   const {
     loading,
@@ -134,9 +130,9 @@ const Content = () => {
     );
   });
 
-  // if (loading && isLoading) {
-  //   return <div>LOADING....</div>;
-  // }
+  if (loading && isLoading) {
+    return <div>LOADING....</div>;
+  }
 
   //fetching all properties
   const getAllProperty = async () => {

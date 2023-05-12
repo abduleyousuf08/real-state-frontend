@@ -1,10 +1,9 @@
-import { useReducer, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { createContext, useCallback } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+
 //COMPONENTS
-import RentCard from "../screens/RentCard";
-import SaleCard from "../screens/SaleCard";
+import Card from "../screens/Card";
 
 const GeneralContext = createContext();
 
@@ -89,19 +88,13 @@ function Provider({ children }) {
     setActiveOne("rent");
   };
 
-  //MAPING THE RENT HOUSES ONLY
-  const rentItem = rentHouses.map((rent) => <RentCard rent={rent} />);
-  const saleItem = saleHouses.map((sale) => <SaleCard sale={sale} />);
-
-  const saleCardItem = saleItem.slice(0, 3);
-  const rentCardItem = rentItem.slice(0, 3);
   //finally rendering that two types maped on the screen
   const renderActiveOne = () => {
     switch (activeOne) {
       case "sale":
-        return saleCardItem;
+        return <Card data={saleHouses} />;
       case "rent":
-        return rentCardItem;
+        return <Card data={rentHouses} />;
     }
   };
 
