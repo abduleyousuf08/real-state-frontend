@@ -30,7 +30,6 @@ import snapchat from "../images/edited-images/snapchat.png";
 import Header from "../Components/Header.js";
 
 const Content = () => {
-  const [inputs, setInputs] = useState({});
   const [expendedIndex, setExpendedIndex] = useState(-1);
 
   const {
@@ -40,9 +39,13 @@ const Content = () => {
     handlePrev,
     showIndex,
     renderActiveOne,
+    setInputs,
+    inputs,
+    getSearchedProperties,
   } = useContext(GeneralContext);
 
   const divEl = useRef();
+  console.log(inputs);
 
   ///DROPDOWN
   const dropDown = [
@@ -93,7 +96,7 @@ const Content = () => {
 
     return (
       <div key={item.id}>
-        <div className="items-body">
+        <div className="items-body 2xl:w-full">
           <div className="container-item">
             <h1 className="item-label">
               {item.label}
@@ -133,22 +136,6 @@ const Content = () => {
   if (loading && isLoading) {
     return <div>LOADING....</div>;
   }
-
-  //fetching all properties
-  const getAllProperty = async () => {
-    console.log(inputs);
-    const response = await axios.get(
-      "http://localhost:3000/propertyInfo/search",
-      {
-        params: {
-          location: inputs.search,
-          options: inputs.options,
-          contract: inputs.contract,
-        },
-      }
-    );
-    console.log(response);
-  };
 
   ////
   return (
@@ -203,7 +190,7 @@ const Content = () => {
           />
           <div className="button-field">
             <Link to={"/properties"}>
-              <button className="button-search" onClick={getAllProperty}>
+              <button className="button-search" onClick={getSearchedProperties}>
                 Search
               </button>
             </Link>
@@ -228,16 +215,16 @@ const Content = () => {
       <div className="card-content">{renderActiveOne()}</div>
 
       {/**content 5 */}
-      <div className="flex items-center content-5-container">
+      <div className="flex items-center content-5-container ">
         <div>
           <img
             src="https://images.pexels.com/photos/1022936/pexels-photo-1022936.jpeg?auto=compress&cs=tinysrgb&w=600"
             alt=""
-            className="ml-20 content-five-image"
+            className="ml-20  content-five-image"
           />
         </div>
 
-        <div ref={divEl} className="ml-60">
+        <div ref={divEl} className="ml-60 ">
           <h1 className="content-five-header">
             VALUE WE GIVE <br /> TO YOU
           </h1>
