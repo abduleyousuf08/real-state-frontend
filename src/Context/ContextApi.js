@@ -40,6 +40,10 @@ function Provider({ children }) {
   const [data, setData] = useState([]);
   const [infoLoading, setInfoLoading] = useState(true);
 
+  //SEARCH PROPERTIES VARIABLE
+  const [inputs, setInputs] = useState({});
+  const [searchedProperties, setSearchedProperties] = useState([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:3000/propertyInfo/houseList")
@@ -54,7 +58,7 @@ function Provider({ children }) {
       });
   }, []);
 
-  //FETCHING ONE PROPERTY
+  // //FETCHING ONE PROPERTY
   const fetchingOneProperty = (id) => {
     axios
       .get(`http://localhost:3000/propertyInfo/oneHouse/${id}`)
@@ -67,6 +71,23 @@ function Provider({ children }) {
       });
   };
 
+  console.log(inputs);
+
+  //fetching all properties
+  const getSearchedProperties = async () => {
+    const response = await axios.get(
+      "http://localhost:3000/propertyInfo/search",
+      {
+        params: {
+          location: inputs.search,
+          options: inputs.options,
+          contract: inputs.contract,
+        },
+      }
+    );
+
+    setSearchedProperties([...searchedProperties, response.data]);
+  };
   //Hanle next button scroll
   const handleNext = () => {
     const current = showIndex + 1;
@@ -92,9 +113,9 @@ function Provider({ children }) {
   const renderActiveOne = () => {
     switch (activeOne) {
       case "sale":
-        return <Card data={saleHouses} />;
+        return saleHouses.slice(0, 3).map((house) => <Card data={house} />);
       case "rent":
-        return <Card data={rentHouses} />;
+        return rentHouses.slice(0, 3).map((house) => <Card data={house} />);
     }
   };
 
@@ -188,6 +209,10 @@ function Provider({ children }) {
     fetchingOneProperty,
     data,
     infoLoading,
+    setInputs,
+    inputs,
+    getSearchedProperties,
+    searchedProperties,
   };
 
   return (

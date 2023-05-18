@@ -13,7 +13,7 @@ import Dashboard from "./Pages/Dashboard";
 import Auth from "./Pages/Auth";
 import ChatRoom from "./Pages/ChatRoom";
 import Test from "./Pages/Test";
-import Properties from "./screens/properties";
+import Properties from "./screens/Properties";
 
 function App() {
   const { user } = useContext(AuthContext);
