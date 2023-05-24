@@ -12,17 +12,20 @@ import minus from "../Assets/minus.png";
 //COMPONENTS AND PAGES
 
 const SubmitProperty = () => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const [descount, setDescount] = useState(0);
 
   //RENTAL TIME
   const handleCount = () => {
+    if (count > 12) {
+      return setCount(1);
+    }
     setCount(parseInt(count) + 1);
   };
 
   const decrementCount = () => {
-    if (count <= 0) {
-      return;
+    if (count <= 1) {
+      return (count += 1);
     }
     setCount(parseInt(count) - 1);
   };
@@ -102,7 +105,6 @@ const SubmitProperty = () => {
               type="text"
               className="border-2 border-#d6ccc2 w-full px-2 py-2  text-start focus:outline-none font-abc mt-2 rounded-md active:border-2 border-#d6ccc2"
             />
-
             <div className="mt-2 flex items-center">
               <div className="mr-4">
                 <label className="text-lg">Property No</label>
@@ -129,7 +131,7 @@ const SubmitProperty = () => {
               </div>
             </div>
             {/**CONTINUEE.. */}
-            <div className="mt-4 border-t-2 border-#d6ccc2  h-80">
+            <div className="mt-4 border-t-2 border-#d6ccc2  mb-4">
               <h2 className="mt-4 font-uls text-lg">Price & Duration</h2>
               <div>
                 <div className="mt-2">
@@ -169,7 +171,8 @@ const SubmitProperty = () => {
                   <div className="flex items-center justify-between mt-2 ">
                     <div className="flex flex-col">
                       <label className="mt-2 text-lg">
-                        Minimum rental time *
+                        Minimum rental time{" "}
+                        <span className="  font-abc">(in months)</span>*
                       </label>
                       <div className="rounded-md border-2 border-#d6ccc2 flex items-center w-48 px-2  ">
                         <img
@@ -196,7 +199,6 @@ const SubmitProperty = () => {
                         />
                       </div>
                     </div>
-
                     <div className="flex flex-col ">
                       <label className="mt-2 text-lg">Discount</label>
                       <div className="rounded-md border-2 border-#d6ccc2 flex items-center w-48 px-2 relative ">
@@ -225,6 +227,52 @@ const SubmitProperty = () => {
                         />
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/**CONTINEE HERE.... */}
+            <div className="mt-6 border-t-2 border-#d6ccc2 ">
+              <h1 className="font-uls mt-4">Additional Information</h1>
+              <div>
+                <div className="flex items-center justify-between mt-4">
+                  <div className="flex flex-col ">
+                    <label className="font-abc">
+                      <input type="checkbox" className="mr-2" />
+                      Garage
+                    </label>
+                    <label className="font-abc">
+                      <input type="checkbox" className="mr-2" />
+                      Balcony
+                    </label>
+                    <label className="font-abc">
+                      <input type="checkbox" className="mr-2" />
+                      Fully-furnished
+                    </label>
+                    <label className="font-abc">
+                      <input type="checkbox" className="mr-2" />
+                      Quite Saroundings
+                    </label>
+                  </div>
+
+                  <div className="flex flex-col mr-20">
+                    {" "}
+                    <label className="font-abc">
+                      <input type="checkbox" className="mr-2" />
+                      Home security
+                    </label>
+                    <label className="font-abc">
+                      <input type="checkbox" className="mr-2" />
+                      A/C Rooms
+                    </label>
+                    <label className="font-abc">
+                      <input type="checkbox" className="mr-2" />
+                      Oven
+                    </label>
+                    <label className="font-abc">
+                      <input type="checkbox" className="mr-2" />
+                      Bat-Hub
+                    </label>
                   </div>
                 </div>
               </div>
