@@ -13,7 +13,7 @@ import Dashboard from "./Pages/Dashboard";
 import Auth from "./Pages/Auth";
 import ChatRoom from "./Pages/ChatRoom";
 import Test from "./Pages/Test";
-import Properties from "./screens/Properties";
+import Properties from "./screens/properties";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -24,7 +24,7 @@ function App() {
         <Route path="/" element={<Content />} />
         <Route path="/info/:id" element={<PropertyInfo />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/chat" element={<ChatRoom />} />
+        <Route path="/chat/:chatId" element={<ChatRoom />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/testing" element={<Test />} />
         <Route path="/owner" element={<OwnerTesting />} />

@@ -19,6 +19,7 @@ import CreateProperty from "../screens/CreateProperty";
 import Favorites from "../Components/User/Favourites";
 import SavedSearches from "../Components/User/savedSearches";
 import Schedule from "../Components/User/Schedule";
+import Listings from "../Components/User/Listings";
 
 function Dashboard() {
   const [activeComponent, setActiveComponent] = useState("Profile");
@@ -50,7 +51,7 @@ function Dashboard() {
       case "Password":
         return <Password />;
       case "Listings":
-        return;
+        return <Listings/>;
       case "CreateProperty":
         return <CreateProperty />;
       case "Schedule":

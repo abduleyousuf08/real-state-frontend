@@ -9,13 +9,14 @@ import {
     postRequest,
     putRequest,
 } from "../Utils/APIRequests";
-import GeneralContext from '../ContextApi';
+import GeneralContext from '../Context/ContextApi';
 
 
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
+    
     const { data } = useContext(GeneralContext)
     const Navigate = useNavigate();
     const [user, setUser] = useState(null);
@@ -211,15 +212,16 @@ export const AuthContextProvider = ({ children }) => {
     const addViewedProperty = useCallback(async ()=>{
         setLoading(true);
         try{
-
-            if (!data || !data._id) {
+            
+            if (!data?.oneProp || !data?.oneProp._id) {
                 console.log('Invalid property data');
                 return;
             }
 
+
             const payload = {
                 userId: user._id,
-                propertyId: data._id,
+                propertyId: data?.oneProp._id,
             };
             const res = await postRequest(
                 `${baseURL}/auth/viewedProperties`, 
@@ -238,17 +240,7 @@ export const AuthContextProvider = ({ children }) => {
         setLoading(false);
     }, [user, data])
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const res = await getRequest(`${baseURL}/auth/find/${user._id}`);
-                setViewedProperties(res.viewedProperties);
-            } catch (e) {
-                console.log(e);
-            };
-        };
-        fetchUserData();
-    }, [user]);
+    
 
 
     const deleteViewedProperty = useCallback(async (userId, propertyId) => {

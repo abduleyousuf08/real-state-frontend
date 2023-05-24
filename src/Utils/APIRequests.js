@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const baseURL = "http://localhost:3000";
 
+
 export const postRequest = async (url, body) => {
   try {
     const res = await axios(url, {
@@ -30,20 +31,22 @@ export const postRequest = async (url, body) => {
   }
 };
 
-export const getRequest = async (url) => {
+export const getRequest = async (url, params, token) => {
   try {
-    const res = await axios(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+      const res = await axios(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token
+        },
+        params: params,
+      });
+      
+      if (!res || !res.data) {
+        return { error: true, message: "An error occurred..." };
+      }
 
-    if (!res.data) {
-      return { error: true, message: "An error occurred..." };
-    }
-
-    return res.data;
+      return res.data;
     } catch (err) {
       let message;
 

@@ -2,17 +2,14 @@ import { React, useContext, useEffect } from 'react'
 import {BsDashLg} from 'react-icons/bs'
 import { AiOutlineClear } from 'react-icons/ai'
 import { MdOutlineArrowDropDown } from 'react-icons/md'
-import { AuthContext } from '../../Context/AuthContext'
-import SaleCard from '../SaleCard'
-import RentCard from '../RentCard'
-import { usePropertyDetails } from '../../Hooks/UsePropertyDetails'
+import UseViewedProperties from '../../Hooks/UseViewedProperties'
+import Card from '../../screens/Card'
 
 
 
 function SavedSearches() {
-    const { viewedProperties } = useContext(AuthContext)
-    
-    console.log(viewedProperties)
+    const { viewedProperties } = UseViewedProperties()
+
     return (
         <div className='h-full p-10'>
             <div>
@@ -38,8 +35,16 @@ function SavedSearches() {
                         </select>
                     </div>
                 </div>
-                
-                
+                <div className='mt-5 flex flex-wrap'>
+                    {viewedProperties.length === 0 ? (
+                        <p>No viewed properties found.</p>
+                    ) : (
+                        viewedProperties.map((property) => (
+                            //console.log(property)
+                            <Card key={property.propertyId}  data={property} />
+                        ))
+                    )}
+                </div>
             </div>
         </div>
     )

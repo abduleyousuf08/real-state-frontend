@@ -4,11 +4,12 @@ import { MdMeetingRoom } from "react-icons/md";
 import { MdBedroomParent } from "react-icons/md";
 import { MdOutlineBathroom } from "react-icons/md";
 import { GiHomeGarage } from "react-icons/gi";
+import {FaRocketchat} from 'react-icons/fa'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import "../index.css";
-import { useParams } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import io from "socket.io-client";
 
@@ -29,11 +30,16 @@ import blueTick from "../images/edited-images/bluetick.png";
 import call from "../images/edited-images/telephone.png";
 import schedule from "../images/edited-images/schedule.png";
 import agent from "../images/edited-images/agent.png";
+import { ChatContext } from "../Context/ChatContext";
+import { AuthContext } from "../Context/AuthContext";
+
 
 function Info() {
+  const { createChat } = useContext(ChatContext)
   const socket = io.connect("http://localhost:3000");
   //INFO PAGE FETCHING ONE ID
   const { id } = useParams();
+  const { user } = useContext(AuthContext)
   // const [data, setData] = useState([]);
   // const [infoLoading, setInfoLoading] = useState(true);
   const [date, setDate] = useState();
@@ -41,19 +47,25 @@ function Info() {
   const token = localStorage.getItem("token");
   const tokenParsed = JSON.parse(token);
 
+  
+
   const { fetchingOneProperty, data, infoLoading } = useContext(GeneralContext);
+
 
   //CALLING THIS FUNCTION TO FETCH ONE ID'S INFORMATION FROM THE BACKEND
 
   useEffect(() => {
     fetchingOneProperty(id);
-  }, [id]);
+  }, [id, fetchingOneProperty]);
 
   if (infoLoading) {
     return <div>PLEASE WAIT.....</div>;
   }
 
-  console.log(data);
+  const handleOnClick = () => {
+    createChat(user._id, data.oneProp.userID._id)
+  }
+
 
   const makeSchedule = async (event) => {
     event.preventDefault();
@@ -436,7 +448,12 @@ function Info() {
               {data.oneProp.userID ? data.oneProp.userID.phone : "unKnown"}
             </span>
           </p>
-        </div>
+            <button className="flex gap-2 font-bold cursor-pointer text-lg justify-center items-center mt-2" 
+              onClick={handleOnClick}
+            >
+              <FaRocketchat className="w-5 h-5 items-center"/> Chat</button>
+          </div>
+        
 
         {/** */}
 

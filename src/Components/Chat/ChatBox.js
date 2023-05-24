@@ -11,24 +11,28 @@ import UseFetchRecipientUser from '../../Hooks/UseFetchRecipient';
 import chat from '../../Assets/startchat.png'
 import { format } from 'timeago.js';
 import defaultProfile from '../../Assets/Profile.jpg'
+import { Link } from 'react-router-dom';
 
-function ChatBox() {
+function ChatBox({ chatId }) {
     const { user } = useContext(AuthContext)
     const { currentChat, messages, sendTextMessage, onlineUsers } = useContext(ChatContext)
     const { recipientUser } = UseFetchRecipientUser(currentChat, user)
     const [textMessage, setTextMessage] = useState('')
     const lastMessageRef = useRef()
-    
+    //console.log('chatId from ChatBox', chatId)
+    //console.log('recipientUser', recipientUser)
     const isOnline = onlineUsers?.some((user)=> user?.userId === recipientUser?._id)
-    
+    //console.log(recipientUser)
 
     //always scroll to last message
     useEffect(()=> {
         lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
     },[messages])
     
+    
 
     return (
+        
         <main className='bg-gray-100 h-full border rounded-br-lg rounded-tr-lg shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] '>
             {recipientUser ? (
                 <div className='border border-transparent h-full' style={{ borderRadius: '0 1rem 1rem 0' }}>
