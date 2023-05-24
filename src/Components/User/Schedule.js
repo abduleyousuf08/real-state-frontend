@@ -108,7 +108,7 @@ function Schedule({ user }) {
           className={
             content
               ? "hidden"
-              : `mt-10 border border-black w-80 px-4 py-2 bg-cyan-900 rounded-lg cursor-pointer`
+              : `mt-10 border border-#d6ccc2 shadow-2xl w-80 px-4 py-2 bg-cyan-900 rounded-lg cursor-pointer `
           }
           onClick={() => {
             setExpendedIndex(index);
@@ -120,7 +120,7 @@ function Schedule({ user }) {
           </div> */}
 
           {/* )} */}
-          <div className="flex items-center">
+          <div className="flex items-center ">
             <img
               src={userImage}
               width={64}
