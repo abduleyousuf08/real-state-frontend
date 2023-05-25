@@ -113,12 +113,12 @@ const Content = () => {
     {
       id: "a",
       label: " 🏠 LATEST PROPERTY FOR RENT",
-      desc: " :  choose your property based on your needs",
+      desc: " :  Choose your property based on your needs",
     },
     {
       id: "b",
       label: " 🏠 LATEST PROPERTY FOR SALE",
-      desc: " : choose your property based on your needs",
+      desc: " : Choose your property based on your needs",
     },
   ];
 
@@ -127,7 +127,9 @@ const Content = () => {
     const show = index === showIndex;
     return (
       <div key={type.id} className="flex items-center">
-        <div className="mr-2 mt-2 label-desing">{show && type.label}</div>
+        <div className="mr-2 mt-2 2xl:font-bold label-desing">
+          {show && type.label}
+        </div>
         <div>{show && type.desc}</div>
       </div>
     );
@@ -141,10 +143,9 @@ const Content = () => {
   return (
     <div className="content-component">
       <Header />
-      <div className="ml-24 mt-20 content-header-container-one">
-        <h1 className="content-header">
-          Sell or Rent <br /> Your Home at <br />
-          the Best Price
+      <div className="ml-32  mt-8 2xl:mt-10 ">
+        <h1 className=" content-header">
+          Sell or Rent Your Home <br /> at the Best Price
         </h1>
       </div>
       {/**rent and sell part */}
@@ -212,21 +213,31 @@ const Content = () => {
       </div>
       {/**content 4*/}
 
-      <div className="card-content">{renderActiveOne()}</div>
+      <div className="relative top-6 2xl:top-0 card-content">
+        {renderActiveOne()}
+      </div>
 
       {/**content 5 */}
-      <div className="flex items-center content-5-container ">
-        <div>
-          <img
-            src="https://images.pexels.com/photos/1022936/pexels-photo-1022936.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt=""
-            className="ml-20  content-five-image"
-          />
+      <div className="flex items-center   relative content-5-container ">
+        <div className="absolute top-0 left-16 2xl:left-40">
+          <video
+            className="aspect-video 2xl:w-full"
+            width="600 "
+            height="340"
+            autoplay
+            loop
+            controls
+          >
+            <source
+              src="https://player.vimeo.com/external/539010630.sd.mp4?s=eece48149dc657ed00be70b5c104a962ca5e7f95&profile_id=164&oauth2_token_id=57447761"
+              type="video/mp4"
+            />
+          </video>
         </div>
 
-        <div ref={divEl} className="ml-60 ">
-          <h1 className="content-five-header">
-            VALUE WE GIVE <br /> TO YOU
+        <div ref={divEl} className="ml-20 absolute right-16 2xl:right-72 ">
+          <h1 className=" 2xl:text-4xl content-five-header">
+            VALUE WE GIVE TO YOU
           </h1>
           <p className="content-five-paragraph">
             Here is the services we provide to support your needs
@@ -272,11 +283,11 @@ const Content = () => {
               {/** PART 2  ....*/}
               <div className="flex mr-20 sub-container">
                 {/** ICON CALL */}
-                <div className="image-container-two">
+                <div className=" 2xl:w-2/4 image-container-two">
                   <BsFillChatDotsFill
                     size={45}
                     color="#f4b41a"
-                    className="icon-image"
+                    className="2xl:pt-2 icon-image"
                   />
                 </div>
 

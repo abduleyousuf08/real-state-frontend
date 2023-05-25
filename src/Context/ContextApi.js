@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { createContext, useCallback } from "react";
+import { createContext } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 //COMPONENTS
 import Card from "../screens/Card";
@@ -40,6 +41,10 @@ function Provider({ children }) {
   const [data, setData] = useState([]);
   const [infoLoading, setInfoLoading] = useState(true);
 
+  //MAKING SCHEDULE VAIRABLES
+  const token = localStorage.getItem("token");
+  const tokenParsed = JSON.parse(token);
+
   //SEARCH PROPERTIES VARIABLE
   const [inputs, setInputs] = useState({});
   const [searchedProperties, setSearchedProperties] = useState([]);
@@ -72,7 +77,7 @@ function Provider({ children }) {
   };
 
 
-  //fetching all properties
+  //FE
   const getSearchedProperties = async () => {
     const response = await axios.get(
       "http://localhost:3000/propertyInfo/search",
@@ -87,6 +92,28 @@ function Provider({ children }) {
 
     setSearchedProperties([...searchedProperties, response.data]);
   };
+
+  //MAKING SCHEDULE FROM THE INFO PAGE
+  const makeSchedule = async (date, id) => {
+    date = date.toDateString();
+    await axios
+      .post(
+        "http://localhost:3000/schedule/makeSchedule",
+        { date, propertyId: id },
+
+        {
+          headers: { Authorization: tokenParsed.token },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        toast.success(res.data.Message);
+      })
+      .catch((e) => {
+        toast.error(e.response.data.Message);
+      });
+  };
+
   //Hanle next button scroll
   const handleNext = () => {
     const current = showIndex + 1;
@@ -212,6 +239,7 @@ function Provider({ children }) {
     inputs,
     getSearchedProperties,
     searchedProperties,
+    makeSchedule,
   };
 
   return (

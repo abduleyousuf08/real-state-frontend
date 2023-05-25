@@ -6,12 +6,12 @@ import guryoSame from "../images/edited-images/guryo-same.png";
 
 function PagesHeader() {
   return (
-    <div className="flex bg-cyan-900 items-center  justify-evenly ">
+    <div className="mt-0 flex bg-cyan-900 items-center  justify-evenly ">
       <Link to={`/`}>
-        <img src={guryoSame} alt="LOGO" className="w-40" />
+        <img src={guryoSame} alt="LOGO" width={118} />
       </Link>
 
-      <div className="mr-10 text-white  flex  items-center ">
+      <div className="mr-8 text-white  flex  items-center ">
         <a
           href="#"
           className="mr-8  hover:border-b-2 hover:pb-2 border-amber-400"
@@ -42,7 +42,7 @@ function PagesHeader() {
             Sign In
           </button>
         </Link>
-        <button className="ml-6 border-solid border-2 border-white  py-4 px-6 rounded-lg hover:bg-black hover:text-white active:border-white hover:border-cyan-900">
+        <button className="ml-6 border-solid border-2 border-white  py-2 px-4 rounded-lg hover:bg-black hover:text-white active:border-white hover:border-cyan-900">
           <p className="flex items-center">
             <FaLongArrowAltRight className="mr-2" size={25} />
             Submit Property
