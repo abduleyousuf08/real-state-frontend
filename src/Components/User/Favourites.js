@@ -3,10 +3,12 @@ import {BsDashLg} from 'react-icons/bs'
 import { AiOutlineClear } from 'react-icons/ai'
 import { MdOutlineArrowDropDown } from 'react-icons/md'
 import { AuthContext } from '../../Context/AuthContext'
+import UseSavedProperties from '../../Hooks/UseSavedProperties'
+import Card from '../../screens/Card'
 
 
 function Favorites() {
-    const { viewedProperties } = useContext(AuthContext)
+    const { savedProperties } = UseSavedProperties()
     
     return (
         <div className='h-full p-10'>
@@ -32,6 +34,16 @@ function Favorites() {
                                 <option value="#">Price: High to Low </option>
                         </select>
                     </div>
+                </div>
+                <div className='mt-5 flex flex-wrap'>
+                    {savedProperties.length === 0 ? (
+                        <p>No viewed properties found.</p>
+                    ) : (
+                        savedProperties.map((property) => (
+                            //console.log(property)
+                            <Card key={property.propertyId}  data={property} />
+                        ))
+                    )}
                 </div>
             </div>
         </div>

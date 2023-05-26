@@ -1,7 +1,6 @@
 import "../index.css";
 import { MdOutlineBedroomParent } from "react-icons/md";
 import { MdOutlineMeetingRoom } from "react-icons/md";
-import {GrFavorite} from 'react-icons/gr'
 import { FaBath } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -82,7 +81,8 @@ function Card({ data }) {
               </div>
             </div>
             <Link to={`/info/${data._id}`}>
-              <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg  focus:ring-4 focus:outline-none   ">
+              <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg  focus:ring-4 focus:outline-none "
+              onClick={handleClick}>
                 Read more
               </button>
             </Link>

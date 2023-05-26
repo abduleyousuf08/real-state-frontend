@@ -43,7 +43,7 @@ export const AuthContextProvider = ({ children }) => {
         image: null,
     });
     const [viewedProperties, setViewedProperties] = useState([]);
-
+    const [savedProperties, setSavedProperties] = useState([]);
     
     useEffect(() => {
         if (user === null) {
@@ -175,8 +175,8 @@ export const AuthContextProvider = ({ children }) => {
 
         try {
             const res = await postRequest(
-            `${baseURL}/auth/login`,
-            JSON.stringify(loginInfo)
+                `${baseURL}/auth/login`,
+                JSON.stringify(loginInfo)
             );
             // Code to authenticate the user
             localStorage.setItem("token", JSON.stringify(res));
@@ -184,11 +184,11 @@ export const AuthContextProvider = ({ children }) => {
             setUser(res);
 
             if (res.error) {
-            toast.error(res.message);
+                toast.error(res.message);
             } else {
-            toast.success(res.message);
-            // Navigate to home page
-            Navigate("/");
+                toast.success(res.message);
+                // Navigate to dashboard
+                Navigate("/dashboard");
             }
         } catch (err) {
             console.log(err);
@@ -203,11 +203,43 @@ export const AuthContextProvider = ({ children }) => {
     const logoutUser = useCallback(() => {
         localStorage.removeItem("token");
         setUser(null);
-        Navigate("/auth");
+        Navigate("/");
     }, [setUser, Navigate]);
 
     
+    //Favorite properties function
     
+    const addFavouriteProperty = useCallback(async ()=>{
+        setLoading(true);
+        try{
+            
+            if (!data?.oneProp || !data?.oneProp._id) {
+                console.log('Invalid property data');
+                return;
+            }
+
+
+            const payload = {
+                userId: user._id,
+                propertyId: data?.oneProp._id,
+            };
+            const res = await postRequest(
+                `${baseURL}/auth/savedProperties`, 
+                JSON.stringify(payload)
+            )
+            if(res.savedProperties){
+                setSavedProperties(res.savedProperties);
+            }else{
+                console.log(res.message)
+            }
+            
+            
+        }catch(e){
+            console.log('Error:', e);
+        }
+        setLoading(false);
+    }, [user, data])
+
     //Saved search property function
     const addViewedProperty = useCallback(async ()=>{
         setLoading(true);

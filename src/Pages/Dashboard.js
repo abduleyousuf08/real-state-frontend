@@ -69,7 +69,7 @@ function Dashboard() {
         <aside className="bg-slate-100 border-2 flex flex-col w-64 min-h-screen">
           <div className="flex flex-col  items-center pl-10 mt-5">
             <img
-              src={user?.image.url || defaultProfile}
+              src={user?.image?.url || defaultProfile}
               alt="profile"
               className="w-20 h-20 rounded-full object-cover"
             />

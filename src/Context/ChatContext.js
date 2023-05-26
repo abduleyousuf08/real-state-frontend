@@ -9,7 +9,6 @@ export const ChatContext = createContext();
 export const ChatContextProvider = ({ children, user }) => {
   const [userChats, setUserChats] = useState(null);
   const [isUserChatsLoading, setIsUserChatLoading] = useState(false);
-  const [potentialChats, setPotentialChats] = useState([]); //Users you don't have chats with yet
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState(null);
   const [isMessagesLoading, setIsMessagesLoading] = useState(false);
@@ -82,33 +81,6 @@ export const ChatContextProvider = ({ children, user }) => {
     };
   }, [socket, currentChat]);
 
-  // useEffect(() => {
-  //   const getUsers = async () => {
-  //     const res = await getRequest(`${baseURL}/auth/users`);
-
-  //     if (res.error) {
-  //       console.log("error fetching users");
-  //     }
-
-  //     const pChats = res.filter((u) => {
-  //       let isChatCreated = false;
-
-  //       if (!user || !user._id) return false;
-  //       if (user._id === u._id) return false;
-
-  //       if (userChats) {
-  //         isChatCreated = userChats?.some((chat) => {
-  //           return chat.members[0] === u._id || chat.members[1] === u._id;
-  //         });
-  //       }
-
-  //       return !isChatCreated;
-  //     });
-  //     setPotentialChats(pChats);
-  //   };
-
-  //   getUsers();
-  // }, [userChats, user]);
 
   useEffect(() => {
     const getUserChats = async () => {
@@ -246,7 +218,6 @@ export const ChatContextProvider = ({ children, user }) => {
       value={{
         userChats,
         isUserChatsLoading,
-        potentialChats,
         createChat,
         updateCurrentChat,
         messages,

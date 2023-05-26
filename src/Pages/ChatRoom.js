@@ -20,14 +20,7 @@ function ChatRoom() {
     const handleClick = (selected) => {
         setSelectedItem(selected);
     };
-    //const [activeChatId, setActiveChatId] = useState(null);
     
-    
-    // useEffect(() => {
-    //     const extractedChatId = location.pathname.split('/').pop();
-    //     setCurrentChat(extractedChatId);
-    //     setChatId(extractedChatId);
-    // }, [location, setCurrentChat]);
     
     const handleChatSelection = (chat) => {
         updateCurrentChat(chat);

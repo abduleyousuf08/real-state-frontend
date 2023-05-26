@@ -100,14 +100,14 @@ function Profile() {
               />
             ) : (
               <img
-                src={user?.image.url || defaultProfile}
+                src={user?.image?.url || defaultProfile}
                 className="w-72 border rounded-lg object-fit"
                 alt=""
               />
             )}
             <label
               htmlFor="profile-photo"
-              className="absolute top-20 mt-20 ml-5 cursor-pointer"
+              className="absolute mb-52 bottom-36 ml-5 cursor-pointer"
             >
               <AiFillCamera
                 className="h-6 w-6 fill-current"
