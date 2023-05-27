@@ -26,7 +26,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/chat" element={<ChatRoom />} />
         <Route path="/auth" element={<Auth />} />
-        <Route path="/testing" element={<Test />} />
+        {/* <Route path="/testing" element={<Test />} /> */}
         <Route path="/properties" element={<Properties />} />
         <Route path="/submitProperty" element={<SubmitProperty />} />
       </Routes>

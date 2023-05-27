@@ -17,30 +17,38 @@ function Provider({ children }) {
   const [loading, setLoading] = useState(true);
   const [rentHouses, setRentHouses] = useState([]);
   const [saleHouses, setSaleHouses] = useState([]);
-  //POSTING THE PROPERTY VARIABLES
-  const [propertyType, setPropertyType] = useState("");
-  const [bedrooms, setBedrooms] = useState();
-  const [squareFT, setSquareFT] = useState("");
-  const [price, setPrice] = useState();
-  const [bathroom, setBathroom] = useState();
-  const [balcony, setBalcony] = useState();
-  const [yearBuilt, setYearBuilt] = useState();
-  const [status, setStatus] = useState("");
-  const [lift, setLift] = useState();
-  const [location, setLocation] = useState("");
-  const [descriptionProp, setDescriptionProp] = useState("");
-  const [refrenceNo, setRefrenceNo] = useState();
-  const [garage, setGarage] = useState();
-  const [contract, setContract] = useState("");
-  const [ownerID, setOwnerID] = useState("");
-  const [homeSecurity, setHomeSecurity] = useState("");
-  const [ACRooms, setACRooms] = useState("");
-  const [HightSpeedWifi, setHightSpeedWifi] = useState("");
-  const [images, setImages] = useState([]);
-  const [uploading, setUploading] = useState(false);
+  //OTHER VALUES
   const [data, setData] = useState([]);
   const [infoLoading, setInfoLoading] = useState(true);
+  //NEW POSTING VALUES
+  const [values, setValues] = useState({
+    bedrooms: 0,
+    bathroom: 0,
+    yearBuilt: null,
+    addFavorite: false,
+    squareFT: null,
+    price: 0,
+    propertyType: null,
+    city: null,
+    country: null,
+    selectedFiles: [],
+    contractTime: 1,
+    discount: 0,
+    propertyNo: null,
+    zipCode: 0,
+    contract: "rent",
+    garage: false,
+    balcony: false,
+    fullyFurnished: false,
+    quiteSaroundings: false,
+    homeSecurity: false,
+    ACRooms: false,
+    oven: false,
+    bathHub: false,
+  });
 
+  const [images, setImages] = useState([]);
+  const [submiting, setSubmitting] = useState(true);
   //MAKING SCHEDULE VAIRABLES
   const token = localStorage.getItem("token");
   const tokenParsed = JSON.parse(token);
@@ -56,7 +64,6 @@ function Provider({ children }) {
         setRentHouses(res.data.rentHouses);
         setSaleHouses(res.data.saleHouses);
         setLoading(false);
-        console.log(res);
       })
       .catch((e) => {
         console.log(e);
@@ -70,13 +77,12 @@ function Provider({ children }) {
       .then((res) => {
         setData(res.data);
         setInfoLoading(false);
+        console.log(res.data);
       })
       .catch((e) => {
         console.log(e);
       });
   };
-
-  console.log(inputs);
 
   //FE
   const getSearchedProperties = async () => {
@@ -107,7 +113,6 @@ function Provider({ children }) {
         }
       )
       .then((res) => {
-        console.log(res.data);
         toast.success(res.data.Message);
       })
       .catch((e) => {
@@ -147,11 +152,12 @@ function Provider({ children }) {
   };
 
   ///POSTING SOMETHING TO THE DATABASE AND BACKEND
-  const handleImage = (e) => {
-    if (e.target.files.length > 4) {
-      return console.log("only 4 images are allowed");
+  const handleImage = (event) => {
+    if (event.target.files.length > 4) {
+      return toast.error("Only 4 images are allowed! ");
     }
-    const files = Array.from(e.target.files);
+    const files = Array.from(event.target.files);
+    setValues((prev) => ({ ...prev, selectedFiles: files }));
     files.forEach((file) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -163,80 +169,46 @@ function Provider({ children }) {
   };
 
   const handleSendData = async (event) => {
-    setUploading(true);
     event.preventDefault();
     const token = localStorage.getItem("token");
     const tokenParsed = JSON.parse(token);
-    console.log(tokenParsed.token);
     const tokenID = tokenParsed.token;
-    const result = await axios.post(
-      "http://localhost:3000/propertyInfo/postHouse",
-      {
-        propertyType,
-        bedrooms,
-        squareFT,
-        price,
-        bathroom,
-        balcony,
-        yearBuilt,
-        status,
-        lift,
-        location,
-        descriptionProp,
-        refrenceNo,
-        garage,
-        contract,
-        ownerID,
-        homeSecurity,
-        ACRooms,
-        HightSpeedWifi,
-        images,
-      },
-
-      { headers: { authorization: tokenID } }
-    );
-
-    setImages([]);
-    setUploading(false);
+    await axios
+      .post(
+        "http://localhost:3000/propertyInfo/postHouse",
+        { values, images },
+        {
+          headers: { authorization: tokenID },
+        }
+      )
+      .then((res) => {
+        toast.success(res.data.MESSAGE);
+        setSubmitting(false);
+      })
+      .catch((e) => {
+        {
+          toast.error(e.response.data.ERROR);
+        }
+      });
   };
 
   ///VALUE TO SHARE
-
   const valueToShare = {
     //FETCHING VALUE TO SHARE @CONTENT PAGE
     handleNext,
     handlePrev,
+    setInfoLoading,
+    data,
     loading,
-
     showIndex,
     renderActiveOne,
-    //POSTING VALUE TO SHARE @TESTING PAGE
-    count,
     handleSendData,
-    handleImage,
-    uploading,
-    setPropertyType,
-    setBedrooms,
-    setSquareFT,
-    setPrice,
-    setBathroom,
-    setBalcony,
-    setYearBuilt,
-    setStatus,
-    setLift,
-    setLocation,
-    setDescriptionProp,
-    setRefrenceNo,
-    setGarage,
-    setContract,
-    setOwnerID,
-    setHomeSecurity,
-    setACRooms,
-    setHightSpeedWifi,
     fetchingOneProperty,
-    data,
-    infoLoading,
+    setValues,
+    values,
+    handleImage,
     setInputs,
+    submiting,
     inputs,
     getSearchedProperties,
     searchedProperties,

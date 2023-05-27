@@ -39,7 +39,6 @@ function Schedule({ user }) {
   const [dataLoading, setDataLoading] = useState(true);
   const [expendedIndex, setExpendedIndex] = useState(-1);
   const [message, setMessage] = useState(false);
-  const [read, setRead] = useState(false);
 
   useEffect(() => {
     axios
@@ -85,7 +84,6 @@ function Schedule({ user }) {
     return <div>un found data.....</div>;
   }
 
-  console.log(thisAgentSchedule);
   //
 
   const scheduleList = thisAgentSchedule?.map((data, index) => {
@@ -95,13 +93,14 @@ function Schedule({ user }) {
     const images = data?.propertyID?.images.map((image) => {
       return (
         <img
-          className="object-cover h-52 2xl:h-72 aspect-video"
+          className=" h-52 2xl:h-96 aspect-video"
           alt="property"
           src={image.url}
           // src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600"
         />
       );
     });
+
     return (
       <div>
         <div
@@ -112,7 +111,6 @@ function Schedule({ user }) {
           }
           onClick={() => {
             setExpendedIndex(index);
-            setRead(true);
           }}
         >
           {/* <div className="absolute top-24 right-auto ml-72 bg-red-600 border border-black rounded-full px-2 w-6 aspect-square ">
@@ -122,7 +120,7 @@ function Schedule({ user }) {
           {/* )} */}
           <div className="flex items-center ">
             <img
-              src={userImage}
+              src={data.clientID?.image?.url}
               width={64}
               alt=""
               className="rounded-full border-2 border-amber-400 px-1 py-1  object-center  aspect-square "
@@ -145,14 +143,14 @@ function Schedule({ user }) {
         {content && (
           <div className="mt-10 border border-black flex items-center py-6 px-2  relative ">
             <Link to={`/info/${data.propertyID._id}`}>
-              <button className="absolute top-4 right-6 border border-black px-2 py-2 rounded-lg  bg-slate-300 hover:bg-slate-500 hover:text-white hover:tracking-wide font-semibold">
+              <button className="absolute top-4 right-2 border border-#d6ccc2 shadow-xl    px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700  text-white ">
                 Go Check
               </button>
             </Link>
             {/** PART ONE  */}
             <div className=" border border-black px-8 py-4  ml-2  w-64 rounded-md    h-96 bg-cyan-900">
               <img
-                src={userImage}
+                src={data?.clientID?.image?.url}
                 alt=""
                 width={64}
                 className="rounded-full border-2 border-amber-400 px-1 py-1 object-center  aspect-square"
@@ -197,7 +195,7 @@ function Schedule({ user }) {
                   infiniteLoop={true}
                   autoPlay
                   // width={}
-                  className=" w-full 2xl:w-full  "
+                  className=" w-10/12 2xl:w-11/12  "
                 >
                   {/**RENDERED IMAGES */}
                   {images}
@@ -205,7 +203,7 @@ function Schedule({ user }) {
                 {/**description part */}
                 <div className="mt-4 px-2 py-1">
                   {/**FIRST PART */}
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-around">
                     <div className="  mr-4 bg-gray-400  w-28 h-16 opacity-80 border-2 border-solid border-amber-400 py-2 px-4 rounded-lg">
                       <h1 className="flex flex-col text-center text-base font-bold tracking-wide  decoration-solid underline  decoration-solid decoration-2   ">
                         Type
@@ -220,7 +218,7 @@ function Schedule({ user }) {
                         Ref-No
                       </h1>
                       <p className="text-center font-bold ">
-                        {data?.propertyID?.refrenceNo}
+                        {data?.propertyID?.propertyNo}
                       </p>
                     </div>
                     {/**THREE */}
@@ -234,7 +232,7 @@ function Schedule({ user }) {
                     </div>
                   </div>
                   {/**SEFCOND PART */}
-                  <div className="flex items-center justify-between mt-4">
+                  <div className="flex items-center justify-around mt-4">
                     <div className="  mr-4 bg-gray-400  w-28 h-14 opacity-80 border-2 border-solid border-amber-400 py-2 px-4 rounded-lg">
                       <h1 className="flex flex-col text-center text-sm font-bold tracking-wide  decoration-solid underline  decoration-solid decoration-2   ">
                         Year Built
@@ -269,7 +267,7 @@ function Schedule({ user }) {
             </div>
             {/**APPOINTMENT PART */}
 
-            <div className="2xl:w-1/2 w-3/4 ml-4 px-2 py-2 border border-black h-80  rounded-md mt-6 bg-cyan-900 relative ">
+            {/* <div className="2xl:w-1/2 w-3/4 ml-4 px-2 py-2 border border-black h-80  rounded-md mt-6 bg-cyan-900 relative ">
               <div className="">
                 <h3 className="text-amber-400 font-semibold">
                   Appointement-Date
@@ -283,7 +281,7 @@ function Schedule({ user }) {
               </div>
               <div className="mt-8">
                 <img
-                  src={userImage}
+                  src={data.clientID?.image?.url}
                   alt=""
                   onClick={() => setMessage(true)}
                   width={55}
@@ -303,7 +301,7 @@ function Schedule({ user }) {
                   </div>
                 )}
               </div>
-            </div>
+            </div> */}
           </div>
         )}
       </div>
