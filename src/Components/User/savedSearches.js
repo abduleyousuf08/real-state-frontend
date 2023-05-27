@@ -1,9 +1,15 @@
-import React from 'react'
+import { React, useContext, useEffect } from 'react'
 import {BsDashLg} from 'react-icons/bs'
 import { AiOutlineClear } from 'react-icons/ai'
 import { MdOutlineArrowDropDown } from 'react-icons/md'
+import UseViewedProperties from '../../Hooks/UseViewedProperties'
+import Card from '../../screens/Card'
 
-function savedSearches() {
+
+
+function SavedSearches() {
+    const { viewedProperties } = UseViewedProperties()
+
     return (
         <div className='h-full p-10'>
             <div>
@@ -29,9 +35,19 @@ function savedSearches() {
                         </select>
                     </div>
                 </div>
+                <div className='mt-5 flex flex-wrap'>
+                    {viewedProperties.length === 0 ? (
+                        <p>No viewed properties found.</p>
+                    ) : (
+                        viewedProperties.map((property) => (
+                            //console.log(property)
+                            <Card key={property.propertyId}  data={property} />
+                        ))
+                    )}
+                </div>
             </div>
         </div>
     )
 }
 
-export default savedSearches
+export default SavedSearches

@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { baseURL, getRequest } from "../Utils/APIRequests";
 
 
@@ -7,26 +7,36 @@ function UseFetchRecipientUser(chat, user) {
     const [recipientUser, setRecipientUser] = useState(null);
     const [error, setError] = useState(null);
 
-    
-    const recipientId = chat?.members.find((id)=> id !== user?._id) //find for each id where the id is not equal to the current user id
-    
-    useEffect(()=>{
-        const getUser = async()=>{
-
-            if(!recipientId) return null 
-            
-            const res = await getRequest(`${baseURL}/auth/find/${recipientId}`)
-        
-            if(res.error){
-                setError(res)
-            }
-
-            setRecipientUser(res)
+    useEffect(() => {
+        if (!chat) {
+            setRecipientUser(null);
+            return;
         }
-        getUser()
-    },[recipientId])
     
-    return { recipientUser }
+        const getUser = async () => {
+            const recipientId = chat?.members?.find((id) => id !== user?._id);
+            //console.log('pass this user', recipientId)
+            if (!recipientId) {
+                console.log('no recipient user found');
+                setRecipientUser(null);
+                return;
+            }
+            
+            const res = await getRequest(`${baseURL}/auth/find/${recipientId}`);
+            //console.log('res', res)
+            if (res.error) {
+            setError(res.error);
+            }
+    
+            setRecipientUser(res);
+        };
+    
+        getUser();
+    }, [chat, user]);
+    
+
+    
+    return { recipientUser };
     
 }
 

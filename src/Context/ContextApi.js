@@ -49,6 +49,7 @@ function Provider({ children }) {
   const [inputs, setInputs] = useState({});
   const [searchedProperties, setSearchedProperties] = useState([]);
 
+
   useEffect(() => {
     axios
       .get("http://localhost:3000/propertyInfo/houseList")
@@ -56,7 +57,6 @@ function Provider({ children }) {
         setRentHouses(res.data.rentHouses);
         setSaleHouses(res.data.saleHouses);
         setLoading(false);
-        console.log(res);
       })
       .catch((e) => {
         console.log(e);
@@ -76,7 +76,6 @@ function Provider({ children }) {
       });
   };
 
-  console.log(inputs);
 
   //FE
   const getSearchedProperties = async () => {

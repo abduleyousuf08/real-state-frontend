@@ -4,6 +4,7 @@ import ChatBox from '../Components/Chat/ChatBox'
 import { ChatContext } from '../Context/ChatContext';
 import UserChat from '../Components/Chat/UserChat';
 import { AuthContext } from '../Context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -12,12 +13,20 @@ function ChatRoom() {
     const [selectedItem, setSelectedItem] = useState('Personal');
     const { user } = useContext(AuthContext)
     const { userChats, updateCurrentChat } = useContext(ChatContext)
+    const [chatId, setChatId] = useState('');
+    const Navigate = useNavigate()
+    
+
     const handleClick = (selected) => {
         setSelectedItem(selected);
     };
-
     
     
+    const handleChatSelection = (chat) => {
+        updateCurrentChat(chat);
+        setChatId(chat._id);
+        Navigate(`/chat/${chat._id}`)
+    };
     
 
     return (
@@ -34,24 +43,22 @@ function ChatRoom() {
                         </form>
                         <nav className='mt-3 mx-5'>
                             <ul className='flex justify-between text-gray-400 font-semibold'>
-                                <li className={selectedItem === 'All' ? 'font-bold text-black border-b-2 border-amber-400' : ''}><a href="#all-chats" onClick={()=>handleClick('All')}>All</a></li>
-                                <li className={selectedItem === 'Personal' ? 'font-bold text-black border-b-2 border-amber-400' : ''}><a href="#personal-chats" onClick={()=>handleClick('Personal')}>Personal</a></li>
-                                <li className={selectedItem === 'Group' ? 'font-bold text-black border-b-2 border-amber-400' : ''}><a href="#group-chats" onClick={()=>handleClick('Group')}>Group</a></li>
+                                <button className={selectedItem === 'All' ? 'font-bold text-black border-b-2 border-amber-400' : ''}><a href="#all-chats" onClick={()=>handleClick('All')}>All</a></button>
+                                <button className={selectedItem === 'Personal' ? 'font-bold text-black border-b-2 border-amber-400' : ''}><a href="#personal-chats" onClick={()=>handleClick('Personal')}>Personal</a></button>
+                                <button className={selectedItem === 'Group' ? 'font-bold text-black border-b-2 border-amber-400' : ''}><a href="#group-chats" onClick={()=>handleClick('Group')}>Group</a></button>
                             </ul>
                         </nav>
                         <div className='overflow-x-auto scrollbar-hide mt-3'>
-                        {userChats?.map((chat, index)=>{
-                            return(
-                                <div key={index} onClick={()=> updateCurrentChat(chat)}>
-                                    <UserChat chat={chat} user={user}/>
-                                </div>
-                            )
-                        })}
+                        {userChats?.map((chat, index) => (
+                            <div key={index} onClick={() => handleChatSelection(chat)}>
+                                <UserChat chat={chat} user={user} />
+                            </div>
+                        ))}
                         </div>
                     </div>
                     {/* Chat-Box */}
                     <div className='w-2/3'>
-                        <ChatBox/>
+                        <ChatBox chatId={ chatId }/>
                     </div>
                 </div>
             </div>
