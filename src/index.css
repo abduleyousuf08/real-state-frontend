@@ -28,6 +28,7 @@
 .content-component {
   height: 75vh;
   background-image: url(./images//edited-images/image-two.jpg);
+  z-index: 0.7;
   background-color: #143d59;
   width: 100%;
   background-size: contain;
@@ -35,23 +36,18 @@
   background-repeat: no-repeat;
 }
 
-.image-logo {
-  width: 10%;
-  display: inline;
-}
-
 .sign-in {
-  margin-left: 30%;
+  /* margin-left: 30%; */
   color: black;
   font-weight: 500;
   border: 1px solid black;
   border-radius: 18px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   height: 40px;
   padding: 4px 10px;
   position: relative;
-  animation-name: button;
-  animation-duration: 4s;
+  /* animation-name: button;
+  animation-duration: 4s; */
 }
 
 .sign-in:hover {
@@ -80,8 +76,7 @@
   font-family: "Alkatra", cursive;
   font-family: "Raleway", sans-serif;
   font-family: "Roboto", sans-serif;
-
-  height: 8px;
+  /* width: 10px; */
 }
 
 .catogries-one:hover {
@@ -106,12 +101,12 @@
 
 .content-header {
   color: #fff;
-  font-size: 40px;
+  font-size: 35px;
   font-family: "Alkatra", cursive;
   font-family: "Inconsolata", monospace;
   font-family: "Raleway", sans-serif;
   position: relative;
-  top: 0;
+  padding-top: 9rem;
   /* animation-name: example;
   animation-duration: 4s; */
 }
@@ -196,11 +191,6 @@
   border-right: 2px solid black;
 }
 
-.home-icon {
-  font-size: 29px;
-  font-weight: bolder;
-}
-
 .types-selection option {
   left: 15px;
   font-size: 14px;
@@ -253,8 +243,8 @@
 
 .button-search {
   position: relative;
-  animation-name: buttonActive;
-  animation-duration: 4s;
+  /* animation-name: buttonActive;
+  animation-duration: 4s; */
 }
 
 @keyframes buttonActive {
@@ -999,7 +989,6 @@ body {
 }
 
 body {
-  background: #eee;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #000;

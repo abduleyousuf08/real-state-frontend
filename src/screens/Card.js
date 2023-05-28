@@ -3,8 +3,15 @@ import { MdOutlineBedroomParent } from "react-icons/md";
 import { MdOutlineMeetingRoom } from "react-icons/md";
 import { FaBath } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
+
 
 function Card({ data }) {
+  const {addViewedProperty} = useContext(AuthContext)
+  const handleClick = () => {
+    addViewedProperty();
+  };
   return (
     <div>
       <div className="card-component-section-two">
@@ -13,7 +20,7 @@ function Card({ data }) {
             <img
               className="rounded-t-lg  aspect-video "
               src={
-                data?.images[0]?.url
+                data?.images?.[0]?.url
                   ? data.images[0].url
                   : "https://media.istockphoto.com/id/506545080/vector/transparent-pattern-background.jpg?s=1024x1024&w=is&k=20&c=oSehSBTS7lglexi8oNkDCVjvt0RE2QuSYWHWyfucp80="
               }
@@ -74,7 +81,8 @@ function Card({ data }) {
               </div>
             </div>
             <Link to={`/info/${data._id}`}>
-              <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg  focus:ring-4 focus:outline-none   ">
+              <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg  focus:ring-4 focus:outline-none "
+              onClick={handleClick}>
                 Read more
               </button>
             </Link>

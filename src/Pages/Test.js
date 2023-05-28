@@ -3,29 +3,30 @@
 // import axios from "axios";
 // import { useEffect } from "react";
 
-// function Test() {
-//   const {
-//     uploading,
-//     setPropertyType,
-//     setBedrooms,
-//     setSquareFT,
-//     setPrice,
-//     setBathroom,
-//     setBalcony,
-//     setYearBuilt,
-//     setStatus,
-//     setLift,
-//     setLocation,
-//     setDescriptionProp,
-//     setRefrenceNo,
-//     setGarage,
-//     setContract,
-//     setACRooms,
-//     setHightSpeedWifi,
-//     handleImage,
-//     handleSendData,
-//   } = useContext(GeneralContext);
-//   /////
+function Test() {
+  const [inputs, setInputs] = useState('')
+  const {
+    uploading,
+    setPropertyType,
+    setBedrooms,
+    setSquareFT,
+    setPrice,
+    setBathroom,
+    setBalcony,
+    setYearBuilt,
+    setStatus,
+    setLift,
+    setLocation,
+    setDescriptionProp,
+    setRefrenceNo,
+    setGarage,
+    setContract,
+    setACRooms,
+    setHightSpeedWifi,
+    handleImage,
+    handleSendData,
+  } = useContext(GeneralContext);
+  /////
 
 //   return (
 //     <div className="flex justify-center mt-20">

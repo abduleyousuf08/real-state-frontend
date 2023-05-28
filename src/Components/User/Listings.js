@@ -1,20 +1,18 @@
-import {React, useContext} from 'react'
+import React from 'react'
 import {BsDashLg} from 'react-icons/bs'
 import { AiOutlineClear } from 'react-icons/ai'
 import { MdOutlineArrowDropDown } from 'react-icons/md'
-import { AuthContext } from '../../Context/AuthContext'
-import UseSavedProperties from '../../Hooks/UseSavedProperties'
+import useAgentListings from '../../Hooks/UseAgentListing'
 import Card from '../../screens/Card'
 
-
-function Favorites() {
-    const { savedProperties } = UseSavedProperties()
+function Listings() {
+    const { agentListings } = useAgentListings()
     
     return (
         <div className='h-full p-10'>
-            <div>
-            <h2 className='flex gap-3 items-center text-amber-400 font-bold text-xl'> <BsDashLg className="fill-current " style={{ strokeWidth: '3px' }}/>Favorites </h2>
-            <div className='flex justify-between mt-5 items-center'>
+            <div className='w-2/3'>
+                <h2 className='flex gap-3 items-center text-amber-400 font-bold text-xl'> <BsDashLg className="fill-current " style={{ strokeWidth: '3px' }}/>Agent Listings </h2>
+                <div className='flex justify-between mt-5 items-center'>
                     <div className='flex gap-10 items-center'>
                         <div className='font-semibold flex gap-2 text-slate-500'>Category:
                             <select className='border border-slate-500 outline-none rounded-md'>
@@ -28,20 +26,20 @@ function Favorites() {
                         </button>
                     </div>
                     <div className='font-semibold flex gap-2 text-slate-500'>Sort by:
-                        <select className='border  border-slate-500 outline-none rounded-md'>
+                        <select className='border border-slate-500 outline-none rounded-md'>
                                 <option value="#"> Recently Posted<MdOutlineArrowDropDown/></option>
                                 <option value="#"> Price: Low to High</option>
                                 <option value="#">Price: High to Low </option>
                         </select>
                     </div>
                 </div>
-                <div className='mt-5 flex flex-wrap'>
-                    {savedProperties.length === 0 ? (
-                        <p>No viewed properties found.</p>
+                <div className='mt-5 flex flex-wrap justify-evenly gap-5'>
+                    {agentListings.length === 0 ? (
+                        <p>No listings found.</p>
                     ) : (
-                        savedProperties.map((property) => (
+                        agentListings.map((property) => (
                             //console.log(property)
-                            <Card key={property.propertyId}  data={property} />
+                            <Card key={property._id}  data={property} />
                         ))
                     )}
                 </div>
@@ -50,4 +48,4 @@ function Favorites() {
     )
 }
 
-export default Favorites
+export default Listings

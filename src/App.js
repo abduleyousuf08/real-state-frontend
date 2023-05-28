@@ -6,27 +6,51 @@ import { AuthContext } from "./Context/AuthContext";
 import { ChatContextProvider } from "./Context/ChatContext";
 
 //COMPONENTS & PAGES
-import PropertyInfo from "./Pages/PropertyInfo.js";
 import Content from "./screens/Content";
 import Dashboard from "./Pages/Dashboard";
 import Auth from "./Pages/Auth";
 import ChatRoom from "./Pages/ChatRoom";
-import Test from "./Pages/Test";
-import Properties from "./screens/Properties";
+import Properties from "./screens/properties";
 import SubmitProperty from "./screens/SubmitProperty";
+import Header from "./Components/Header";
+import Info from "./screens/Info";
+import ProtectRoute from "./Utils/ProtectRoute";
 
 function App() {
   const { user } = useContext(AuthContext);
 
   return (
     <ChatContextProvider user={user}>
+      <Header />
       <Routes>
         <Route path="/" element={<Content />} />
-        <Route path="/info/:id" element={<PropertyInfo />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/chat" element={<ChatRoom />} />
+        <Route path="/info/:id" element={<Info />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectRoute>
+              <Dashboard />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/chat"
+          element={
+            <ProtectRoute>
+              <ChatRoom />
+            </ProtectRoute>
+          }
+        />
+        <Route
+          path="/chat/:chatId"
+          element={
+            <ProtectRoute>
+              <ChatRoom />
+            </ProtectRoute>
+          }
+        />
         <Route path="/auth" element={<Auth />} />
-        {/* <Route path="/testing" element={<Test />} /> */}
+
         <Route path="/properties" element={<Properties />} />
         <Route path="/submitProperty" element={<SubmitProperty />} />
       </Routes>

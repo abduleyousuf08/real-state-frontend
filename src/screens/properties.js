@@ -4,14 +4,9 @@ import { useRef, useState, useContext } from "react";
 import GeneralContext from "../Context/ContextApi";
 
 //images
-import userImage from "../Assets/user.jpg";
-import gurosamo from "../images/edited-images/guryo-same.png";
 import downArrow from "../Assets/down-arrow.png";
 import upArrow from "../Assets/up-arrow.png";
 import threeD from "../Assets/3d.png";
-import contract from "../Assets/contract (1).png";
-import world from "../Assets/world.png";
-import type from "../Assets/house (1).png";
 //COMPONENTS
 import PropertyCard from "./propertyCard";
 
@@ -55,30 +50,6 @@ const Properties = () => {
   //////////
   return (
     <div>
-      <nav className="flex items-center justify-between px-12 bg-cyan-900 ">
-        {/* <Link to={"/"} className="text-white text-2xl"> */}
-        <a href="/">
-          <img src={gurosamo} alt="" className="w-23 h-20" />
-        </a>
-        {/* </Link> */}
-
-        <section className="flex items-center">
-          <input
-            type="text"
-            placeholder="SEARCH HOME"
-            className="mr-4 py-1 rounded-md pl-8 outline-none font-abc"
-          />
-
-          <Link to={"/dashboard"}>
-            <img
-              src={userImage}
-              width={44}
-              alt=""
-              className="rounded-full aspect-square"
-            />
-          </Link>
-        </section>
-      </nav>
       {/**BODY OF THIS CONTENT */}
 
       <div className=" mt-8 flex items-center justify-between px-10 relative ">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import profile from "../Assets/Profile.jpg";
 import { FaUserAlt, FaSearchLocation } from "react-icons/fa";
@@ -19,10 +19,13 @@ import CreateProperty from "../screens/CreateProperty";
 import Favorites from "../Components/User/Favourites";
 import SavedSearches from "../Components/User/savedSearches";
 import Schedule from "../Components/User/Schedule";
+import Listings from "../Components/User/Listings";
 
 function Dashboard() {
   const [activeComponent, setActiveComponent] = useState("Profile");
-  const { user, setUser, logoutUser } = useContext(AuthContext);
+  const { user, viewedProperties, logoutUser } = useContext(AuthContext);
+
+  
 
   const renderComponent = () => {
     switch (activeComponent) {
@@ -34,7 +37,7 @@ function Dashboard() {
         return <Preferences />;
       case "Favorites":
         return <Favorites />;
-      case "savedSearches":
+      case "SavedSearches":
         return <SavedSearches />;
       default:
         return null;
@@ -48,7 +51,7 @@ function Dashboard() {
       case "Password":
         return <Password />;
       case "Listings":
-        return;
+        return <Listings/>;
       case "CreateProperty":
         return <CreateProperty />;
       case "Schedule":
@@ -66,7 +69,7 @@ function Dashboard() {
         <aside className="bg-slate-100 border-2 flex flex-col w-64 min-h-screen">
           <div className="flex flex-col  items-center pl-10 mt-5">
             <img
-              src={user?.image.url || defaultProfile}
+              src={user?.image?.url || defaultProfile}
               alt="profile"
               className="w-20 h-20 rounded-full object-cover"
             />
@@ -123,11 +126,11 @@ function Dashboard() {
                 </span>
                 <span
                   className={`flex items-center p-2 cursor-pointer gap-2 ${
-                    activeComponent === "savedSearches"
+                    activeComponent === "SavedSearches"
                       ? "font-bold text-amber-500"
                       : "text-gray-500"
                   }`}
-                  onClick={() => setActiveComponent("savedSearches")}
+                  onClick={() => setActiveComponent("SavedSearches")}
                 >
                   <FaSearchLocation className="fill-current" />
                   Saved Searches

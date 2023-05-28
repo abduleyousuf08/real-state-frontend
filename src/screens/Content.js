@@ -141,8 +141,7 @@ const Content = () => {
   ////
   return (
     <div className="content-component">
-      <Header />
-      <div className="ml-32  mt-8 2xl:mt-10 ">
+      <div className="ml-32  ">
         <h1 className=" content-header">
           Sell or Rent Your Home <br /> at the Best Price
         </h1>

@@ -4,6 +4,7 @@ import { MdMeetingRoom } from "react-icons/md";
 import { MdBedroomParent } from "react-icons/md";
 import { MdOutlineBathroom } from "react-icons/md";
 import { GiHomeGarage } from "react-icons/gi";
+import { GrFavorite } from "react-icons/gr";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import "../index.css";
@@ -27,16 +28,22 @@ import blueTick from "../images/edited-images/bluetick.png";
 import schedule from "../images/edited-images/schedule.png";
 import call from "../images/edited-images/call.png";
 import email from "../Assets/mail.png";
+import chat from "../Assets/chat-icon.png";
+import { AuthContext } from "../Context/AuthContext";
+import { ChatContext } from "../Context/ChatContext";
 
 function Info() {
+  const { createChat } = useContext(ChatContext);
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
+
   const { fetchingOneProperty, data, infoLoading, makeSchedule } =
     useContext(GeneralContext);
   let [date, onChange] = useState(new Date());
 
   useEffect(() => {
     fetchingOneProperty(id);
-  }, [id]);
+  }, [id, fetchingOneProperty]);
 
   if (!data) {
     return <div>Loading</div>;
@@ -153,6 +160,7 @@ function Info() {
                 <img src={blueTick} alt="" width={20} className="" />
               </span>
             </h1>
+            <GrFavorite className="w-15 h-15" />
             <div className=" absolute right-40 2xl:right-2/4 border-2 border-solid border-black px-2 py-2 bg-amber-400 font-semibold text-cyan-900 rounded-xl mb-8">
               <h2 className="text-xl font-semibold flex items-center ">
                 Price :{" "}
@@ -408,6 +416,13 @@ function Info() {
               <img src={email} width={20} alt="" className="mr-2 " />{" "}
               <span>{data?.oneProp?.userID?.email} </span>
             </p>
+            <button
+              className="text-lg  flex items-center"
+              onClick={"handleOnClick"}
+            >
+              <img src={chat} width={40} alt="chat-icon" className="" />{" "}
+              <span className="font-bold text-amber-400">Chat</span>
+            </button>
           </div>
         </div>
 
