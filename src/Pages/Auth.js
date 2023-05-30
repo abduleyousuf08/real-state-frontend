@@ -44,12 +44,12 @@ function Auth() {
 
   return (
     <main
-      className={`w-full h-screen overflow-hidden p-8 flex items-center justify-center  ${
+      className={`w-full h-screen  overflow-hidden p-8 flex items-center justify-center  ${
         isSignUpMode ? "opacity-100 pointer-events-all" : ""
       }`}
     >
-      <div className="relative w-2/3 max-w-5xl h-full shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px] rounded-2xl bg-white">
-        <div className="absolute w-3/4 h-3/4 top-20 left-16 transform translate-x-(-1/2) translate-y-(-1/2)">
+      <div className="relative w-2/3 max-w-5xl h-full 2xl:h-4/6 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px] rounded-2xl bg-white">
+        <div className="absolute w-3/4 h-3/4 2xl:h-3/4 2xl:top-10 top-20 left-16 transform translate-x-(-1/2) translate-y-(-1/2)">
           <div
             className="absolute h-full w-1/2 top-10 left-0 grid grid-cols-1 grid-rows-1 transition duration-800 ease-in-out"
             style={{ left: isSignUpMode ? "66%" : "0%", transition: "0.6s" }}
@@ -289,7 +289,7 @@ function Auth() {
               />
             </div>
 
-            <div className="absolute flex items-center justify-center mt-80 flex-col">
+            <div className="absolute flex 2xl:top-10 2xl:left-10 items-center justify-center mt-80 flex-col">
               <div className="max-h-9 overflow-hidden mb-5 ml-9">
                 <div
                   ref={textSliderRef}
