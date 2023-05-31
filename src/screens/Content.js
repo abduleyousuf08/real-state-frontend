@@ -45,6 +45,7 @@ const Content = () => {
   } = useContext(GeneralContext);
 
   const divEl = useRef();
+  
 
   ///DROPDOWN
   const dropDown = [

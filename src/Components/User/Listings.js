@@ -3,10 +3,13 @@ import {BsDashLg} from 'react-icons/bs'
 import { AiOutlineClear } from 'react-icons/ai'
 import { MdOutlineArrowDropDown } from 'react-icons/md'
 import useAgentListings from '../../Hooks/UseAgentListing'
-import Card from '../../screens/Card'
+import PropertyCard from '../../screens/propertyCard'
+
 
 function Listings() {
     const { agentListings } = useAgentListings()
+
+    
     
     return (
         <div className='h-full p-10'>
@@ -39,7 +42,7 @@ function Listings() {
                     ) : (
                         agentListings.map((property) => (
                             //console.log(property)
-                            <Card key={property._id}  data={property} />
+                            <PropertyCard key={property._id}  house={property} />
                         ))
                     )}
                 </div>

@@ -5,8 +5,8 @@ import { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 
 const UseSavedProperties = () => {
-    const { user } = useContext(AuthContext)
-    const [savedProperties, setSavedProperties] = useState([]);
+    const { user, savedProperties, setSavedProperties } = useContext(AuthContext)
+    //const [] = useState([]);
     const [propertyDetails, setPropertyDetails] = useState([]);
 
     useEffect(() => {
@@ -24,7 +24,7 @@ const UseSavedProperties = () => {
         };
 
         fetchSavedProperties();
-    }, [user]);
+    }, [user, setSavedProperties]);
 
     useEffect(() => {
         const fetchPropertiesDetails = async () => {

@@ -5,8 +5,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 
 const UseViewedProperties = () => {
-    const { user } = useContext(AuthContext)
-    const [viewedProperties, setViewedProperties] = useState([]);
+    const { user, viewedProperties, setViewedProperties } = useContext(AuthContext)
     const [propertyDetails, setPropertyDetails] = useState([]);
 
     useEffect(() => {

@@ -2,9 +2,9 @@ import "../index.css";
 import { BsArrowUpRightSquare } from "react-icons/bs";
 import { MdMeetingRoom } from "react-icons/md";
 import { MdBedroomParent } from "react-icons/md";
-import { MdOutlineBathroom } from "react-icons/md";
+import { MdOutlineBathroom, MdFavoriteBorder } from "react-icons/md";
 import { GiHomeGarage } from "react-icons/gi";
-import { GrFavorite } from "react-icons/gr";
+//import { MdFavoriteBorder } from "react-icons/gr";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import "../index.css";
@@ -35,8 +35,9 @@ import { ChatContext } from "../Context/ChatContext";
 function Info() {
   const { createChat } = useContext(ChatContext);
   const { id } = useParams();
+  const [isFavorite, setIsFavorite] = useState(false)
   const { user } = useContext(AuthContext);
-
+  const { addFavouriteProperty } = useContext(AuthContext)
   const { fetchingOneProperty, data, infoLoading, makeSchedule } =
     useContext(GeneralContext);
   let [date, onChange] = useState(new Date());
@@ -49,7 +50,15 @@ function Info() {
     return <div>Loading</div>;
   }
 
-  console.log(data);
+  const handleOnClick = () => {
+    createChat(user._id, data.oneProp.userID._id)
+  }
+
+  const addtoFavorite = ()=>{
+    addFavouriteProperty()
+    setIsFavorite(true)
+  }
+
 
   ////
   let renderCarousel = data?.oneProp?.images.map((image) => {
@@ -160,15 +169,17 @@ function Info() {
                 <img src={blueTick} alt="" width={20} className="" />
               </span>
             </h1>
-            <GrFavorite className="w-15 h-15" />
-            <div className=" absolute right-40 2xl:right-2/4 border-2 border-solid border-black px-2 py-2 bg-amber-400 font-semibold text-cyan-900 rounded-xl mb-8">
-              <h2 className="text-xl font-semibold flex items-center ">
-                Price :{" "}
-                <span className="font-bold text-lg ml-2">
-                  {" "}
-                  {data?.oneProp?.price ? data.oneProp.price : "2000"}
-                </span>
-              </h2>
+            <div className="flex items-center">
+              <MdFavoriteBorder className={`ml-32 w-16 h-10 mb-8 cursor-pointer ${isFavorite ? ' fill-red-600' : ''}`}  onClick={addtoFavorite} />
+              <div className=" absolute right-40 2xl:right-2/4 border-2 border-solid border-black px-2 py-2 bg-amber-400 font-semibold text-cyan-900 rounded-xl mb-8">
+                <h2 className="text-xl font-semibold flex items-center ">
+                  Price :{" "}
+                  <span className="font-bold text-lg ml-2">
+                    {" "}
+                    {data?.oneProp?.price ? data.oneProp.price : "2000"}
+                  </span>
+                </h2>
+              </div>
             </div>
           </div>
           <div className="flex items-center">
@@ -370,7 +381,7 @@ function Info() {
               </div>
               <div className="flex items-center ml-28 mt-10">
                 <img src={microWave} alt="" width={40} className="mr-4" />
-                <span>{data.oneProp.oven ? "Oven" : "No Oven available"}</span>
+                <span>{data.oneProp?.oven ? "Oven" : "No Oven available"}</span>
               </div>
             </div>
           </div>
@@ -418,7 +429,7 @@ function Info() {
             </p>
             <button
               className="text-lg  flex items-center"
-              onClick={"handleOnClick"}
+              onClick={handleOnClick}
             >
               <img src={chat} width={40} alt="chat-icon" className="" />{" "}
               <span className="font-bold text-amber-400">Chat</span>

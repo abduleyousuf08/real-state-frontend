@@ -9,6 +9,7 @@ import upArrow from "../Assets/up-arrow.png";
 import threeD from "../Assets/3d.png";
 //COMPONENTS
 import PropertyCard from "./propertyCard";
+import Card from "./Card";
 
 const Properties = () => {
   const { searchedProperties } = useContext(GeneralContext);
@@ -38,16 +39,16 @@ const Properties = () => {
 
   ///////
   const searchedList = searchedProperties[0]?.searchList?.map((house) => {
-    return <PropertyCard house={house} key={house._id} />;
+    return <Card house={house} key={house._id} />;
   });
 
   const simirlarList = searchedProperties[0]?.simirlarProperties?.map(
     (similar) => {
-      return <PropertyCard similar={similar} />;
+      return <Card similar={similar} />;
     }
   );
 
-  //////////
+  //////////s
   return (
     <div>
       {/**BODY OF THIS CONTENT */}

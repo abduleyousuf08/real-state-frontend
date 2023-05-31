@@ -1,17 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
 //IMAGES
 import chat from "../Assets/chat.png";
 import phone from "../Assets/phone.png";
 import ellipsis from "../Assets/ellipsis.png";
+import { AuthContext } from "../Context/AuthContext";
 
-const propertyCard = ({ house, similar }) => {
+function PropertyCard({ house, similar }){
+  const { addViewedProperty } = useContext(AuthContext)
+  const handleClick = () => {
+    addViewedProperty();
+  };
+
   return (
     <Link to={`/info/${house?._id || similar?._id}`}>
-      <div className="cursor-pointer h-68 2xl:h-68 2xl:w-80 px-2 py-4  ml-4 mt-4 rounded-xl w-72 border-2 border-#d6ccc2  shadow-xl    ">
+      <div className="cursor-pointer h-68 2xl:h-68 2xl:w-80 px-2 py-4  ml-4 mt-4 rounded-xl w-72 border-2 border-#d6ccc2  shadow-xl    " onClick={handleClick}>
         <img
-          src={house?.images[0].url || similar?.images[0].url}
+          src={house?.images?.[0]?.url || similar?.images?.[0]?.url}
           alt=""
           className="aspect-video px-1 w-72 2xl:w-full  py-1 rounded-2xl"
         />
@@ -48,4 +55,4 @@ const propertyCard = ({ house, similar }) => {
   );
 };
 
-export default propertyCard;
+export default PropertyCard;

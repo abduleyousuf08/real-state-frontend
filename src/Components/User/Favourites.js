@@ -5,10 +5,16 @@ import { MdOutlineArrowDropDown } from 'react-icons/md'
 import { AuthContext } from '../../Context/AuthContext'
 import UseSavedProperties from '../../Hooks/UseSavedProperties'
 import Card from '../../screens/Card'
+import PropertyCard from '../../screens/propertyCard'
 
 
 function Favorites() {
     const { savedProperties } = UseSavedProperties()
+    const { clearSavedProperties } = useContext(AuthContext)
+
+    const handleOnClick = ()=>{
+        clearSavedProperties()
+    }
     
     return (
         <div className='h-full p-10'>
@@ -23,7 +29,8 @@ function Favorites() {
                                     <option value="#">Buy</option>
                             </select>
                         </div>
-                        <button className= 'flex items-center gap-2 border rounded-md px-1 border-slate-500 text-slate-500  justify-center font-semibold hover:bg-cyan-900 hover:text-white w-15'>
+                        <button className= 'flex items-center gap-2 border rounded-md px-1 border-slate-500 text-slate-500  justify-center font-semibold hover:bg-cyan-900 hover:text-white w-15'
+                        onClick={handleOnClick}>
                             <AiOutlineClear className="fill-current"/>Clear
                         </button>
                     </div>
@@ -37,11 +44,11 @@ function Favorites() {
                 </div>
                 <div className='mt-5 flex flex-wrap'>
                     {savedProperties.length === 0 ? (
-                        <p>No viewed properties found.</p>
+                        <p>No saved properties found.</p>
                     ) : (
                         savedProperties.map((property) => (
                             //console.log(property)
-                            <Card key={property.propertyId}  data={property} />
+                            <PropertyCard key={property.propertyId}  house={property} />
                         ))
                     )}
                 </div>
