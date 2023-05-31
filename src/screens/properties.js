@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useRef, useState, useContext } from "react";
 import GeneralContext from "../Context/ContextApi";
 
@@ -8,16 +8,21 @@ import downArrow from "../Assets/down-arrow.png";
 import upArrow from "../Assets/up-arrow.png";
 import threeD from "../Assets/3d.png";
 //COMPONENTS
-import PropertyCard from "./propertyCard";
+import CommonCard from "./CommonCard";
 import Card from "./Card";
 
 const Properties = () => {
-  const { searchedProperties } = useContext(GeneralContext);
-  const toggle = useRef([]);
   ////
+  const { searchedProperties, setInputs, handleBug, setSearchedProperties } =
+    useContext(GeneralContext);
+  const toggle = useRef([]);
   const [countryHidden, setCountryHidden] = useState(false);
   const [propertyHidden, setPropertyHidden] = useState(false);
   const [contractHidden, setContractHidden] = useState(false);
+
+  if (searchedProperties === null) {
+    return <div>Loading....</div>;
+  }
 
   /////
   const handleToggle = (index) => {
@@ -33,18 +38,14 @@ const Properties = () => {
     }
   };
 
-  if (!searchedProperties) {
-    return <div>Loading....</div>;
-  }
-
-  ///////
-  const searchedList = searchedProperties[0]?.searchList?.map((house) => {
-    return <Card house={house} key={house._id} />;
+  // ///////
+  const searchedList = searchedProperties[0]?.searchList[0]?.map((house) => {
+    return <CommonCard house={house} key={house._id} />;
   });
 
   const simirlarList = searchedProperties[0]?.simirlarProperties?.map(
     (similar) => {
-      return <Card similar={similar} />;
+      return <CommonCard similar={similar} />;
     }
   );
 
@@ -255,27 +256,32 @@ const Properties = () => {
 
         {/**CARD'S PART */}
         <Link to={"/"}>
-          <button className="absolute border border-black px-4 py-2 bg-cyan-900  text-white font-semibold right-10 top-0 rounded-md focus:drop-shadow-2xl  hover:text-white hover:-translate-y-1 hover:scale-110 duration-300 hover:text-black hover:font-bold">
+          <button
+            onClick={handleBug}
+            className="absolute border border-black px-4 py-2 bg-cyan-900  text-white font-semibold right-10 top-0 rounded-md focus:drop-shadow-2xl  hover:text-white hover:-translate-y-1 hover:scale-110 duration-300 hover:text-black hover:font-bold"
+          >
             Go Back
           </button>
         </Link>
         <div className="absolute left-72 px-4 py-2 top-2  h-96 w-9/12">
           <h2 className="text-base w-full font-uls tracking-wide relative">
-            Showing <span> {searchedProperties[0]?.searchList?.length} </span>
+            Showing{" "}
+            <span> {searchedProperties[0]?.searchList[0]?.length} </span>
             results
           </h2>
           <p
             className={
-              searchedProperties[0]?.searchList.length <= 0
+              searchedProperties[0]?.searchList[0]?.length <= 0 ||
+              searchedProperties[0]?.searchList[0] === undefined
                 ? "text-2xl text-start mt-0 "
                 : "hidden"
             }
           >
-            No results found
+            no results found
           </p>
           <div
             className={
-              searchedProperties[0]?.searchList <= 0
+              searchedProperties[0]?.searchList[0] <= 0
                 ? "hidden"
                 : " py-4 flex items-center overflow-auto "
             }

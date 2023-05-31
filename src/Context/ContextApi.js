@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { createContext } from "react";
+
 import axios from "axios";
 import { toast } from "react-toastify";
 
 //COMPONENTS
-import Card from "../screens/Card";
+// import commonCard from "../screens/CommonCard";
+import CommonCard from "../screens/CommonCard";
+import { useLocation } from "react-router-dom";
 
 const GeneralContext = createContext();
 
@@ -20,6 +23,7 @@ function Provider({ children }) {
   //OTHER VALUES
   const [data, setData] = useState([]);
   const [infoLoading, setInfoLoading] = useState(true);
+
   //NEW POSTING VALUES
   const [values, setValues] = useState({
     bedrooms: 0,
@@ -57,6 +61,11 @@ function Provider({ children }) {
   const [inputs, setInputs] = useState({});
   const [searchedProperties, setSearchedProperties] = useState([]);
 
+  const handleBug = () => {
+    setSearchedProperties([]);
+    setInputs("");
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:3000/propertyInfo/houseList")
@@ -86,19 +95,23 @@ function Provider({ children }) {
 
   //FE
   const getSearchedProperties = async () => {
-    const response = await axios.get(
-      "http://localhost:3000/propertyInfo/search",
-      {
+    await axios
+      .get("http://localhost:3000/propertyInfo/search", {
         params: {
-          location: inputs.search,
+          country: inputs.country,
           options: inputs.options,
           contract: inputs.contract,
         },
-      }
-    );
-
-    setSearchedProperties([...searchedProperties, response.data]);
+      })
+      .then((res) => {
+        setSearchedProperties([...searchedProperties, res.data]);
+      })
+      .catch((e) => {
+        toast.error("try refresh the page");
+      });
   };
+
+  //HANDLE SETTING TO EMPTY THE SEARCHED VARIABLE
 
   //MAKING SCHEDULE FROM THE INFO PAGE
   const makeSchedule = async (date, id) => {
@@ -145,9 +158,13 @@ function Provider({ children }) {
   const renderActiveOne = () => {
     switch (activeOne) {
       case "sale":
-        return saleHouses.slice(0, 3).map((house) => <Card data={house} />);
+        return saleHouses
+          .slice(0, 3)
+          .map((house) => <CommonCard data={house} />);
       case "rent":
-        return rentHouses.slice(0, 3).map((house) => <Card data={house} />);
+        return rentHouses
+          .slice(0, 3)
+          .map((house) => <CommonCard data={house} />);
     }
   };
 
@@ -207,11 +224,13 @@ function Provider({ children }) {
     setValues,
     values,
     handleImage,
-    setInputs,
     submiting,
     inputs,
+    setInputs,
     getSearchedProperties,
     searchedProperties,
+    handleBug,
+    setSearchedProperties,
     makeSchedule,
   };
 

@@ -51,4 +51,4 @@ function Listings() {
     )
 }
 
-export default Listings
+export default Listings;

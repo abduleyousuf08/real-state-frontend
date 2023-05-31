@@ -3,33 +3,29 @@ import { BsDashLg } from "react-icons/bs";
 import { AiFillCamera } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 import { AuthContext } from "../../Context/AuthContext";
-import defaultProfile from '../../Assets/Profile.jpg'
+import defaultProfile from "../../Assets/Profile.jpg";
 import { useEffect } from "react";
 
-
 function Profile() {
-    const { 
-            user, 
-            editProfile,
-            updateProfile,
-            updateUserProfile,
-            setUpdateProfile
-        } = useContext(AuthContext)
-    const [isEditing, setIsEditing] = useState(false);
+  const {
+    user,
+    editProfile,
+    updateProfile,
+    updateUserProfile,
+    setUpdateProfile,
+  } = useContext(AuthContext);
+  const [isEditing, setIsEditing] = useState(false);
 
-    
+  const handleEditClick = () => {
+    setIsEditing(true);
 
-    const handleEditClick = () => {
-        setIsEditing(true);
-
-        // Populate the updateProfile state with the existing user data
-        setUpdateProfile({
-            name: user?.name || '',
-            phone: user?.phone || '',
-            address: user?.address || '',
-        });
-
-    };
+    // Populate the updateProfile state with the existing user data
+    setUpdateProfile({
+      name: user?.name || "",
+      phone: user?.phone || "",
+      address: user?.address || "",
+    });
+  };
 
   const handleSaveClick = async () => {
     setIsEditing(false);
@@ -70,17 +66,16 @@ function Profile() {
     const selectedImage = e.target.files[0];
     updateUserProfile({ ...updateProfile, image: selectedImage });
 
-        if (selectedImage) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                setImagePreview(event.target.result);
-            };
-            reader.readAsDataURL(selectedImage);
-        
-        } else {
-            setImagePreview(null);
-        }
+    if (selectedImage) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setImagePreview(event.target.result);
+      };
+      reader.readAsDataURL(selectedImage);
+    } else {
+      setImagePreview(null);
     }
+  };
 
   return (
     <div className="h-full p-10">
@@ -107,7 +102,7 @@ function Profile() {
             )}
             <label
               htmlFor="profile-photo"
-              className="absolute mb-52 bottom-36 ml-5 cursor-pointer"
+              className="absolute mb-52 bottom-36 2xl:top-60 ml-5 cursor-pointer"
             >
               <AiFillCamera
                 className="h-6 w-6 fill-current"

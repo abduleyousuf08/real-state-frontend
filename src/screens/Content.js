@@ -6,6 +6,7 @@ import { BsSearch } from "react-icons/bs";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { Link2 } from "react-scroll";
 
 import { useContext } from "react";
 import GeneralContext from "../Context/ContextApi";
@@ -52,22 +53,22 @@ const Content = () => {
     {
       id: "a",
       label: "Best Interest rates On The Market",
-      desc: "the value we provide to you is more than anything else ",
+      desc: "Keep Your Finances Steady with Unmatched Stability.",
     },
     {
       id: "b",
       label: "Prevent Unstable Prices",
-      desc: "the value we provide to you is more than anything nothing",
+      desc: "Guarantee Price Stability for Your Business",
     },
     {
       id: "c",
       label: "Best Price On The Market ",
-      desc: "the value we provide to you is more than anything oky",
+      desc: "Keep Your Prices Firm, Always Competitive",
     },
     {
       id: "d",
       label: "Security Of Your Data",
-      desc: "the value we provide to you is more than anything alright",
+      desc: "Uncompromising Security of Your Data",
     },
   ];
   ////
@@ -142,58 +143,68 @@ const Content = () => {
   ////
   return (
     <div className="content-component">
-      <div className="ml-32  ">
-        <h1 className=" content-header">
-          Sell or Rent Your Home <br /> at the Best Price
-        </h1>
-      </div>
-      {/**rent and sell part */}
-      <div className="selection-group">
-        <button
-          className="sell-button"
-          onClick={() => setInputs({ ...inputs, contract: "sale" })}
-        >
-          Sell
-        </button>
-
-        <button
-          className="rent-button"
-          onClick={() => setInputs({ ...inputs, contract: "rent" })}
-        >
-          Rent
-        </button>
-      </div>
-      {/** search part*/}
-      <div className="search-types-container">
-        <div className=" flex items-center types-selection">
-          <AiOutlineHome className="mr-1 home-icon" />
-
-          <select
-            name="#"
-            id="#"
-            className="selection-options"
-            onChange={(e) => setInputs({ ...inputs, options: e.target.value })}
-          >
-            <option value="#">Property Type</option>
-            <option value="villa">Villa</option>
-            <option value="building">Building</option>
-            <option value="apartment">Apartment</option>
-            <option value="house">Normal-houses</option>
-          </select>
+      <div className="design-this">
+        <div className="ml-32  ">
+          <h1 className=" content-header">
+            Sell or Rent Your Home <br /> at the Best Price
+          </h1>
         </div>
-        <div className=" flex items-center input-field">
-          <BsSearch className="search-icon" />
-          <input
-            type="text"
-            placeholder=" Search by location "
-            onChange={(e) => setInputs({ ...inputs, search: e.target.value })}
-          />
-          <div className="button-field">
-            <Link to={"/properties"}>
-              <button className="button-search" onClick={getSearchedProperties}>
-                Search
-              </button>
-            </Link>
+        {/**rent and sell part */}
+        <div className="selection-group">
+          <button
+            className="sell-button"
+            onClick={() => setInputs({ ...inputs, contract: "sale" })}
+          >
+            Sell
+          </button>
+
+          <button
+            className="rent-button"
+            onClick={() => setInputs({ ...inputs, contract: "rent" })}
+          >
+            Rent
+          </button>
+        </div>
+        {/** search part*/}
+        <div className="search-types-container">
+          <div className=" flex items-center types-selection">
+            <AiOutlineHome className="mr-1 home-icon" />
+
+            <select
+              name="#"
+              id="#"
+              className="selection-options"
+              onChange={(e) =>
+                setInputs({ ...inputs, options: e.target.value })
+              }
+            >
+              <option value="#">Property Type</option>
+              <option value="villa">Villa</option>
+              <option value="building">Building</option>
+              <option value="apartment">Apartment</option>
+              <option value="house">Normal-houses</option>
+            </select>
+          </div>
+          <div className=" flex items-center input-field">
+            <BsSearch className="search-icon" />
+            <input
+              type="text"
+              placeholder=" Search by location "
+              className="outline-none"
+              onChange={(e) =>
+                setInputs({ ...inputs, country: e.target.value })
+              }
+            />
+            <div className="button-field">
+              <Link to={"/properties"}>
+                <button
+                  className="button-search"
+                  onClick={getSearchedProperties}
+                >
+                  Search
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -234,7 +245,11 @@ const Content = () => {
           </video>
         </div>
 
-        <div ref={divEl} className="ml-20 absolute right-16 2xl:right-72 ">
+        <div
+          ref={divEl}
+          className="ml-20 absolute right-16 2xl:right-72"
+          id="about-us-section"
+        >
           <h1 className=" 2xl:text-4xl content-five-header">
             VALUE WE GIVE TO YOU
           </h1>
@@ -247,8 +262,8 @@ const Content = () => {
       {/**Content 6 */}
       <div className=" flex content-six">
         <div>
-          <div className="content-six-first-section">
-            <h4 className="sub-header-one">Contact us</h4>
+          <div className="content-six-first-section" id="contact-us-section">
+            <h4 className="sub-header-one ">Contact us</h4>
             <h1 className="flex items-center sub-header-two">
               Easy to contact us
               <span className="mini-dot">
