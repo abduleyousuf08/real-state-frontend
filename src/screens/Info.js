@@ -155,7 +155,7 @@ function Info() {
           </h4>
           <div className="flex items-center relative">
             <h1 className=" relative text-3xl mb-4 w-5/12 text-amber-400 font-bold">
-              {data?.oneProp?.country ? data?.oneProp?.country : "Hargeisa"}
+              {data?.oneProp?.country ? data?.oneProp?.country : "Somalia"}
               <span className="absolute ">
                 <img src={blueTick} alt="" width={20} className="" />
               </span>
@@ -370,7 +370,9 @@ function Info() {
               </div>
               <div className="flex items-center ml-28 mt-10">
                 <img src={microWave} alt="" width={40} className="mr-4" />
-                <span>{data.oneProp.oven ? "Oven" : "No Oven available"}</span>
+                <span>
+                  {data?.oneProp?.oven ? "Oven" : "No Oven available"}
+                </span>
               </div>
             </div>
           </div>

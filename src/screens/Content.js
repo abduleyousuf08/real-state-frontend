@@ -142,59 +142,68 @@ const Content = () => {
   ////
   return (
     <div className="content-component">
-      <div className="ml-32  ">
-        <h1 className=" content-header">
-          Sell or Rent Your Home <br /> at the Best Price
-        </h1>
-      </div>
-      {/**rent and sell part */}
-      <div className="selection-group">
-        <button
-          className="sell-button"
-          onClick={() => setInputs({ ...inputs, contract: "sale" })}
-        >
-          Sell
-        </button>
-
-        <button
-          className="rent-button"
-          onClick={() => setInputs({ ...inputs, contract: "rent" })}
-        >
-          Rent
-        </button>
-      </div>
-      {/** search part*/}
-      <div className="search-types-container">
-        <div className=" flex items-center types-selection">
-          <AiOutlineHome className="mr-1 home-icon" />
-
-          <select
-            name="#"
-            id="#"
-            className="selection-options"
-            onChange={(e) => setInputs({ ...inputs, options: e.target.value })}
-          >
-            <option value="#">Property Type</option>
-            <option value="villa">Villa</option>
-            <option value="building">Building</option>
-            <option value="apartment">Apartment</option>
-            <option value="house">Normal-houses</option>
-          </select>
+      <div className="design-this">
+        <div className="ml-32  ">
+          <h1 className=" content-header">
+            Sell or Rent Your Home <br /> at the Best Price
+          </h1>
         </div>
-        <div className=" flex items-center input-field">
-          <BsSearch className="search-icon" />
-          <input
-            type="text"
-            placeholder=" Search by location "
-            className="outline-none"
-            onChange={(e) => setInputs({ ...inputs, country: e.target.value })}
-          />
-          <div className="button-field">
-            <Link to={"/properties"}>
-              <button className="button-search" onClick={getSearchedProperties}>
-                Search
-              </button>
-            </Link>
+        {/**rent and sell part */}
+        <div className="selection-group">
+          <button
+            className="sell-button"
+            onClick={() => setInputs({ ...inputs, contract: "sale" })}
+          >
+            Sell
+          </button>
+
+          <button
+            className="rent-button"
+            onClick={() => setInputs({ ...inputs, contract: "rent" })}
+          >
+            Rent
+          </button>
+        </div>
+        {/** search part*/}
+        <div className="search-types-container">
+          <div className=" flex items-center types-selection">
+            <AiOutlineHome className="mr-1 home-icon" />
+
+            <select
+              name="#"
+              id="#"
+              className="selection-options"
+              onChange={(e) =>
+                setInputs({ ...inputs, options: e.target.value })
+              }
+            >
+              <option value="#">Property Type</option>
+              <option value="villa">Villa</option>
+              <option value="building">Building</option>
+              <option value="apartment">Apartment</option>
+              <option value="house">Normal-houses</option>
+            </select>
+          </div>
+          <div className=" flex items-center input-field">
+            <BsSearch className="search-icon" />
+            <input
+              type="text"
+              placeholder=" Search by location "
+              className="outline-none"
+              onChange={(e) =>
+                setInputs({ ...inputs, country: e.target.value })
+              }
+            />
+            <div className="button-field">
+              <Link to={"/properties"}>
+                <button
+                  className="button-search"
+                  onClick={getSearchedProperties}
+                >
+                  Search
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
