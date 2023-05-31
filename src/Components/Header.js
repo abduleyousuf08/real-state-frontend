@@ -14,21 +14,22 @@ import guryoSame from "../images/edited-images/guryo-same.png";
 //CONTEXT
 import { AuthContext } from "../Context/AuthContext";
 import GeneralContext from "../Context/ContextApi";
+import { ChatContext } from "../Context/ChatContext";
 
 const Header = () => {
   const location = useLocation();
   const { user } = useContext(AuthContext);
   const isHomepage = location.pathname === "/";
-  const { notifications } = useContext(ChatContext)
   const token = localStorage.getItem("token");
   const parsedToken = token ? JSON.parse(token) : null;
   const tokenValue = parsedToken ? parsedToken.token : null;
-  const isUserSignedIn = !!tokenValue
-  
-  const handleOnclick=()=>{
-    window.location.reload(true);
-  }
+  const isUserSignedIn = !!tokenValue;
+  const [view, setView] = useState(false);
+  const [viewTwo, setViewTwo] = useState(false);
+  const { notifications } = useContext(ChatContext)
 
+  //NEW UPDATE HERE
+  const { handleBug } = useContext(GeneralContext);
 
   return (
     <div className="w-full">
@@ -180,10 +181,10 @@ const Header = () => {
                 </Link>
               </ul>
             </div>
-            <div className="flex items-center gap-5  absolute right-0 bg-cyan-900 px-20 py-1 rounded-l-lg top-4 text-white" >
-              <IoNotifications className="w-7 h-8 cursor-pointer"/>
-              <RouterLink to={'/chat'}>
-              {notifications?.length === 0 ? <IoChatbubblesSharp className="w-7 h-8 cursor-pointer" /> : (
+            <div className="flex items-center gap-5  absolute right-0 bg-cyan-900 px-20 py-1 rounded-l-lg top-4 text-white">
+              <IoNotifications className="w-7 h-8 cursor-pointer" />
+              <RouterLink to={"/chat"}>
+                {notifications?.length === 0 ? <IoChatbubblesSharp className="w-7 h-8 cursor-pointer" /> : (
                 <div className="relative">
                   <IoChatbubblesSharp className="w-7 h-8 cursor-pointer"/>
                   <span className="absolute top-0 right-0 -mt-1 -mr-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold bg-red-500 rounded-full text-white">
@@ -520,10 +521,17 @@ const Header = () => {
             </div>
             <div className="flex items-center gap-5 ml-56 text-white">
               <IoNotifications className="w-7 h-8 cursor-pointer" />
-              <Link to={"/chat"}>
-                <IoChatbubblesSharp className="w-7 h-8 cursor-pointer" />
-              </Link>
-              <Link to={"/dashboard"}>
+              <RouterLink to={"/chat"}>
+              {notifications?.length === 0 ? <IoChatbubblesSharp className="w-7 h-8 cursor-pointer" />  : (
+                <div className="relative">
+                  <IoChatbubblesSharp className="w-7 h-8 cursor-pointer" ></IoChatbubblesSharp>
+                  <span className="absolute top-0 right-0 -mt-1 -mr-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold bg-red-500 rounded-full text-white">
+                    {notifications?.length}
+                  </span>
+                </div>
+              )}
+              </RouterLink>
+              <RouterLink to={"/dashboard"}>
                 <img
                   src={user?.image?.url || defaultProfile}
                   alt="user"

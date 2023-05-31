@@ -4,8 +4,8 @@ import { AiOutlineClear } from 'react-icons/ai'
 import { MdOutlineArrowDropDown } from 'react-icons/md'
 import { AuthContext } from '../../Context/AuthContext'
 import UseSavedProperties from '../../Hooks/UseSavedProperties'
-import Card from '../../screens/Card'
-import PropertyCard from '../../screens/propertyCard'
+import CommonCard from '../../screens/CommonCard'
+
 
 
 function Favorites() {
@@ -48,7 +48,7 @@ function Favorites() {
                     ) : (
                         savedProperties.map((property) => (
                             //console.log(property)
-                            <PropertyCard key={property.propertyId}  house={property} />
+                            <CommonCard key={property.propertyId}  house={property} />
                         ))
                     )}
                 </div>

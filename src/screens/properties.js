@@ -9,7 +9,7 @@ import upArrow from "../Assets/up-arrow.png";
 import threeD from "../Assets/3d.png";
 //COMPONENTS
 import CommonCard from "./CommonCard";
-import Card from "./Card";
+
 
 const Properties = () => {
   ////

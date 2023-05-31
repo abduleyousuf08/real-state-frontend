@@ -14,7 +14,7 @@ function CommonCard({ data, house, similar }) {
   const location = useLocation();
   const isHome = location.pathname === "/";
 
-  console.log(location);
+  
   const { addViewedProperty } = useContext(AuthContext);
   const handleClick = () => {
     addViewedProperty();
@@ -30,7 +30,7 @@ function CommonCard({ data, house, similar }) {
                   className="rounded-t-lg  aspect-video "
                   src={
                     data?.images?.[0]?.url
-                      ? data.images[0].url
+                      ? data.images?.[0]?.url
                       : "https://media.istockphoto.com/id/506545080/vector/transparent-pattern-background.jpg?s=1024x1024&w=is&k=20&c=oSehSBTS7lglexi8oNkDCVjvt0RE2QuSYWHWyfucp80="
                   }
                   alt="profile"
@@ -105,7 +105,7 @@ function CommonCard({ data, house, similar }) {
         <Link to={`/info/${house?._id || similar?._id}`}>
           <div className="cursor-pointer h-68 2xl:h-68 2xl:w-80 px-2 py-4  ml-4 mt-4 rounded-xl w-72 border-2 border-#d6ccc2  shadow-xl    ">
             <img
-              src={house?.images[0].url || similar?.images[0].url}
+              src={house?.images?.[0].url || similar?.images?.[0]?.url}
               alt=""
               className="aspect-video px-1 w-72 2xl:w-full  py-1 rounded-2xl"
             />

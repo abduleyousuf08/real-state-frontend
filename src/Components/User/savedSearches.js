@@ -4,7 +4,7 @@ import { AiOutlineClear } from 'react-icons/ai'
 import { MdOutlineArrowDropDown } from 'react-icons/md'
 import UseViewedProperties from '../../Hooks/UseViewedProperties'
 import { AuthContext } from '../../Context/AuthContext'
-import PropertyCard from '../../screens/propertyCard'
+import CommonCard from '../../screens/CommonCard'
 
 
 
@@ -48,7 +48,7 @@ function SavedSearches() {
                     ) : (
                         viewedProperties.map((property) => (
                             //console.log(property)
-                            <PropertyCard key={property.propertyId}  house={property} />
+                            <CommonCard key={property.propertyId}  house={property} />
                         ))
                     )}
                 </div>

@@ -3,7 +3,8 @@ import {BsDashLg} from 'react-icons/bs'
 import { AiOutlineClear } from 'react-icons/ai'
 import { MdOutlineArrowDropDown } from 'react-icons/md'
 import useAgentListings from '../../Hooks/UseAgentListing'
-import PropertyCard from '../../screens/propertyCard'
+import CommonCard from '../../screens/CommonCard'
+
 
 
 function Listings() {
@@ -42,7 +43,7 @@ function Listings() {
                     ) : (
                         agentListings.map((property) => (
                             //console.log(property)
-                            <PropertyCard key={property._id}  house={property} />
+                            <CommonCard key={property._id}  house={property} />
                         ))
                     )}
                 </div>
