@@ -11,7 +11,6 @@ import Dashboard from "./Pages/Dashboard";
 import Auth from "./Pages/Auth";
 import ChatRoom from "./Pages/ChatRoom";
 import Properties from "./screens/properties";
-import SubmitProperty from "./screens/SubmitProperty";
 import Header from "./Components/Header";
 import Info from "./screens/Info";
 import ProtectRoute from "./Utils/ProtectRoute";
@@ -53,9 +52,7 @@ function App() {
           }
         />
         <Route path="/auth" element={<Auth />} />
-
         <Route path="/properties" element={<Properties />} />
-        <Route path="/submitProperty" element={<SubmitProperty />} />
       </Routes>
       <ToastContainer
         position="top-center"

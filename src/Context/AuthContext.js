@@ -19,6 +19,7 @@ export const AuthContextProvider = ({ children }) => {
     
     const { data } = useContext(GeneralContext)
     const Navigate = useNavigate();
+    const [loggedInUser, setLoggedInUser] = useState(null)
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
     const [registerInfo, setRegisterInfo] = useState({
@@ -44,26 +45,22 @@ export const AuthContextProvider = ({ children }) => {
     });
     const [viewedProperties, setViewedProperties] = useState([]);
     const [savedProperties, setSavedProperties] = useState([]);
+    const token = localStorage.getItem('token')
     
     useEffect(() => {
-        if (user === null) {
-            setLoading(true);
+        if ( token !== null) {
+            //setLoading(true);
+            setLoggedInUser(true);
             const storedUser = localStorage.getItem("token");
             if (storedUser) {
                 setUser(JSON.parse(storedUser));
-        }
-        setLoading(false);
-        } else {
-            const storedUser = localStorage.getItem("token");
-            if (storedUser) {
-                const parsedStoredUser = JSON.parse(storedUser);
-                if (JSON.stringify(user) !== JSON.stringify(parsedStoredUser)) {
-                setUser(parsedStoredUser);
-                }
             }
+            
         }
-    }, [user]);
-
+        
+        setLoading(false);
+    }, [token]);
+    
     
 
     const updateRegisterInfo = useCallback((info) => {
@@ -275,19 +272,47 @@ export const AuthContextProvider = ({ children }) => {
     
 
 
-    const deleteViewedProperty = useCallback(async (userId, propertyId) => {
-        const res = await deleteRequest(
-        `${baseURL}/auth/viewedProperties`,
-        JSON.stringify({ userId, propertyId })
-        );
-        if (res.error) {
-        //toast.error(res.message)
-        console.log(res.message);
-        } else {
-        //toast.success(res.message)
-        console.log(res.message); // "Successfully deleted"
+    const clearViewedProperties = useCallback(async () => {
+        setLoading(true);
+        try {
+            const res = await deleteRequest(
+                `${baseURL}/auth/viewedProperties`,
+                JSON.stringify({ userId: user._id }) 
+            );
+            if (res.error) {
+                console.log(res.message);
+            } else {
+                toast.success(res.message);
+            }
+            // Perform a hard reload of the page
+            //window.location.reload(true);
+            setViewedProperties([])
+            setLoading(false);
+        } catch (e) {
+            console.log(e);
         }
-    }, []);
+    }, [user]);
+
+    const clearSavedProperties = useCallback(async () => {
+        setLoading(true);
+        try {
+            const res = await deleteRequest(
+                `${baseURL}/auth/savedProperties`,
+                JSON.stringify({ userId: user._id }) 
+            );
+            if (res.error) {
+                console.log(res.message);
+            } else {
+                toast.success(res.message);
+            }
+            // Perform a hard reload of the page
+            //window.location.reload(true);
+            setSavedProperties([])
+            setLoading(false);
+        } catch (e) {
+            console.log(e);
+        }
+    }, [user]);
 
     return (
         <>
@@ -304,15 +329,22 @@ export const AuthContextProvider = ({ children }) => {
                 loginUser,
                 setUser,
                 addViewedProperty,
-                deleteViewedProperty,
                 editProfile,
                 updateProfile,
                 updateUserProfile,
                 setUpdateProfile,
                 viewedProperties,
+                savedProperties,
+                setSavedProperties,
                 changePass,
                 updatePassword,
-                changePassword
+                changePassword,
+                addFavouriteProperty,
+                clearViewedProperties,
+                clearSavedProperties,
+                setViewedProperties,
+                setLoading,
+                loggedInUser
             }}
             >
             {children}

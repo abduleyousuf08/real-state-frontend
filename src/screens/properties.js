@@ -10,6 +10,7 @@ import threeD from "../Assets/3d.png";
 //COMPONENTS
 import CommonCard from "./CommonCard";
 
+
 const Properties = () => {
   ////
   const { searchedProperties, setInputs, handleBug, setSearchedProperties } =
@@ -48,7 +49,7 @@ const Properties = () => {
     }
   );
 
-  //////////
+  //////////s
   return (
     <div>
       {/**BODY OF THIS CONTENT */}

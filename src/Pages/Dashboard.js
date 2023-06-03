@@ -15,7 +15,7 @@ import { AuthContext } from "../Context/AuthContext";
 import { useState } from "react";
 import Password from "../Components/User/Password";
 import Preferences from "../Components/User/Preferences";
-import CreateProperty from "../screens/CreateProperty";
+import SubmitProperty from '../screens/SubmitProperty'
 import Favorites from "../Components/User/Favourites";
 import SavedSearches from "../Components/User/savedSearches";
 import Schedule from "../Components/User/Schedule";
@@ -53,7 +53,7 @@ function Dashboard() {
       case "Listings":
         return <Listings/>;
       case "CreateProperty":
-        return <CreateProperty />;
+        return <SubmitProperty />;
       case "Schedule":
         return <Schedule user={user}  />;
       case "Analytics":
@@ -133,7 +133,7 @@ function Dashboard() {
                   onClick={() => setActiveComponent("SavedSearches")}
                 >
                   <FaSearchLocation className="fill-current" />
-                  Saved Searches
+                  Recent Searches
                 </span>
               </>
             ) : (

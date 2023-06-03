@@ -86,7 +86,7 @@ function Provider({ children }) {
       .then((res) => {
         setData(res.data);
         setInfoLoading(false);
-        console.log(res.data);
+        //console.log(res.data);
       })
       .catch((e) => {
         console.log(e);

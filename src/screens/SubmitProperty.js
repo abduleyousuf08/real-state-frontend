@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext, useState } from "react";
 import GeneralContext from "../Context/ContextApi";
+import {BsDashLg} from 'react-icons/bs'
 
 //IMAGES
 import upload from "../Assets/upload.png";
@@ -108,11 +109,13 @@ const SubmitProperty = () => {
 
   return (
     <div className="mt-10  ml-4 flex justify-between mr-20 ">
+      
       {/**SECTION ONE  */}
       <div className="w-7/12 2xl:w-8/12 ">
-        <h1 className="text-2xl font-ulHeader">About Properties</h1>
+      <h1 className='flex gap-3 items-center text-amber-400 font-bold text-xl'> <BsDashLg className="fill-current " style={{ strokeWidth: '3px' }}/>Submit Property </h1>
+        
         {/**START HERE SECTION ONE  */}
-        <div className="border border-#d6ccc2 px-4 py-4 ">
+        <div className="border border-#d6ccc2 px-4 py-4 mt-5">
           <h2 className="text-lg mb-4 font-uls">Property Information</h2>
           <label>
             Property Type{" "}

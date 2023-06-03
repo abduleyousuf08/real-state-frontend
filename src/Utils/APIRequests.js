@@ -60,32 +60,33 @@ export const getRequest = async (url, params, token) => {
     }
 };
 
-export const deleteRequest = async (url) => {
+export const deleteRequest = async (url, body) => {
   try {
-      const res = await axios(url, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+    const res = await axios.delete(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: body, // Pass the request body here
+    });
 
-      if (!res.data) {
-        return { error: true, message: "Error..." };
-      }
-
-      return res.data;
-    } catch (err) {
-      let message;
-
-      if (err.response.data?.message) {
-        message = err.response.data.message;
-      } else {
-        message = err.message;
-      }
-
-      return { error: true, message, status: err.response?.status };
+    if (!res.data) {
+      return { error: true, message: "Error..." };
     }
+
+    return res.data;
+  } catch (err) {
+    let message;
+
+    if (err.response.data?.message) {
+      message = err.response.data.message;
+    } else {
+      message = err.message;
+    }
+
+    return { error: true, message, status: err.response?.status };
+  }
 };
+
 
 export const putRequest = async (url, body) => {
   try {

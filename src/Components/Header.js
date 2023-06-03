@@ -14,6 +14,7 @@ import guryoSame from "../images/edited-images/guryo-same.png";
 //CONTEXT
 import { AuthContext } from "../Context/AuthContext";
 import GeneralContext from "../Context/ContextApi";
+import { ChatContext } from "../Context/ChatContext";
 
 const Header = () => {
   const location = useLocation();
@@ -25,6 +26,7 @@ const Header = () => {
   const isUserSignedIn = !!tokenValue;
   const [view, setView] = useState(false);
   const [viewTwo, setViewTwo] = useState(false);
+  const { notifications } = useContext(ChatContext)
 
   //NEW UPDATE HERE
   const { handleBug } = useContext(GeneralContext);
@@ -182,7 +184,14 @@ const Header = () => {
             <div className="flex items-center gap-5  absolute right-0 bg-cyan-900 px-20 py-1 rounded-l-lg top-4 text-white">
               <IoNotifications className="w-7 h-8 cursor-pointer" />
               <RouterLink to={"/chat"}>
-                <IoChatbubblesSharp className="w-7 h-8 cursor-pointer" />
+                {notifications?.length === 0 ? <IoChatbubblesSharp className="w-7 h-8 cursor-pointer" /> : (
+                <div className="relative">
+                  <IoChatbubblesSharp className="w-7 h-8 cursor-pointer"/>
+                  <span className="absolute top-0 right-0 -mt-1 -mr-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold bg-red-500 rounded-full text-white">
+                    {notifications?.length}
+                  </span>
+                </div>
+              )}
               </RouterLink>
               <RouterLink to={"/dashboard"}>
                 <img
@@ -513,7 +522,14 @@ const Header = () => {
             <div className="flex items-center gap-5 ml-56 text-white">
               <IoNotifications className="w-7 h-8 cursor-pointer" />
               <RouterLink to={"/chat"}>
-                <IoChatbubblesSharp className="w-7 h-8 cursor-pointer" />
+              {notifications?.length === 0 ? <IoChatbubblesSharp className="w-7 h-8 cursor-pointer" />  : (
+                <div className="relative">
+                  <IoChatbubblesSharp className="w-7 h-8 cursor-pointer" ></IoChatbubblesSharp>
+                  <span className="absolute top-0 right-0 -mt-1 -mr-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold bg-red-500 rounded-full text-white">
+                    {notifications?.length}
+                  </span>
+                </div>
+              )}
               </RouterLink>
               <RouterLink to={"/dashboard"}>
                 <img

@@ -6,7 +6,7 @@ import { BsSearch } from "react-icons/bs";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Link2 } from "react-scroll";
+
 
 import { useContext } from "react";
 import GeneralContext from "../Context/ContextApi";
@@ -16,7 +16,7 @@ import { IoIosCall } from "react-icons/io";
 import { BsFillChatDotsFill } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 import { AiTwotoneMail } from "react-icons/ai";
-import axios from "axios";
+
 
 //IMAGES
 
@@ -27,8 +27,6 @@ import facebook from "../images/edited-images/facebook.png";
 import instagram from "../images/edited-images/instagram.png";
 import snapchat from "../images/edited-images/snapchat.png";
 
-//COMPONENTS
-import Header from "../Components/Header.js";
 
 const Content = () => {
   const [expendedIndex, setExpendedIndex] = useState(-1);
@@ -46,6 +44,7 @@ const Content = () => {
   } = useContext(GeneralContext);
 
   const divEl = useRef();
+  
 
   ///DROPDOWN
   const dropDown = [
